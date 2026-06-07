@@ -15,38 +15,29 @@
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-destructive: hsl(var(--destructive));
   --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 6px);
-  --radius-2xl: calc(var(--radius) + 14px);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
 }
 
 :root {
-  --background: 220 30% 98%;
-  --foreground: 218 60% 8%;
-  --border: 220 20% 90%;
-  --primary: 221 95% 52%;
-  --primary-foreground: 0 0% 100%;
-  --muted: 220 20% 95%;
-  --muted-foreground: 220 15% 48%;
-  --card: 0 0% 100%;
-  --card-foreground: 218 60% 8%;
-  --accent: 44 96% 54%;
-  --accent-foreground: 218 60% 8%;
-  --destructive: 0 84% 60%;
-  --radius: 0.875rem;
-
-  /* Brand palette */
-  --navy: #0B1F4B;
+  /* Official Pappedir palette */
   --blue: #1A6EFF;
-  --blue-mid: #1250C4;
-  --gold: #FAB81E;
-  --gold-dark: #D99800;
+  --blue-dark: #0B4FCC;
+  --blue-light: #EEF4FF;
+  --navy: #0D1E3F;
+  --background: 0 0% 100%;
+  --foreground: 220 55% 12%;
+  --border: 220 18% 91%;
+  --primary: 221 100% 55%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 220 25% 97%;
+  --muted-foreground: 220 14% 50%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 55% 12%;
 }
 
 @layer base {
@@ -55,32 +46,14 @@
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background: #fff;
+    color: #0D1E3F;
   }
 }
 
 @layer utilities {
-  .blue-glow { box-shadow: 0 8px 32px rgba(26,110,255,.40), 0 2px 8px rgba(26,110,255,.25); }
-  .gold-glow { box-shadow: 0 8px 32px rgba(250,184,30,.45), 0 2px 8px rgba(250,184,30,.30); }
-  .card-lift {
-    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.06);
-    transition: box-shadow .2s ease, transform .2s ease;
-  }
-  .card-lift:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,.05), 0 16px 40px rgba(26,110,255,.13);
-    transform: translateY(-3px);
-  }
-  .glass {
-    background: rgba(255,255,255,.72);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.55);
-  }
-  .glass-dark {
-    background: rgba(11,31,75,.65);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,.1);
-  }
+  .blue-glow { box-shadow: 0 8px 28px -4px rgba(26,110,255,.45); }
+  .card-shadow { box-shadow: 0 1px 3px rgba(0,0,0,.04), 0 6px 20px rgba(0,0,0,.06); }
+  .card-shadow-hover { box-shadow: 0 4px 12px rgba(0,0,0,.05), 0 16px 40px rgba(26,110,255,.14); }
+  .section-alt { background: #F5F8FF; }
 }
