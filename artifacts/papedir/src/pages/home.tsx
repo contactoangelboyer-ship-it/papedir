@@ -24,7 +24,7 @@ import {
   Zap,
   ArrowRight,
 } from "lucide-react";
-import brandImg from "@assets/d39d6d45-b36f-4ac7-8e64-b212c78abbca_1780799808515.png";
+import brandImg from "@/assets/images/brand-sheet.png";
 import appMockupImg from "@/assets/images/app-mockup.png";
 import foodImg from "@/assets/images/venezuelan-food.png";
 import motoImg from "@/assets/images/moto-delivery.png";
