@@ -1,0 +1,32 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "dpWYt1df7AHYEM90OTxEV"
+uri = "file://artifacts/papedir/src/assets/images/logo.png"
+type = "image"
+title = "Pa'pedir Logo Concept"
+
+[[generated]]
+id = "tcn-QxDvTCPcUe6ryA5ww"
+uri = "file://artifacts/papedir/src/assets/images/hero-bg.png"
+type = "image"
+title = "Caracas Sunset Hero Background"
+
+[[generated]]
+id = "ua2gTnZb0xYGZzmvm1CKo"
+uri = "file://artifacts/papedir/src/assets/images/venezuelan-food.png"
+type = "image"
+title = "Venezuelan Food Spread"
+
+[[generated]]
+id = "e7fQCKA4Hp9atcVCy2hE2"
+uri = "file://artifacts/papedir/src/assets/images/moto-delivery.png"
+type = "image"
+title = "Moto Delivery Rider"
+
+[[generated]]
+id = "pcfDEerGwwf28oNG6hult"
+uri = "file://artifacts/papedir/src/assets/images/app-mockup.png"
+type = "image"
+title = "App Mockup on Phone"
