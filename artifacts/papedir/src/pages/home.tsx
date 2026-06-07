@@ -1,39 +1,27 @@
 import React, { useRef, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
-  Bike, ShoppingBag, MapPin, Star, Menu, X, Clock,
+  Bike, ShoppingBag, MapPin, Star, Menu, X,
   Package, Pill, Car, CheckCircle2, Smartphone, Send,
   Shield, DollarSign, Navigation, UserCheck, Zap,
-  ArrowRight, ChevronRight, Phone, Instagram, Twitter,
-  Facebook, Flame, Sparkles, TrendingUp, Lock,
+  ArrowRight, Phone, Instagram, Twitter, Facebook,
+  Clock, ChevronRight, Sparkles,
 } from "lucide-react";
 import appMockupImg from "@/assets/images/app-mockup.png";
 
-/* ── Animation helpers ──────────────────────────────────── */
-const ease = [0.22, 1, 0.36, 1] as const;
+/* ── Motion presets ─────────────────────────────────────── */
+const E = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease } },
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: E } },
 };
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-};
+const stag = { hidden: {}, visible: { transition: { staggerChildren: 0.09 } } };
 
-function InView({ children, className = "", delay = 0 }: {
-  children: React.ReactNode; className?: string; delay?: number;
-}) {
+function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const vis = useInView(ref, { once: true, margin: "-70px" });
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      variants={stagger}
-      className={className}
-      style={{ "--delay": `${delay}s` } as React.CSSProperties}
-    >
+    <motion.div ref={ref} initial="hidden" animate={vis ? "visible" : "hidden"} variants={stag} className={className}>
       {children}
     </motion.div>
   );
@@ -41,717 +29,559 @@ function InView({ children, className = "", delay = 0 }: {
 
 /* ── Data ───────────────────────────────────────────────── */
 const SERVICES = [
-  { icon: Car, label: "Transporte", color: "from-blue-50 to-indigo-50", accent: "text-blue-600", dot: "bg-blue-500" },
-  { icon: Bike, label: "Mototaxi", color: "from-sky-50 to-blue-50", accent: "text-sky-600", dot: "bg-sky-500" },
-  { icon: ShoppingBag, label: "Comida", color: "from-orange-50 to-amber-50", accent: "text-orange-500", dot: "bg-orange-400" },
-  { icon: Package, label: "Compras", color: "from-violet-50 to-purple-50", accent: "text-violet-600", dot: "bg-violet-500" },
-  { icon: Pill, label: "Farmacia", color: "from-emerald-50 to-teal-50", accent: "text-emerald-600", dot: "bg-emerald-500" },
-  { icon: Send, label: "Envíos", color: "from-rose-50 to-pink-50", accent: "text-rose-500", dot: "bg-rose-400" },
+  { icon: Car,      label: "Transporte",  sub: "Mototaxi y carro",       emoji: "🚗" },
+  { icon: ShoppingBag, label: "Comida",   sub: "Tus locales fav",         emoji: "🍔" },
+  { icon: Package,  label: "Compras",     sub: "Sin salir de casa",       emoji: "📦" },
+  { icon: Pill,     label: "Farmacia",    sub: "Medicamentos al instante", emoji: "💊" },
+  { icon: Send,     label: "Envíos",      sub: "Encomiendas rápidas",     emoji: "📬" },
+  { icon: Bike,     label: "Mototaxi",    sub: "Rápido y económico",      emoji: "🏍️" },
 ];
 
-const FEATURES = [
+const WHY = [
   {
-    icon: UserCheck,
+    icon: Shield,
     title: "Conductores verificados",
-    desc: "Cédula, vehículo y antecedentes revisados. Sin improvisar.",
-    span: "md:col-span-2",
-    big: true,
-  },
-  {
-    icon: Navigation,
-    title: "Rastreo GPS en vivo",
-    desc: "Tú y tu familia saben dónde estás en todo momento.",
-    span: "",
-    big: false,
+    desc: "Cédula, vehículo y antecedentes revisados. Viaja con alguien de confianza, no un desconocido.",
   },
   {
     icon: DollarSign,
-    title: "Tarifa antes de arrancar",
-    desc: "Sin sorpresas. Confirmas el precio antes de subir.",
-    span: "",
-    big: false,
+    title: "Precio fijo antes de arrancar",
+    desc: "Ves el costo antes de confirmar. Sin cuentas raras ni sorpresas al llegar.",
   },
   {
-    icon: Shield,
-    title: "Respaldo total",
-    desc: "Cada viaje queda registrado. Si algo pasa, estamos ahí.",
-    span: "",
-    big: false,
+    icon: Navigation,
+    title: "GPS en vivo",
+    desc: "Tú y tu familia saben exactamente dónde estás durante todo el viaje.",
   },
   {
-    icon: Clock,
-    title: "24/7 disponible",
-    desc: "A cualquier hora, cualquier día. Sin excusas.",
-    span: "",
-    big: false,
+    icon: UserCheck,
+    title: "Hecho pa' Portuguesa",
+    desc: "Operamos en Guanare, Acarigua, Araure y más. No somos de Caracas, somos del llano.",
   },
 ];
 
 const STEPS = [
-  {
-    n: "01",
-    icon: Smartphone,
-    title: "Abre Pappedir",
-    desc: "Solicita tu viaje, comida o servicio en segundos.",
-  },
-  {
-    n: "02",
-    icon: Flame,
-    title: "Un aliado lo acepta",
-    desc: "El más cercano arranca al tiro. Sin esperas interminables.",
-  },
-  {
-    n: "03",
-    icon: CheckCircle2,
-    title: "¡Listo, pana!",
-    desc: "Llega a tu destino o recibe tu pedido con total seguridad.",
-  },
+  { n: "1", icon: Smartphone, title: "Abre Pappedir", desc: "Elige tu servicio — viaje, delivery, compras, farmacia." },
+  { n: "2", icon: Zap,        title: "Un aliado acepta al tiro", desc: "El conductor más cerca arranca de una. Sin vueltas." },
+  { n: "3", icon: CheckCircle2, title: "¡Llegamos!", desc: "Sigue tu pedido o viaje en vivo. Fácil, seguro y sin rollos." },
 ];
 
 const TESTIMONIALS = [
-  {
-    name: "Roberto M.", city: "Guanare", role: "Usuario", stars: 5,
-    text: "Burda de rápido. Pedí el viaje y en 4 minutos el conductor estaba en mi puerta. Sin rollos.",
-  },
-  {
-    name: "Valentina C.", city: "Acarigua", role: "Usuaria", stars: 5,
-    text: "Me sentí segura en todo momento. Mi mamá vio mi ubicación en vivo. Eso vale oro.",
-  },
-  {
-    name: "José D.", city: "Araure", role: "Conductor aliado", stars: 5,
-    text: "Los pagos siempre llegan. El soporte responde rápido. Seria y confiable, chamo.",
-  },
-  {
-    name: "Ana R.", city: "Guanare", role: "Usuaria", stars: 5,
-    text: "Pedí el almuerzo y la medicina el mismo día, desde la misma app. Eso no lo tiene nadie más.",
-  },
+  { name: "Roberto M.", city: "Guanare",  stars: 5, text: "En 4 minutos el conductor estaba en mi puerta. Burda de rápido, sin comparación." },
+  { name: "Valentina C.", city: "Acarigua", stars: 5, text: "Mi mamá pudo ver mi ubicación en todo momento. Eso vale oro, chamo." },
+  { name: "José D.",    city: "Araure",   stars: 5, text: "Llevo dos meses de conductor aliado. Los pagos llegan siempre, el soporte responde." },
 ];
 
-const PAYMENT_METHODS = ["Pago Móvil", "Zelle", "Efectivo", "Transferencia", "Divisas"];
+const PAYMENTS = ["Pago Móvil", "Zelle", "Efectivo", "Transferencia", "Divisas"];
 
 /* ── Component ──────────────────────────────────────────── */
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="min-h-[100dvh] bg-white overflow-x-hidden">
+    <div className="min-h-[100dvh] bg-[#F4F7FE] font-sans overflow-x-hidden">
 
-      {/* ── NAVBAR ────────────────────────────────────────── */}
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease }}
-        className="fixed top-0 w-full z-50"
-      >
-        <div className="mx-4 mt-4">
-          <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-2xl border border-black/[0.06] rounded-2xl px-5 h-14 flex items-center justify-between shadow-sm shadow-black/[0.04]">
+      {/* ━━━━ NAVBAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <header className="fixed inset-x-0 top-0 z-50">
+        <div className="mx-auto max-w-7xl px-4 pt-3">
+          <div className="glass rounded-2xl px-5 h-[60px] flex items-center justify-between shadow-sm shadow-black/5">
+
             <a href="#" className="shrink-0">
-              <img src="/logo.png" alt="Pappedir" className="h-8 w-auto object-contain" />
+              <img src="/logo.png" alt="Pappedir" className="h-9 w-auto" />
             </a>
 
-            <nav className="hidden md:flex items-center gap-1">
-              {[["#servicios","Servicios"],["#seguridad","Seguridad"],["#como-funciona","Cómo funciona"],["#conductores","Conductores"]].map(([href, label]) => (
-                <a key={href} href={href}
-                  className="px-3.5 py-2 text-sm font-medium text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-all">
-                  {label}
-                </a>
+            <nav className="hidden md:flex gap-1">
+              {[["#servicios","Servicios"],["#seguridad","Seguridad"],["#como-funciona","Cómo funciona"],["#conductores","Conductores"]].map(([h, l]) => (
+                <a key={h} href={h} className="px-4 py-2 text-[13px] font-semibold text-slate-500 hover:text-[#0B1F4B] rounded-xl hover:bg-white/70 transition-all">{l}</a>
               ))}
             </nav>
 
             <div className="flex items-center gap-2">
-              <button className="hidden md:block text-sm font-semibold text-slate-600 hover:text-slate-900 px-3 py-1.5 transition-colors">
+              <a href="#conductores" className="hidden md:block text-[13px] font-bold text-slate-600 hover:text-[#1A6EFF] transition-colors px-2">
                 Unirme como conductor
+              </a>
+              <button className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl text-[13px] font-extrabold text-white bg-[#1A6EFF] blue-glow hover:bg-[#1250C4] transition-all active:scale-95">
+                <Smartphone size={14} /> Descargar
               </button>
-              <button className="text-sm font-bold px-5 py-2 rounded-xl bg-[#1A6EFF] text-white hover:bg-[#1558d6] transition-all shadow-md shadow-blue-500/25 active:scale-95">
-                Descargar
-              </button>
-              <button className="md:hidden p-1.5 text-slate-500" onClick={() => setMenuOpen(!menuOpen)}>
-                {menuOpen ? <X size={20} /> : <Menu size={20} />}
+              <button className="md:hidden p-2 text-slate-600" onClick={() => setOpen(!open)}>
+                {open ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
 
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-              className="mt-2 max-w-6xl mx-auto bg-white border border-black/[0.06] rounded-2xl shadow-xl overflow-hidden"
-            >
-              <div className="p-3 flex flex-col gap-0.5">
-                {[["#servicios","Servicios"],["#seguridad","Seguridad"],["#como-funciona","Cómo funciona"],["#conductores","Conductores"]].map(([href, label]) => (
-                  <a key={href} href={href} onClick={() => setMenuOpen(false)}
-                    className="px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all">
-                    {label}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {open && (
+              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden mt-2 glass rounded-2xl shadow-lg">
+                <div className="p-3 flex flex-col gap-0.5">
+                  {[["#servicios","Servicios"],["#seguridad","Seguridad"],["#como-funciona","Cómo funciona"],["#conductores","Conductores"]].map(([h, l]) => (
+                    <a key={h} href={h} onClick={() => setOpen(false)}
+                      className="px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-blue-50 rounded-xl transition-colors">{l}</a>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      </motion.header>
+      </header>
 
-      {/* ── HERO ──────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden pt-28 pb-16">
+      {/* ━━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
 
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F0F5FF] via-white to-white" />
-          <motion.div style={{ y: heroY }} className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-radial from-blue-200/40 via-blue-100/20 to-transparent blur-3xl rounded-full" />
-          </motion.div>
-          {/* Dot grid */}
-          <div className="absolute inset-0 opacity-[0.35]"
-            style={{ backgroundImage: "radial-gradient(circle, #CBD5E1 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
-        </div>
+        {/* BG gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F4B] via-[#0D2760] to-[#0B3A8C]" />
+        {/* Noise texture */}
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
+        {/* Radial glow */}
+        <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-[#1A6EFF]/20 blur-[120px] -translate-y-1/4 translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-[#FAB81E]/10 blur-[100px] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+        {/* Dot grid */}
+        <div className="absolute inset-0 opacity-[0.12]"
+          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)", backgroundSize: "36px 36px" }} />
 
-        <motion.div
-          style={{ opacity: heroOpacity }}
-          className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center"
-        >
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 pt-28 pb-16 grid lg:grid-cols-2 gap-12 items-center">
 
-            {/* Pill */}
+          {/* Left */}
+          <motion.div initial="hidden" animate="visible" variants={stag}>
+
             <motion.div variants={fadeUp}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm shadow-blue-100/50 mb-8 text-sm font-semibold text-blue-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-              Disponible ahora en Portuguesa, Venezuela
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/10 border border-white/15 mb-8">
+              <span className="w-2 h-2 rounded-full bg-[#FAB81E] animate-pulse" />
+              <span className="text-[#FAB81E] text-[13px] font-bold">Disponible ahora en Portuguesa</span>
             </motion.div>
 
-            {/* Headline */}
             <motion.h1 variants={fadeUp}
-              className="font-serif text-[clamp(44px,8vw,96px)] leading-[1.0] text-slate-900 mb-6 max-w-4xl">
-              Todo lo que necesitas,{" "}
-              <span className="italic text-gradient">una sola app.</span>
+              className="text-[clamp(40px,7vw,80px)] font-extrabold leading-[1.02] text-white mb-6 tracking-tight">
+              Tu viaje,<br />
+              tu pedido,<br />
+              <span className="text-[#FAB81E]">al tiro.</span>
             </motion.h1>
 
-            <motion.p variants={fadeUp}
-              className="text-[clamp(16px,2vw,20px)] text-slate-500 max-w-xl leading-relaxed mb-10">
-              Viaje, delivery, compra, farmacia. Pappedir es la app venezolana que le da vueltas a Ridery y YummyRides — hecha pa' el llanero, no pa' Caracas.
+            <motion.p variants={fadeUp} className="text-white/65 text-lg leading-relaxed max-w-lg mb-10">
+              Transporte, delivery, farmacia y más — todo desde una sola app venezolana. Sin rollos, sin esperas, sin chivos.
             </motion.p>
 
-            {/* CTAs */}
-            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center gap-3 mb-16">
-              <button className="group flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-[#1A6EFF] text-white text-base font-bold glow-blue hover:bg-[#1558d6] transition-all active:scale-95">
-                <Smartphone size={18} />
+            <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3 mb-12">
+              <button className="group flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#FAB81E] text-[#0B1F4B] font-extrabold text-[15px] gold-glow hover:bg-[#FFC93D] transition-all active:scale-95">
                 Solicitar ahora
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-white border border-slate-200 text-slate-700 text-base font-semibold hover:border-slate-300 hover:bg-slate-50 transition-all card-shadow">
-                Cómo funciona
-                <ChevronRight size={16} className="text-slate-400" />
+              <button className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border border-white/20 text-white font-bold text-[15px] hover:bg-white/10 transition-all">
+                Cómo funciona <ChevronRight size={15} className="text-white/50" />
               </button>
             </motion.div>
 
-            {/* Stats row */}
-            <motion.div variants={fadeUp}
-              className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-              {[
-                { val: "6+", sub: "Servicios en un solo lugar" },
-                { val: "24/7", sub: "Siempre disponible" },
-                { val: "4 min", sub: "Tiempo promedio de llegada" },
-                { val: "5 ★", sub: "Rating de usuarios" },
-              ].map((s, i) => (
-                <div key={i} className="text-center">
-                  <p className="text-2xl font-extrabold text-slate-900">{s.val}</p>
-                  <p className="text-xs text-slate-400 mt-0.5 font-medium">{s.sub}</p>
+            {/* Stats */}
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-x-8 gap-y-4">
+              {[["6+","Servicios"],["4 min","Llegada promedio"],["24/7","Disponible"],["5 ★","Rating"]].map(([v, l]) => (
+                <div key={l}>
+                  <p className="text-2xl font-extrabold text-white">{v}</p>
+                  <p className="text-white/45 text-xs font-medium mt-0.5">{l}</p>
                 </div>
               ))}
             </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* Mockup */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease }}
-          className="relative z-10 mt-16 px-6 flex justify-center"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 bg-blue-400/20 blur-[80px] scale-75 rounded-full" />
-            <img src={appMockupImg} alt="App Pappedir" className="relative z-10 w-[260px] md:w-[300px] drop-shadow-[0_40px_80px_rgba(26,110,255,0.2)]" />
+          {/* Right — mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.25, ease: E }}
+            className="relative flex justify-center"
+          >
+            <div className="absolute inset-0 bg-[#1A6EFF]/25 blur-[80px] rounded-full scale-75" />
+            <img src={appMockupImg} alt="App Pappedir" className="relative z-10 w-[260px] md:w-[300px] drop-shadow-[0_32px_64px_rgba(0,0,0,0.5)]" />
 
-            {/* Floating cards */}
-            <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 top-16 md:-left-20 z-20 bg-white rounded-2xl p-3.5 card-shadow flex items-center gap-3 min-w-[200px]">
-              <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
-                <Car size={18} className="text-blue-600" />
+            {/* Floating pill: conductor */}
+            <motion.div animate={{ y: [0,-12,0] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-10 -left-4 md:-left-16 z-20 glass rounded-2xl p-3.5 flex items-center gap-3 shadow-xl min-w-[210px]">
+              <div className="w-10 h-10 rounded-xl bg-[#1A6EFF]/15 flex items-center justify-center shrink-0">
+                <Car size={18} className="text-[#1A6EFF]" />
               </div>
               <div>
-                <p className="text-slate-800 text-[13px] font-bold">Conductor en camino</p>
-                <p className="text-slate-400 text-[11px] mt-0.5">Llega en ≈ 4 min · GPS activo</p>
+                <p className="text-[#0B1F4B] text-[13px] font-bold">Conductor en camino</p>
+                <p className="text-slate-500 text-[11px] mt-0.5">Llega en ≈ 4 min · GPS activo</p>
               </div>
             </motion.div>
 
-            <motion.div animate={{ y: [0, 12, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-              className="absolute -right-2 bottom-28 md:-right-16 z-20 bg-white rounded-2xl p-3.5 card-shadow flex items-center gap-3 min-w-[175px]">
+            {/* Floating pill: tarifa */}
+            <motion.div animate={{ y: [0,12,0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+              className="absolute bottom-24 -right-2 md:-right-14 z-20 glass rounded-2xl p-3.5 flex items-center gap-3 shadow-xl min-w-[180px]">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0">
                 <DollarSign size={18} className="text-emerald-500" />
               </div>
               <div>
-                <p className="text-slate-800 text-[13px] font-bold">Tarifa confirmada</p>
-                <p className="text-slate-400 text-[11px] mt-0.5">Sin sorpresas al llegar</p>
+                <p className="text-[#0B1F4B] text-[13px] font-bold">Tarifa estimada</p>
+                <p className="text-slate-500 text-[11px] mt-0.5">Sin sorpresas</p>
               </div>
             </motion.div>
 
-            <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-              className="absolute -left-2 bottom-24 md:-left-14 z-20 bg-white rounded-xl px-3.5 py-2.5 card-shadow flex items-center gap-2">
-              <div className="flex text-amber-400">
-                {[...Array(5)].map((_, i) => <Star key={i} size={11} fill="currentColor" />)}
+            {/* Stars */}
+            <motion.div animate={{ y: [0,-8,0] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 2.6 }}
+              className="absolute bottom-48 -left-2 md:-left-10 z-20 glass rounded-xl px-3.5 py-2.5 shadow-xl flex items-center gap-2">
+              <div className="flex text-[#FAB81E]">
+                {[...Array(5)].map((_,i) => <Star key={i} size={12} fill="currentColor" />)}
               </div>
-              <p className="text-slate-700 text-[12px] font-semibold">Chévere, pana!</p>
+              <p className="text-[#0B1F4B] text-[12px] font-bold">Chévere, pana!</p>
             </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Payment strip at bottom */}
+        <div className="absolute bottom-0 inset-x-0 border-t border-white/8">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-center gap-3">
+            <span className="text-white/35 text-[11px] font-semibold uppercase tracking-widest">Aceptamos</span>
+            {PAYMENTS.map((m) => (
+              <span key={m} className="px-3.5 py-1.5 rounded-full bg-white/8 border border-white/12 text-white/60 text-[11px] font-bold">{m}</span>
+            ))}
           </div>
-        </motion.div>
-
-        {/* Payments strip */}
-        <div className="relative z-10 mt-12 flex flex-wrap items-center justify-center gap-2.5 px-6">
-          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mr-1">Aceptamos</span>
-          {PAYMENT_METHODS.map((m) => (
-            <span key={m} className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[12px] font-semibold card-shadow">
-              {m}
-            </span>
-          ))}
         </div>
       </section>
 
-      {/* ── SERVICES BENTO ────────────────────────────────── */}
-      <section id="servicios" className="py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <InView className="mb-14">
-            <motion.div variants={fadeUp} className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 mb-4">Todo en uno</span>
-              <h2 className="font-serif text-[clamp(32px,5vw,56px)] text-slate-900 leading-tight mb-4">
-                6 servicios, <span className="italic text-gradient">una sola app</span>
-              </h2>
-              <p className="text-slate-500 max-w-md text-base leading-relaxed">
-                Transporte, comida, farmacia, compras, mototaxi y envíos. Tan fácil como abrir Pappedir.
-              </p>
-            </motion.div>
-          </InView>
+      {/* ━━━━ SERVICIOS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="servicios" className="py-24 bg-[#F4F7FE]">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal className="text-center mb-14">
+            <motion.p variants={fadeUp} className="text-[#1A6EFF] text-xs font-extrabold uppercase tracking-[0.18em] mb-3">Todo en uno</motion.p>
+            <motion.h2 variants={fadeUp} className="text-[clamp(28px,4.5vw,52px)] font-extrabold text-[#0B1F4B] mb-4 leading-tight">
+              Un solo lugar pa' todo
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-slate-500 max-w-md mx-auto">
+              No más abrir tres apps distintas. Con Pappedir tienes todo lo que necesitas en un solo sitio.
+            </motion.p>
+          </Reveal>
 
-          <InView>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <Reveal>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {SERVICES.map((s, i) => {
                 const Icon = s.icon;
-                const isBig = i === 0 || i === 5;
                 return (
-                  <motion.div
-                    key={i}
-                    variants={fadeUp}
-                    whileHover={{ y: -4, scale: 1.01 }}
-                    transition={{ duration: 0.18 }}
-                    className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br ${s.color} p-6 md:p-8 cursor-pointer border border-white/80 card-shadow hover:card-shadow-hover transition-all ${isBig ? "md:col-span-1 row-span-1" : ""}`}
-                  >
-                    <div className={`w-12 h-12 rounded-2xl bg-white/70 border border-white/90 flex items-center justify-center ${s.accent} mb-4 group-hover:scale-105 transition-transform`}>
+                  <motion.div key={i} variants={fadeUp}
+                    className="group bg-white rounded-3xl p-6 md:p-8 card-lift border border-slate-100 cursor-pointer overflow-hidden relative">
+                    <div className="absolute -bottom-6 -right-6 text-7xl opacity-[0.06] select-none group-hover:opacity-[0.10] transition-opacity">
+                      {s.emoji}
+                    </div>
+                    <div className="w-12 h-12 rounded-2xl bg-[#EFF3FF] flex items-center justify-center text-[#1A6EFF] mb-4 group-hover:bg-[#1A6EFF] group-hover:text-white transition-all">
                       <Icon size={22} />
                     </div>
-                    <p className="font-bold text-slate-800 text-lg">{s.label}</p>
-                    <div className={`absolute bottom-4 right-4 w-2.5 h-2.5 rounded-full ${s.dot} opacity-50`} />
-                    <div className="absolute -bottom-8 -right-8 w-28 h-28 rounded-full bg-white/20 group-hover:scale-110 transition-transform duration-500" />
+                    <p className="font-extrabold text-[#0B1F4B] text-base mb-0.5">{s.label}</p>
+                    <p className="text-slate-400 text-[13px]">{s.sub}</p>
                   </motion.div>
                 );
               })}
             </div>
-          </InView>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── SAFETY BENTO ──────────────────────────────────── */}
-      <section id="seguridad" className="py-28 bg-[#F7F9FF]">
-        <div className="max-w-6xl mx-auto px-6">
-          <InView className="mb-14">
-            <motion.div variants={fadeUp} className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 mb-4">Tu seguridad primero</span>
-              <h2 className="font-serif text-[clamp(32px,5vw,56px)] text-slate-900 leading-tight">
-                Viaja con <span className="italic text-gradient">total confianza</span>
-              </h2>
-            </motion.div>
-          </InView>
+      {/* ━━━━ SEGURIDAD ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="seguridad" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
 
-          {/* Bento grid */}
-          <InView>
-            <div className="grid md:grid-cols-3 gap-4 auto-rows-auto">
+            {/* Left visual */}
+            <Reveal>
+              <motion.div variants={fadeUp} className="relative">
+                {/* Main card */}
+                <div className="rounded-3xl bg-gradient-to-br from-[#0B1F4B] to-[#0D2E6B] p-8 md:p-10 text-white overflow-hidden relative">
+                  <div className="absolute top-0 right-0 w-72 h-72 bg-[#1A6EFF]/15 rounded-full blur-[80px] -translate-y-1/3 translate-x-1/3" />
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="w-12 h-12 rounded-2xl bg-[#FAB81E]/15 border border-[#FAB81E]/25 flex items-center justify-center">
+                        <Shield size={22} className="text-[#FAB81E]" />
+                      </div>
+                      <div>
+                        <p className="font-extrabold text-lg">Viaja seguro</p>
+                        <p className="text-white/50 text-[13px]">Cada recorrido respaldado</p>
+                      </div>
+                    </div>
 
-              {/* Big card */}
-              <motion.div variants={fadeUp}
-                className="md:col-span-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1A6EFF] to-[#0040CC] p-8 md:p-10 text-white card-shadow">
-                <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-white/5" />
-                <div className="absolute -bottom-16 -right-8 w-48 h-48 rounded-full bg-white/[0.04]" />
-                <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center mb-6">
-                    <UserCheck size={26} />
-                  </div>
-                  <h3 className="font-serif text-3xl md:text-4xl mb-3 leading-tight">
-                    Conductores<br />verificados
-                  </h3>
-                  <p className="text-blue-100 text-base leading-relaxed max-w-sm">
-                    Cédula, documentos del vehículo y antecedentes revisados manualmente. Cero improvisación. Cero riesgo.
-                  </p>
-                  <div className="flex gap-8 mt-8 pt-8 border-t border-white/15">
-                    <div>
-                      <p className="text-3xl font-extrabold">100%</p>
-                      <p className="text-blue-200 text-xs mt-1">Verificados</p>
+                    <div className="grid grid-cols-3 gap-4 mb-8">
+                      {[["100%","Verificados"],["GPS","Tiempo real"],["24/7","Soporte"]].map(([v,l]) => (
+                        <div key={l} className="text-center p-4 rounded-2xl bg-white/6 border border-white/8">
+                          <p className="font-extrabold text-2xl text-white">{v}</p>
+                          <p className="text-white/40 text-[11px] mt-1">{l}</p>
+                        </div>
+                      ))}
                     </div>
-                    <div>
-                      <p className="text-3xl font-extrabold">GPS</p>
-                      <p className="text-blue-200 text-xs mt-1">Rastreo en vivo</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-extrabold">24/7</p>
-                      <p className="text-blue-200 text-xs mt-1">Soporte activo</p>
+
+                    {/* Fake trip progress bar */}
+                    <div className="bg-white/8 rounded-2xl p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-white/70 text-[12px] font-semibold">Tu viaje en tiempo real</p>
+                        <span className="text-[#FAB81E] text-[11px] font-bold">EN CAMINO</span>
+                      </div>
+                      <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: "0%" }}
+                          animate={{ width: "65%" }}
+                          transition={{ duration: 2, delay: 1, ease: "easeOut" }}
+                          className="h-full bg-[#FAB81E] rounded-full"
+                        />
+                      </div>
+                      <div className="flex justify-between mt-2">
+                        <span className="text-white/40 text-[10px]">Origen</span>
+                        <span className="text-white/40 text-[10px]">Destino</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </motion.div>
+            </Reveal>
 
-              {/* Stack of 2 small */}
+            {/* Right text */}
+            <Reveal>
               <div className="flex flex-col gap-4">
-                {[
-                  { icon: Navigation, label: "GPS en vivo", desc: "Tu familia sabe dónde estás en cada momento del viaje.", bg: "bg-white" },
-                  { icon: DollarSign, label: "Precio fijo previo", desc: "Confirmas la tarifa antes de arrancar. Sin cuentas raras.", bg: "bg-slate-900 text-white" },
-                ].map((item, i) => {
-                  const Icon = item.icon;
-                  const dark = item.bg.includes("slate-900");
+                <motion.div variants={fadeUp}>
+                  <p className="text-[#1A6EFF] text-xs font-extrabold uppercase tracking-[0.18em] mb-3">Seguridad primero</p>
+                  <h2 className="text-[clamp(28px,4vw,48px)] font-extrabold text-[#0B1F4B] leading-tight mb-4">
+                    Viaja con<br />toda la confianza
+                  </h2>
+                  <p className="text-slate-500 leading-relaxed mb-6">
+                    En Pappedir no improvisamos. Cada conductor pasa por verificación real y cada viaje queda registrado.
+                  </p>
+                </motion.div>
+
+                {WHY.map((w, i) => {
+                  const Icon = w.icon;
                   return (
                     <motion.div key={i} variants={fadeUp}
-                      className={`flex-1 rounded-3xl p-6 card-shadow ${item.bg} border ${dark ? "border-slate-700" : "border-black/[0.05]"}`}>
-                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${dark ? "bg-white/10 text-white" : "bg-blue-50 text-blue-600"}`}>
-                        <Icon size={20} />
+                      className="group flex items-start gap-4 p-5 rounded-2xl bg-[#F4F7FE] border border-slate-100 hover:bg-white hover:border-[#1A6EFF]/20 hover:shadow-md hover:shadow-blue-100/50 transition-all cursor-pointer">
+                      <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#1A6EFF] shrink-0 group-hover:bg-[#1A6EFF] group-hover:text-white group-hover:border-transparent transition-all">
+                        <Icon size={18} />
                       </div>
-                      <p className={`font-bold text-base mb-1.5 ${dark ? "text-white" : "text-slate-800"}`}>{item.label}</p>
-                      <p className={`text-sm leading-relaxed ${dark ? "text-slate-400" : "text-slate-500"}`}>{item.desc}</p>
+                      <div>
+                        <p className="font-bold text-[#0B1F4B] text-[15px] mb-0.5">{w.title}</p>
+                        <p className="text-slate-500 text-sm leading-relaxed">{w.desc}</p>
+                      </div>
                     </motion.div>
                   );
                 })}
               </div>
-
-              {/* Bottom row */}
-              {[
-                { icon: Shield, label: "Respaldo garantizado", desc: "Cada viaje registrado. Si algo pasa, el equipo de Pappedir te respalda." },
-                { icon: Lock, label: "Datos protegidos", desc: "Tu información personal y tus pagos siempre seguros y cifrados." },
-                { icon: TrendingUp, label: "Mejoramos cada día", desc: "Escuchamos a usuarios y conductores para mejorar la app cada semana." },
-              ].map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <motion.div key={i} variants={fadeUp}
-                    className="rounded-3xl bg-white border border-black/[0.05] p-6 card-shadow hover:card-shadow-hover transition-all group">
-                    <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                      <Icon size={20} />
-                    </div>
-                    <p className="font-bold text-slate-800 text-base mb-1.5">{item.label}</p>
-                    <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </InView>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ──────────────────────────────────── */}
-      <section id="como-funciona" className="py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <InView className="mb-16">
-            <motion.div variants={fadeUp} className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 mb-4">Sin complicaciones</span>
-              <h2 className="font-serif text-[clamp(32px,5vw,56px)] text-slate-900 leading-tight mb-4">
-                Tan fácil como <span className="italic text-gradient">1, 2, 3</span>
-              </h2>
-              <p className="text-slate-500 max-w-md">Ni tutorial ni instrucciones. Si puedes abrir WhatsApp, puedes usar Pappedir.</p>
-            </motion.div>
-          </InView>
+      {/* ━━━━ CÓMO FUNCIONA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="como-funciona" className="py-24 bg-[#F4F7FE]">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal className="text-center mb-14">
+            <motion.p variants={fadeUp} className="text-[#1A6EFF] text-xs font-extrabold uppercase tracking-[0.18em] mb-3">Sin complicaciones</motion.p>
+            <motion.h2 variants={fadeUp} className="text-[clamp(28px,4.5vw,52px)] font-extrabold text-[#0B1F4B] leading-tight mb-4">
+              Tres pasos y listo
+            </motion.h2>
+            <motion.p variants={fadeUp} className="text-slate-500 max-w-md mx-auto">
+              Si puedes abrir WhatsApp, puedes usar Pappedir. Sin tutoriales, sin vueltas.
+            </motion.p>
+          </Reveal>
 
-          <InView>
-            <div className="grid md:grid-cols-3 gap-6">
-              {STEPS.map((step, i) => {
-                const Icon = step.icon;
+          <Reveal>
+            <div className="grid md:grid-cols-3 gap-5">
+              {STEPS.map((s, i) => {
+                const Icon = s.icon;
                 return (
                   <motion.div key={i} variants={fadeUp}
-                    className="relative flex flex-col p-8 rounded-3xl bg-white border border-black/[0.05] card-shadow hover:card-shadow-hover transition-all group">
-                    <div className="absolute top-6 right-6 font-extrabold text-[64px] leading-none text-blue-50 select-none group-hover:text-blue-100 transition-colors">
-                      {step.n}
+                    className="relative bg-white rounded-3xl p-8 card-lift border border-slate-100 group">
+                    {/* Step number bg */}
+                    <div className="absolute top-5 right-6 text-[72px] font-extrabold leading-none text-[#EFF3FF] select-none group-hover:text-[#DDEAFF] transition-colors">
+                      {s.n}
                     </div>
                     <div className="relative z-10">
-                      <div className="w-14 h-14 rounded-2xl bg-[#1A6EFF] text-white flex items-center justify-center mb-6 shadow-md shadow-blue-500/30 group-hover:scale-105 transition-transform">
+                      <div className="w-14 h-14 rounded-2xl bg-[#1A6EFF] text-white flex items-center justify-center mb-5 shadow-md shadow-blue-300/40 group-hover:scale-105 transition-transform">
                         <Icon size={24} />
                       </div>
-                      <h3 className="font-bold text-xl text-slate-900 mb-2">{step.title}</h3>
-                      <p className="text-slate-500 text-sm leading-relaxed">{step.desc}</p>
+                      <h3 className="font-extrabold text-[#0B1F4B] text-xl mb-2">{s.title}</h3>
+                      <p className="text-slate-500 text-sm leading-relaxed">{s.desc}</p>
                     </div>
                     {i < STEPS.length - 1 && (
-                      <div className="hidden md:block absolute -right-3.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white border border-slate-200 card-shadow flex items-center justify-center text-slate-400">
-                        <ArrowRight size={14} />
+                      <div className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-6 h-6 rounded-full bg-white border border-slate-200 shadow items-center justify-center">
+                        <ArrowRight size={12} className="text-slate-400" />
                       </div>
                     )}
                   </motion.div>
                 );
               })}
             </div>
-          </InView>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── WHY PAPPEDIR ──────────────────────────────────── */}
-      <section className="py-28 bg-[#F7F9FF]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            <InView>
-              <motion.div variants={fadeUp}>
-                <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 mb-4 block">Nuestra diferencia</span>
-                <h2 className="font-serif text-[clamp(32px,5vw,52px)] text-slate-900 leading-tight mb-5">
-                  No somos una copia.<br />
-                  <span className="italic text-gradient">Somos venezolanos.</span>
-                </h2>
-                <p className="text-slate-500 leading-relaxed mb-8">
-                  Operamos en Guanare, Acarigua, Araure y más municipios de Portuguesa. Sabemos cómo es el día a día aquí porque vivimos el mismo.
-                </p>
-                <div className="flex flex-col gap-3">
-                  {[
-                    "Una sola app para todo — viaje, delivery, farmacia, envíos",
-                    "Cobertura real en el estado Portuguesa",
-                    "Pago móvil, Zelle, efectivo y transferencia",
-                    "Conductores locales que conocen las calles",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center shrink-0">
-                        <CheckCircle2 size={12} className="text-white" strokeWidth={3} />
-                      </div>
-                      <span className="text-slate-600 text-sm font-medium">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            </InView>
-
-            {/* Comparison */}
-            <InView>
-              <motion.div variants={fadeUp} className="bg-white rounded-3xl overflow-hidden card-shadow border border-black/[0.05]">
-                <div className="grid grid-cols-3 border-b border-slate-100">
-                  <div className="col-span-1 p-4" />
-                  <div className="p-4 text-center border-l border-slate-100">
-                    <p className="text-xs font-bold text-blue-600 uppercase tracking-wider">Pappedir</p>
-                  </div>
-                  <div className="p-4 text-center border-l border-slate-100">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Los demás</p>
-                  </div>
-                </div>
-
-                {[
-                  ["Transporte privado", true, true],
-                  ["Mototaxi", true, false],
-                  ["Delivery de comida", true, true],
-                  ["Farmacia a domicilio", true, false],
-                  ["Envíos/encomiendas", true, false],
-                  ["Cobertura en Portuguesa", true, false],
-                  ["Pago Móvil / Zelle", true, false],
-                ].map(([feat, us, them], i) => (
-                  <div key={i} className={`grid grid-cols-3 ${i < 6 ? "border-b border-slate-100" : ""}`}>
-                    <div className="p-3.5 pl-4">
-                      <p className="text-slate-600 text-[13px] font-medium">{feat as string}</p>
-                    </div>
-                    <div className="p-3.5 flex items-center justify-center border-l border-slate-100 bg-blue-50/40">
-                      {us ? <CheckCircle2 size={18} className="text-blue-600" strokeWidth={2.5} /> : <X size={16} className="text-slate-300" />}
-                    </div>
-                    <div className="p-3.5 flex items-center justify-center border-l border-slate-100">
-                      {them ? <CheckCircle2 size={18} className="text-slate-300" strokeWidth={2.5} /> : <X size={16} className="text-red-300" strokeWidth={2.5} />}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </InView>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CONDUCTORES ───────────────────────────────────── */}
-      <section id="conductores" className="py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="relative overflow-hidden rounded-3xl bg-slate-900 p-10 md:p-16">
-            <div className="absolute inset-0">
-              <div className="absolute top-0 right-0 w-[500px] h-[400px] bg-blue-500/10 blur-[100px] rounded-full" />
-              <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-blue-600/8 blur-[80px] rounded-full" />
-              <div className="absolute inset-0 opacity-[0.03]"
-                style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+      {/* ━━━━ CONDUCTORES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section id="conductores" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0B1F4B] via-[#0D2760] to-[#0B3A8C]">
+            {/* BG decoration */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#1A6EFF]/20 rounded-full blur-[100px]" />
+              <div className="absolute -bottom-20 -left-16 w-72 h-72 bg-[#FAB81E]/12 rounded-full blur-[80px]" />
+              <div className="absolute inset-0 opacity-[0.07]"
+                style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
             </div>
 
-            <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-              <InView>
+            <div className="relative z-10 p-8 md:p-14 grid md:grid-cols-2 gap-12 items-center">
+              <Reveal>
                 <motion.div variants={fadeUp}>
-                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-blue-300 text-xs font-bold uppercase tracking-wider mb-6">
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FAB81E]/15 border border-[#FAB81E]/25 text-[#FAB81E] text-xs font-extrabold uppercase tracking-wider mb-6">
                     <Sparkles size={12} /> Únete al equipo
                   </span>
-                  <h2 className="font-serif text-[clamp(32px,4vw,52px)] text-white leading-tight mb-4">
+                  <h2 className="text-[clamp(28px,4vw,50px)] font-extrabold text-white leading-tight mb-4">
                     Genera ingresos<br />
-                    <span className="italic text-gradient">a tu ritmo</span>
+                    <span className="text-[#FAB81E]">a tu propio ritmo</span>
                   </h2>
-                  <p className="text-slate-400 leading-relaxed mb-8">
-                    ¿Tienes carro o moto? Regístrate como conductor aliado. Tú decides cuándo trabajas — los pagos llegan siempre a tiempo.
+                  <p className="text-white/55 leading-relaxed mb-8">
+                    ¿Tienes carro o moto? Regístrate como conductor aliado de Pappedir. Tú decides cuándo trabajas — los pagos llegan siempre, a tiempo.
                   </p>
                   <div className="flex flex-col gap-3 mb-8">
-                    {["Registro rápido en minutos","Pagos semanales garantizados","Soporte 24/7 por WhatsApp","Tú decides tus horarios"].map((item, i) => (
+                    {["Registro rápido en minutos","Pagos semanales garantizados","Soporte 24/7 por WhatsApp","Tú manejas tus horarios"].map((item, i) => (
                       <div key={i} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
-                          <CheckCircle2 size={11} className="text-blue-400" strokeWidth={3} />
+                        <div className="w-5 h-5 rounded-full bg-[#FAB81E]/20 border border-[#FAB81E]/30 flex items-center justify-center shrink-0">
+                          <CheckCircle2 size={11} className="text-[#FAB81E]" strokeWidth={3} />
                         </div>
-                        <span className="text-slate-300 text-sm">{item}</span>
+                        <span className="text-white/70 text-sm font-medium">{item}</span>
                       </div>
                     ))}
                   </div>
-                  <button className="group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#1A6EFF] text-white font-bold text-sm glow-blue hover:bg-[#1558d6] transition-all active:scale-95">
+                  <button className="group flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#FAB81E] text-[#0B1F4B] font-extrabold text-[14px] gold-glow hover:bg-[#FFC93D] transition-all active:scale-95">
                     Registrarme como conductor
-                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   </button>
                 </motion.div>
-              </InView>
+              </Reveal>
 
-              <InView>
+              <Reveal>
                 <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { val: "2+", sub: "Meses activos" },
-                    { val: "5 ★", sub: "Rating promedio" },
-                    { val: "24/7", sub: "Soporte disponible" },
-                    { val: "100%", sub: "Pagos a tiempo" },
-                  ].map((s, i) => (
-                    <motion.div key={i} variants={fadeUp}
-                      className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
-                      <p className="font-extrabold text-4xl text-white mb-1">{s.val}</p>
-                      <p className="text-slate-500 text-xs">{s.sub}</p>
+                  {[["2+","Meses activos"],["5 ★","Rating promedio"],["24/7","Soporte"],["100%","Pagos a tiempo"]].map(([v,l]) => (
+                    <motion.div key={l} variants={fadeUp}
+                      className="flex flex-col items-center justify-center p-6 rounded-3xl bg-white/6 border border-white/10 text-center">
+                      <p className="text-4xl font-extrabold text-white mb-1">{v}</p>
+                      <p className="text-white/45 text-xs">{l}</p>
                     </motion.div>
                   ))}
                 </div>
-              </InView>
+              </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ──────────────────────────────────── */}
-      <section className="py-28 bg-[#F7F9FF]">
-        <div className="max-w-6xl mx-auto px-6">
-          <InView className="mb-14">
-            <motion.div variants={fadeUp} className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-[0.15em] text-blue-600 mb-4">Testimonios</span>
-              <h2 className="font-serif text-[clamp(32px,5vw,52px)] text-slate-900 leading-tight">
-                La gente <span className="italic text-gradient">habla por nosotros</span>
-              </h2>
-            </motion.div>
-          </InView>
+      {/* ━━━━ TESTIMONIOS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-24 bg-[#F4F7FE]">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal className="text-center mb-14">
+            <motion.p variants={fadeUp} className="text-[#1A6EFF] text-xs font-extrabold uppercase tracking-[0.18em] mb-3">Lo que dicen</motion.p>
+            <motion.h2 variants={fadeUp} className="text-[clamp(28px,4.5vw,52px)] font-extrabold text-[#0B1F4B] leading-tight">
+              La gente habla por nosotros
+            </motion.h2>
+          </Reveal>
 
-          <InView>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Reveal>
+            <div className="grid md:grid-cols-3 gap-5">
               {TESTIMONIALS.map((t, i) => (
                 <motion.div key={i} variants={fadeUp}
-                  className="flex flex-col bg-white rounded-3xl p-6 card-shadow border border-black/[0.04] hover:card-shadow-hover transition-all">
-                  <div className="flex text-amber-400 mb-4">
-                    {[...Array(t.stars)].map((_, j) => <Star key={j} size={13} fill="currentColor" />)}
+                  className="bg-white rounded-3xl p-7 card-lift border border-slate-100 flex flex-col">
+                  <div className="flex text-[#FAB81E] mb-4">
+                    {[...Array(t.stars)].map((_,j) => <Star key={j} size={14} fill="currentColor" />)}
                   </div>
-                  <p className="text-slate-600 text-sm leading-relaxed flex-1 mb-5">"{t.text}"</p>
-                  <div className="flex items-center gap-3 border-t border-slate-100 pt-4">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                  <p className="text-slate-600 text-[15px] leading-relaxed flex-1 mb-6">"{t.text}"</p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#1A6EFF] to-[#0B3A8C] flex items-center justify-center text-white font-extrabold text-sm shrink-0">
                       {t.name[0]}
                     </div>
                     <div>
-                      <p className="text-slate-800 font-bold text-[13px]">{t.name}</p>
-                      <p className="text-slate-400 text-[11px]">{t.role} · {t.city}</p>
+                      <p className="text-[#0B1F4B] font-bold text-[13px]">{t.name}</p>
+                      <p className="text-slate-400 text-[11px]">{t.city}, Portuguesa</p>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
-          </InView>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── CTA FINAL ─────────────────────────────────────── */}
-      <section className="py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <InView>
+      {/* ━━━━ CTA FINAL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <Reveal>
             <motion.div variants={fadeUp}
-              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1A6EFF] via-[#1050E0] to-[#003BB5] p-12 md:p-20 text-center">
-              <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-white/5 blur-[80px] rounded-full" />
-                <div className="absolute inset-0 opacity-[0.04]"
-                  style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+              className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#0B1F4B] via-[#0E2869] to-[#0B3A8C] text-center p-12 md:p-20">
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-72 bg-[#FAB81E]/8 blur-[100px] rounded-full" />
+                <div className="absolute inset-0 opacity-[0.07]"
+                  style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
               </div>
               <div className="relative z-10">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/20 text-white text-xs font-bold uppercase tracking-wider mb-8">
-                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-                  Disponible ahora en Portuguesa
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FAB81E]/15 border border-[#FAB81E]/25 text-[#FAB81E] text-xs font-extrabold uppercase tracking-wider mb-8">
+                  <span className="w-1.5 h-1.5 bg-[#FAB81E] rounded-full animate-pulse" />
+                  Disponible ahora · Portuguesa, Venezuela
                 </span>
-                <h2 className="font-serif text-[clamp(36px,6vw,72px)] text-white leading-tight mb-5">
+                <h2 className="text-[clamp(34px,6vw,70px)] font-extrabold text-white leading-tight mb-5">
                   ¿Listo, chamo?<br />
-                  <span className="italic opacity-80">Descarga Pappedir.</span>
+                  <span className="text-[#FAB81E]">Descarga Pappedir.</span>
                 </h2>
-                <p className="text-blue-200 text-lg mb-10 max-w-md mx-auto leading-relaxed">
+                <p className="text-white/55 text-lg mb-10 max-w-md mx-auto leading-relaxed">
                   Gratis, fácil y hecha pa' Venezuela. Únete a los que ya la tienen.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <button className="flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-white text-[#1A6EFF] font-bold text-base hover:bg-blue-50 transition-all active:scale-95 shadow-xl shadow-black/20">
-                    <Smartphone size={18} />
-                    Descargar en Android
+                  <button className="flex items-center gap-2.5 px-9 py-4 rounded-2xl bg-[#FAB81E] text-[#0B1F4B] font-extrabold text-[15px] gold-glow hover:bg-[#FFC93D] transition-all active:scale-95">
+                    <Smartphone size={18} /> Descargar en Android
                   </button>
-                  <button className="flex items-center gap-2 px-8 py-4 rounded-2xl bg-white/10 border border-white/25 text-white font-semibold text-base hover:bg-white/15 transition-all">
-                    <Phone size={18} />
-                    WhatsApp Soporte
+                  <button className="flex items-center gap-2 px-9 py-4 rounded-2xl bg-white/8 border border-white/15 text-white font-bold text-[15px] hover:bg-white/15 transition-all">
+                    <Phone size={18} /> WhatsApp Soporte
                   </button>
                 </div>
               </div>
             </motion.div>
-          </InView>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── FOOTER ────────────────────────────────────────── */}
-      <footer className="border-t border-slate-100 bg-white py-12">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* ━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <footer className="bg-[#0B1F4B] py-12">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-10 mb-10">
             <div className="md:col-span-2">
-              <img src="/logo.png" alt="Pappedir" className="h-8 w-auto object-contain mb-4" />
-              <p className="text-slate-400 text-sm leading-relaxed max-w-[280px]">
-                La app venezolana de transporte y delivery para el estado Portuguesa. Hecha por venezolanos, para venezolanos.
+              <img src="/logo.png" alt="Pappedir" className="h-9 w-auto mb-4 brightness-0 invert" />
+              <p className="text-white/40 text-sm leading-relaxed max-w-[260px]">
+                La app venezolana de transporte y delivery para Portuguesa. Hecha por venezolanos, pa' venezolanos.
               </p>
               <div className="flex gap-2 mt-5">
                 {[Instagram, Twitter, Facebook].map((Icon, i) => (
                   <a key={i} href="#"
-                    className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-all">
+                    className="w-9 h-9 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-[#1A6EFF] hover:border-transparent transition-all">
                     <Icon size={15} />
                   </a>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">Servicios</p>
+              <p className="text-white/30 text-[11px] font-extrabold uppercase tracking-widest mb-4">Servicios</p>
               <div className="flex flex-col gap-2.5">
-                {["Transporte privado","Mototaxi","Delivery de comida","Farmacia","Envíos"].map((l) => (
-                  <a key={l} href="#servicios" className="text-slate-500 hover:text-blue-600 text-sm transition-colors">{l}</a>
+                {["Transporte","Mototaxi","Delivery de comida","Farmacia","Envíos"].map((l) => (
+                  <a key={l} href="#servicios" className="text-white/50 hover:text-white text-sm transition-colors">{l}</a>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-slate-400 text-[11px] font-bold uppercase tracking-widest mb-4">Contacto</p>
-              <div className="flex flex-col gap-2.5">
-                <p className="text-slate-500 text-sm flex items-start gap-2">
-                  <MapPin size={13} className="text-blue-400 mt-0.5 shrink-0" />
+              <p className="text-white/30 text-[11px] font-extrabold uppercase tracking-widest mb-4">Contacto</p>
+              <div className="flex flex-col gap-3">
+                <p className="text-white/50 text-sm flex items-start gap-2">
+                  <MapPin size={13} className="text-[#FAB81E] mt-0.5 shrink-0" />
                   Guanare, Portuguesa<br />Venezuela
                 </p>
-                <a href="#" className="text-slate-500 hover:text-blue-600 text-sm flex items-center gap-2 transition-colors">
-                  <Phone size={13} className="text-blue-400" />
-                  Soporte por WhatsApp
+                <a href="#" className="text-white/50 hover:text-white text-sm flex items-center gap-2 transition-colors">
+                  <Phone size={13} className="text-[#FAB81E]" /> Soporte por WhatsApp
                 </a>
               </div>
             </div>
           </div>
-          <div className="border-t border-slate-100 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-            <p className="text-slate-400 text-xs">© {new Date().getFullYear()} Pappedir · Hecho con orgullo en Venezuela</p>
+          <div className="border-t border-white/8 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
+            <p className="text-white/25 text-xs">© {new Date().getFullYear()} Pappedir · Hecho con orgullo en Venezuela 🇻🇪</p>
             <div className="flex gap-5">
               {["Privacidad","Términos","Soporte"].map((l) => (
-                <a key={l} href="#" className="text-slate-400 hover:text-slate-700 text-xs transition-colors">{l}</a>
+                <a key={l} href="#" className="text-white/30 hover:text-white text-xs transition-colors">{l}</a>
               ))}
             </div>
           </div>
