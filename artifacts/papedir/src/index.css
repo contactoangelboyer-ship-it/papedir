@@ -78,30 +78,28 @@
 }
 
 .dark {
-  --background: 222 47% 8%;
-  --foreground: 210 20% 95%;
-  --border: 220 30% 18%;
-  --input: 220 30% 18%;
+  --background: 222 47% 6%;
+  --foreground: 210 20% 96%;
+  --border: 220 30% 16%;
+  --input: 220 30% 16%;
   --ring: 220 100% 55%;
 
-  --card: 222 40% 11%;
+  --card: 222 40% 9%;
   --card-foreground: 210 20% 95%;
-  --card-border: 220 28% 18%;
+  --card-border: 220 28% 16%;
 
-  --popover: 222 44% 10%;
+  --popover: 222 44% 8%;
   --popover-foreground: 210 20% 95%;
-  --popover-border: 220 28% 18%;
+  --popover-border: 220 28% 16%;
 
-  /* Electric Blue — Pa'pedir brand */
   --primary: 220 100% 55%;
   --primary-foreground: 0 0% 100%;
 
-  /* Lighter blue accent */
   --secondary: 210 80% 65%;
   --secondary-foreground: 0 0% 100%;
 
-  --muted: 222 30% 16%;
-  --muted-foreground: 220 15% 65%;
+  --muted: 222 30% 14%;
+  --muted-foreground: 220 15% 60%;
 
   --accent: 230 70% 65%;
   --accent-foreground: 0 0% 100%;
