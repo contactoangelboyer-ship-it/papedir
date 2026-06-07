@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -45,65 +45,65 @@
 }
 
 :root {
-  --background: 10 30% 98%;
-  --foreground: 20 40% 15%;
-  --border: 20 20% 85%;
-  --input: 20 20% 85%;
-  --ring: 12 90% 55%;
+  --background: 222 47% 97%;
+  --foreground: 222 47% 8%;
+  --border: 220 30% 88%;
+  --input: 220 30% 88%;
+  --ring: 220 100% 55%;
 
   --card: 0 0% 100%;
-  --card-foreground: 20 40% 15%;
-  --card-border: 20 20% 90%;
+  --card-foreground: 222 47% 8%;
+  --card-border: 220 30% 92%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 20 40% 15%;
-  --popover-border: 20 20% 90%;
+  --popover-foreground: 222 47% 8%;
+  --popover-border: 220 30% 92%;
 
-  /* Vibrant Caracas Sunset Orange */
-  --primary: 12 90% 55%;
+  --primary: 220 100% 55%;
   --primary-foreground: 0 0% 100%;
 
-  /* Warm Sand / Yellow */
-  --secondary: 35 100% 65%;
-  --secondary-foreground: 20 40% 15%;
+  --secondary: 210 80% 65%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 20 20% 90%;
-  --muted-foreground: 20 15% 45%;
+  --muted: 220 20% 92%;
+  --muted-foreground: 220 15% 45%;
 
-  --accent: 270 50% 40%;
+  --accent: 230 70% 60%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
 
-  --radius: 1rem;
+  --radius: 0.75rem;
 }
 
 .dark {
-  --background: 260 30% 10%;
-  --foreground: 20 20% 95%;
-  --border: 260 20% 20%;
-  --input: 260 20% 20%;
-  --ring: 12 90% 55%;
+  --background: 222 47% 8%;
+  --foreground: 210 20% 95%;
+  --border: 220 30% 18%;
+  --input: 220 30% 18%;
+  --ring: 220 100% 55%;
 
-  --card: 260 30% 14%;
-  --card-foreground: 20 20% 95%;
-  --card-border: 260 20% 25%;
+  --card: 222 40% 11%;
+  --card-foreground: 210 20% 95%;
+  --card-border: 220 28% 18%;
 
-  --popover: 260 30% 12%;
-  --popover-foreground: 20 20% 95%;
-  --popover-border: 260 20% 25%;
+  --popover: 222 44% 10%;
+  --popover-foreground: 210 20% 95%;
+  --popover-border: 220 28% 18%;
 
-  --primary: 12 90% 55%;
+  /* Electric Blue — Pa'pedir brand */
+  --primary: 220 100% 55%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 35 100% 60%;
-  --secondary-foreground: 260 30% 10%;
+  /* Lighter blue accent */
+  --secondary: 210 80% 65%;
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 260 20% 20%;
-  --muted-foreground: 260 10% 70%;
+  --muted: 222 30% 16%;
+  --muted-foreground: 220 15% 65%;
 
-  --accent: 270 60% 60%;
+  --accent: 230 70% 65%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 62.8% 30.6%;
@@ -116,9 +116,9 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-white;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/30 selection:text-white;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
