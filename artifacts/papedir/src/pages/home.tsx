@@ -89,7 +89,7 @@ const HOW_IT_WORKS = [
   {
     step: "03",
     icon: <CheckCircle2 size={28} />,
-    title: "Llega donde estés",
+    title: "Llegamos por ti",
     desc: "Rastrea tu viaje o pedido en vivo y recíbelo con total comodidad y seguridad.",
   },
 ];
@@ -783,7 +783,7 @@ export default function Home() {
                 </div>
                 <span className="font-display font-bold text-lg text-white">Pa<span className="text-primary">'</span>pedir</span>
               </div>
-              <p className="text-white/40 text-sm leading-relaxed mb-3">Pide lo que quieras. Llega donde estés.</p>
+              <p className="text-white/40 text-sm leading-relaxed mb-3">Vamos contigo, llegamos por ti.</p>
               <p className="text-white/25 text-xs">Portuguesa, Venezuela · 2025</p>
             </div>
 
