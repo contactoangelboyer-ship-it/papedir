@@ -8,15 +8,20 @@ import { createRequire } from "node:module";
   globalThis.require = createRequire(import.meta.url);
 
   const artifactDir = path.dirname(fileURLToPath(import.meta.url));
-  const outputDir = path.resolve(artifactDir, ".vercel/output");
-  const funcDir = path.join(outputDir, "functions", "api", "[[path]].func");
+  const rootDir    = path.resolve(artifactDir, "../..");
+  const outputDir  = path.resolve(artifactDir, ".vercel/output");
+  const funcDir    = path.join(outputDir, "functions", "api", "[[path]].func");
 
   async function build() {
     await rm(outputDir, { recursive: true, force: true });
     await mkdir(funcDir, { recursive: true });
 
-    // esbuildPluginPino adds extra entry points, so we must use outdir (not outfile).
-    // Using a named entry { index: ... } ensures the output is index.js.
+    // esbuildPluginPino adds extra entries → must use outdir, not outfile.
+    // Use a named entry { index: src } so the output file is index.js.
+    // alias: redirect "zod/v4" → "zod" (pnpm strict mode doesn't expose subpaths
+    //   from transitive deps; aliasing to the main package always works).
+    // nodePaths: also look in the workspace root node_modules so esbuild can
+    //   traverse pnpm's virtual store when resolving workspace deps.
     await esbuild({
       entryPoints: { index: path.resolve(artifactDir, "src/app.ts") },
       platform: "node",
@@ -24,6 +29,8 @@ import { createRequire } from "node:module";
       format: "cjs",
       outdir: funcDir,
       logLevel: "info",
+      alias: { "zod/v4": "zod" },
+      nodePaths: [path.join(rootDir, "node_modules")],
       external: [
         "*.node", "sharp", "better-sqlite3", "sqlite3", "canvas",
         "bcrypt", "argon2", "fsevents", "pg-native", "pino-pretty",
@@ -49,7 +56,7 @@ import { createRequire } from "node:module";
       JSON.stringify({ version: 3 }, null, 2),
     );
 
-    console.log("✅ .vercel/output ready");
+    console.log("\u2705 .vercel/output ready");
   }
 
   build().catch((err) => { console.error(err); process.exit(1); });
