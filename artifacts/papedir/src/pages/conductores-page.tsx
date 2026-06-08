@@ -3,7 +3,9 @@ import React, { useRef, useState } from "react";
   import { Car, Bike, CheckCircle2, DollarSign, Clock, Shield, Smartphone, Zap, Star, ArrowRight, Loader2, PartyPopper, Phone } from "lucide-react";
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
-  import repartidorImg from "@/assets/images/repartidor.png";
+  import conductorInteriorImg from "@/assets/images/conductor-interior.png";
+    import repartidorMotoImg from "@/assets/images/repartidor-moto.png";
+    import repartidoraMotoImg from "@/assets/images/repartidora-moto.png";
 
   const E = [0.22, 1, 0.36, 1] as const;
   const BLUE = "#1A6EFF";
@@ -113,7 +115,11 @@ import React, { useRef, useState } from "react";
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, delay: 0.2 }}
               className="relative hidden lg:block">
               <div className="rounded-3xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.4)]" style={{ aspectRatio: "4/3" }}>
-                <img src={repartidorImg} alt="Conductor Pappedir" className="w-full h-full object-cover" />
+                <img
+                src={tab === "conductor" ? conductorInteriorImg : repartidorMotoImg}
+                alt={tab === "conductor" ? "Conductor Pappedir" : "Repartidor Pappedir"}
+                className="w-full h-full object-cover transition-all duration-500"
+              />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/60 to-transparent" />
               </div>
               <div className="absolute bottom-4 left-4 right-4 flex gap-3">
