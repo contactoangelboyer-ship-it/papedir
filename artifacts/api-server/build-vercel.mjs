@@ -8,7 +8,6 @@ import { createRequire } from "node:module";
   globalThis.require = createRequire(import.meta.url);
 
   const artifactDir = path.dirname(fileURLToPath(import.meta.url));
-  // rootDir is artifacts/api-server — .vercel/output will be created here
   const outputDir = path.resolve(artifactDir, ".vercel/output");
   const funcDir = path.join(outputDir, "functions", "api", "[[path]].func");
 
@@ -16,12 +15,14 @@ import { createRequire } from "node:module";
     await rm(outputDir, { recursive: true, force: true });
     await mkdir(funcDir, { recursive: true });
 
+    // esbuildPluginPino adds extra entry points, so we must use outdir (not outfile).
+    // Using a named entry { index: ... } ensures the output is index.js.
     await esbuild({
-      entryPoints: [path.resolve(artifactDir, "src/app.ts")],
+      entryPoints: { index: path.resolve(artifactDir, "src/app.ts") },
       platform: "node",
       bundle: true,
       format: "cjs",
-      outfile: path.join(funcDir, "index.js"),
+      outdir: funcDir,
       logLevel: "info",
       external: [
         "*.node", "sharp", "better-sqlite3", "sqlite3", "canvas",
@@ -33,7 +34,6 @@ import { createRequire } from "node:module";
       plugins: [esbuildPluginPino({ transports: ["pino-pretty"] })],
     });
 
-    // Vercel Node.js serverless function config
     await writeFile(
       path.join(funcDir, ".vc-config.json"),
       JSON.stringify({
@@ -44,7 +44,6 @@ import { createRequire } from "node:module";
       }, null, 2),
     );
 
-    // Build Output API v3 — Vercel auto-detects .vercel/output/config.json
     await writeFile(
       path.join(outputDir, "config.json"),
       JSON.stringify({ version: 3 }, null, 2),
