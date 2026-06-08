@@ -321,7 +321,123 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ━━━━ SEGURIDAD ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      
+        {/* ━━━━ PAPPE FLEET ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-5">
+            <Reveal className="text-center mb-14">
+              <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Nuestro equipo</motion.p>
+              <motion.h2 variants={up} className="text-[clamp(28px,4.5vw,52px)] font-extrabold leading-tight mb-4" style={{ color: NAVY }}>
+                Aliados reales,<br /><span style={{ color: BLUE }}>servicio real</span>
+              </motion.h2>
+              <motion.p variants={up} className="text-slate-500 max-w-lg mx-auto">
+                Conductores y repartidores 100% verificados, listos para moverte y entregarte en Portuguesa.
+              </motion.p>
+            </Reveal>
+
+            <Reveal>
+              <div className="grid md:grid-cols-3 gap-6">
+
+                {/* ── Pappe Driver ─────────────────────────────── */}
+                <motion.div variants={up}
+                  className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.07)" }}>
+                  {/* Main photo */}
+                  <div className="relative h-72 overflow-hidden">
+                    <img src={driverOpeningDoorImg} alt="Pappe Driver"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/85 via-[#0D1E3F]/20 to-transparent" />
+                    {/* Badge */}
+                    <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold text-white"
+                      style={{ background: "#1A6EFF" }}>
+                      🚗 Transporte
+                    </span>
+                    {/* Secondary mini photo */}
+                    <div className="absolute bottom-4 right-4 w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/40 shadow-lg">
+                      <img src={conductorInteriorImg} alt="Conductor Pappedir" className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  {/* Text */}
+                  <div className="bg-white p-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-extrabold text-xl" style={{ color: NAVY }}>Pappe Driver</h3>
+                    </div>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      Conductor verificado, precio cerrado antes de salir y GPS activo en cada recorrido. Tu viaje, nuestra prioridad.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* ── Pappe Runner ─────────────────────────────── */}
+                <motion.div variants={up}
+                  className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.07)" }}>
+                  <div className="relative h-72 overflow-hidden">
+                    <img src={repartidoraMotoImg} alt="Pappe Runner"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/85 via-[#0D1E3F]/20 to-transparent" />
+                    <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold text-white"
+                      style={{ background: "#F97316" }}>
+                      📦 Delivery
+                    </span>
+                  </div>
+                  <div className="bg-white p-6">
+                    <h3 className="font-extrabold text-xl mb-2" style={{ color: NAVY }}>Pappe Runner</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      Comida, farmacia, compras y encomiendas — entregados rápido, calientes y con confirmación en tiempo real.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* ── Pappe Rider ──────────────────────────────── */}
+                <motion.div variants={up}
+                  className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.07)" }}>
+                  <div className="relative h-72 overflow-hidden">
+                    <img src={repartidorMotoImg} alt="Pappe Rider"
+                      className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/85 via-[#0D1E3F]/20 to-transparent" />
+                    <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold text-white"
+                      style={{ background: "#8B5CF6" }}>
+                      🏍️ Mototaxi
+                    </span>
+                  </div>
+                  <div className="bg-white p-6">
+                    <h3 className="font-extrabold text-xl mb-2" style={{ color: NAVY }}>Pappe Rider</h3>
+                    <p className="text-slate-500 text-sm leading-relaxed">
+                      Mototaxi ágil para esquivar las trancas y llegar sin rodeos. La forma más rápida de moverse en la ciudad.
+                    </p>
+                  </div>
+                </motion.div>
+
+              </div>
+            </Reveal>
+
+            {/* ── Extra photo strip (conductor-ventana) ──────── */}
+            <Reveal className="mt-8">
+              <motion.div variants={up}
+                className="relative rounded-3xl overflow-hidden h-56 md:h-64"
+                style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08)" }}>
+                <img src={conductorVentanaImg} alt="Conductor Pappedir"
+                  className="w-full h-full object-cover object-[center_30%]" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0D1E3F]/80 via-[#0D1E3F]/40 to-transparent" />
+                <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-14">
+                  <p className="text-white/70 text-[11px] font-extrabold uppercase tracking-[0.18em] mb-2">Únete al equipo</p>
+                  <h3 className="text-white text-[clamp(22px,3.5vw,40px)] font-extrabold leading-tight mb-4">
+                    ¿Tienes carro o moto?<br />Empieza a ganar hoy.
+                  </h3>
+                  <a href="/conductores"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[14px] font-extrabold text-white w-fit transition-all hover:opacity-90 active:scale-95"
+                    style={{ background: "#1A6EFF", boxShadow: "0 6px 20px -4px rgba(26,110,255,.5)" }}>
+                    Quiero ser aliado <ArrowRight size={16} />
+                  </a>
+                </div>
+              </motion.div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ━━━━ SEGURIDAD ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="seguridad" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
