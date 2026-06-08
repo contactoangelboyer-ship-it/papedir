@@ -1,7 +1,8 @@
+import Navbar from "@/components/Navbar";
 import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
-  Bike, ShoppingBag, MapPin, Star, Menu, X,
+  Bike, ShoppingBag, MapPin, Star, 
   Package, Pill, Car, CheckCircle2, Smartphone, Send,
   Shield, DollarSign, Navigation, UserCheck, Zap,
   ArrowRight, Phone, Instagram, Twitter, Facebook,
@@ -69,7 +70,6 @@ const CITIES   = ["Guanare", "Acarigua", "Araure", "Biscucuy", "Ospino", "Otra"]
 
 /* ── Component ──────────────────────────────────────────── */
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
 
   // Registro state
     const [registroTipo, setRegistroTipo] = useState<"conductor" | "repartidor" | "embajador">("conductor");
@@ -116,60 +116,7 @@ export default function Home() {
   return (
     <div className="min-h-[100dvh] bg-white text-[#0D1E3F] overflow-x-hidden" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
 
-      {/* ━━━━ NAVBAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <motion.header initial={{ y: -16, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: E }}
-        className="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-2xl border-b border-slate-100/80">
-        <div className="max-w-7xl mx-auto px-5 h-[68px] flex items-center justify-between">
-
-          <a href="#" className="shrink-0">
-            <img src="/logo-transparent.png" alt="Pappedir" className="h-12 w-auto object-contain" />
-          </a>
-
-          <nav className="hidden md:flex items-center gap-0.5">
-              {[["#servicios","Servicios"],["#seguridad","Seguridad"],["#como-funciona","Cómo funciona"],["#conductores","Conductores"]].map(([h,l]) => (
-                <a key={h} href={h} className="px-4 py-2 text-[13.5px] font-semibold text-slate-500 hover:text-[#0D1E3F] rounded-xl hover:bg-slate-50 transition-all">{l}</a>
-              ))}
-              <div className="w-px h-4 bg-slate-200 mx-1" />
-              <a href="/servicios" className="px-3 py-2 text-[13.5px] font-semibold text-slate-400 hover:text-[#0D1E3F] rounded-xl hover:bg-slate-50 transition-all">Ver servicios</a>
-              <a href="/ciudades" className="px-3 py-2 text-[13.5px] font-semibold text-slate-400 hover:text-[#0D1E3F] rounded-xl hover:bg-slate-50 transition-all">Ciudades</a>
-              <a href="/nosotros" className="px-3 py-2 text-[13.5px] font-semibold text-slate-400 hover:text-[#0D1E3F] rounded-xl hover:bg-slate-50 transition-all">Nosotros</a>
-              <a href="/faq" className="px-3 py-2 text-[13.5px] font-semibold text-slate-400 hover:text-[#0D1E3F] rounded-xl hover:bg-slate-50 transition-all">FAQ</a>
-            </nav>
-
-          <div className="flex items-center gap-2.5">
-            <a href="/conductores" className="hidden md:block text-[13.5px] font-bold text-[#1A6EFF] hover:underline transition-colors">
-                Soy conductor
-              </a>
-            <button style={{ background: BLUE }} className="flex items-center gap-1.5 px-6 py-2.5 rounded-xl text-sm font-extrabold text-white shadow-[0_4px_16px_-2px_rgba(26,110,255,.45)] hover:opacity-90 transition-all active:scale-95">
-              Descargar App
-            </button>
-            <button className="md:hidden p-1.5 text-slate-500" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
-            </button>
-          </div>
-        </div>
-
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden border-t border-slate-100 bg-white">
-              <div className="max-w-7xl mx-auto px-5 py-3 flex flex-col gap-0.5">
-                {[["#servicios","Servicios"],["#seguridad","Seguridad"],["#como-funciona","Cómo funciona"],["#conductores","Conductores"],["#registro","Únete"]].map(([h,l]) => (
-                    <a key={h} href={h} onClick={() => setMenuOpen(false)}
-                      className="px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-xl transition-colors">{l}</a>
-                  ))}
-                  <div className="border-t border-slate-100 mt-1 mb-1" />
-                  <a href="/conductores" onClick={() => setMenuOpen(false)} className="px-4 py-3 text-sm font-bold text-[#1A6EFF] hover:bg-slate-50 rounded-xl transition-colors">🚗 Conductores / Repartidores</a>
-                  <a href="/negocios" onClick={() => setMenuOpen(false)} className="px-4 py-3 text-sm font-bold text-[#1A6EFF] hover:bg-slate-50 rounded-xl transition-colors">🏪 Registrar negocio</a>
-                  <a href="/ciudades" onClick={() => setMenuOpen(false)} className="px-4 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 rounded-xl transition-colors">📍 Ciudades</a>
-                  <a href="/nosotros" onClick={() => setMenuOpen(false)} className="px-4 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 rounded-xl transition-colors">❤️ Nosotros</a>
-                  <a href="/faq" onClick={() => setMenuOpen(false)} className="px-4 py-3 text-sm font-semibold text-slate-500 hover:bg-slate-50 rounded-xl transition-colors">❓ FAQ</a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.header>
-
+      <Navbar />
       {/* ━━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="relative pt-28 pb-20 min-h-[100dvh] flex items-center overflow-hidden">
         {/* Background blobs */}
