@@ -26,25 +26,25 @@ import React, { useRef, useState } from "react";
   ];
 
   const BENEFITS_BIZ = [
-    { icon: TrendingUp, title: "Más ventas, más clientes",     desc: "Llega a miles de usuarios de Pappedir en Portuguesa que buscan exactamente lo que ofreces." },
-    { icon: Users,      title: "Repartidores verificados",     desc: "Nosotros ponemos los repartidores. Tú te concentras en tu producto." },
-    { icon: DollarSign, title: "Pagos rápidos y seguros",      desc: "Liquidación semanal directa. Sin esperas, sin comisiones ocultas." },
-    { icon: Shield,     title: "Sin riesgo inicial",           desc: "No hay costo de incorporación. Empiezas a pagar solo cuando recibes pedidos." },
-    { icon: Zap,        title: "Onboarding en 48 horas",       desc: "Te incorporamos al catálogo en menos de 2 días hábiles tras tu registro." },
-    { icon: Store,      title: "Panel de control propio",      desc: "Ve tus pedidos, ganancias y estadísticas en tiempo real desde la app." },
+    { icon: TrendingUp, title: "Miles de clientes nuevos",      desc: "Tu negocio aparece frente a usuarios que ya están buscando lo que vendes. Solo tienes que estar ahí." },
+    { icon: Users,      title: "Repartidores listos para ti",  desc: "Nosotros gestionamos la logística de entrega. Tú te concentras en lo que mejor sabes hacer: tu producto." },
+    { icon: DollarSign, title: "Cobras cada semana",            desc: "Liquidación directa todos los viernes. Sin esperas interminables, sin cobros sorpresa." },
+    { icon: Shield,     title: "Cero inversión para empezar",   desc: "No pagas nada por unirte. Solo una pequeña comisión cuando llegan tus pedidos. Sin riesgo." },
+    { icon: Zap,        title: "En 48 horas ya vendes",         desc: "Registro sencillo, verificación rápida. En menos de dos días tu negocio aparece en la app." },
+    { icon: Store,      title: "Todo bajo control",             desc: "Pedidos, ganancias y estadísticas en tiempo real. Tú decides, tú controlas." },
   ];
 
   const STEPS_BIZ = [
-    { n: "01", title: "Regístralo",        desc: "Llena el formulario con los datos de tu negocio. Tarda 3 minutos." },
-    { n: "02", title: "Verificamos",       desc: "El equipo revisa tu negocio y te confirma por WhatsApp en 48 horas." },
-    { n: "03", title: "Te incorporamos",   desc: "Tu negocio aparece en la app de Pappedir para todos los usuarios." },
-    { n: "04", title: "Recibe pedidos",    desc: "Los clientes piden, el repartidor recoge, y tú cobras cada semana." },
+    { n: "01", title: "Regístralo",         desc: "Tres minutos. Solo datos básicos de tu negocio. Sin documentación complicada." },
+    { n: "02", title: "Validamos",          desc: "Revisamos tu información y te confirmamos por WhatsApp en menos de 48 horas." },
+    { n: "03", title: "Apareces en la app", desc: "Tu negocio se muestra a todos los usuarios de Pappedir en tu ciudad. Listo para recibir pedidos." },
+    { n: "04", title: "Vende y cobra",      desc: "Clientes piden, repartidores entregan, y tú recibes el pago cada viernes." },
   ];
 
   const TESTIMONIALS_BIZ = [
-    { name: "Carmen R.",  tipo: "Restaurante", city: "Acarigua", stars: 5, text: "Desde que me uní a Pappedir, las ventas de mi restaurante subieron un 40%. Los repartidores son profesionales." },
-    { name: "Eduardo M.", tipo: "Farmacia",    city: "Guanare",  stars: 5, text: "Mis clientes pueden pedir sus medicamentos sin salir. El proceso es sencillo y los pagos llegan puntual." },
-    { name: "Luisa F.",   tipo: "Panadería",   city: "Araure",   stars: 5, text: "Era escéptica al principio pero ahora el 30% de mis ventas diarias viene por Pappedir. Chévere de verdad." },
+    { name: "Carmen R.",  tipo: "Restaurante", city: "Acarigua", stars: 5, text: "En el primer mes, las ventas de mi restaurante subieron un 40%. Los repartidores son puntuales y profesionales. No me arrepiento." },
+    { name: "Eduardo M.", tipo: "Farmacia",    city: "Guanare",  stars: 5, text: "Mis clientes me piden los medicamentos sin moverse de casa. El proceso es simple y el dinero llega puntual cada semana." },
+    { name: "Luisa F.",   tipo: "Panadería",   city: "Araure",   stars: 5, text: "Tenía mis dudas, pero hoy el 30% de mis ventas diarias vienen por Pappedir. Fue la mejor decisión que tomé para el negocio." },
   ];
 
   export default function Negocios() {
@@ -87,15 +87,15 @@ import React, { useRef, useState } from "react";
                 🏪 Para negocios
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Haz crecer tu negocio<br /><span style={{ color: "#60A5FA" }}>con Pappedir</span>
+                Más ventas.<br /><span style={{ color: "#60A5FA" }}>Sin complicaciones.</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed mb-8 max-w-xl mx-auto">
-                Únete como negocio aliado y llega a miles de clientes en Portuguesa sin contratar repartidores propios.
+                Pon tu negocio en Pappedir y llega a miles de clientes en Portuguesa — sin contratar repartidores ni pagar un centavo por adelantado.
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <a href="#registro-negocio" style={{ background: BLUE }}
                   className="flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-extrabold text-[14px] shadow-[0_8px_28px_rgba(26,110,255,0.5)] hover:opacity-90 transition-all">
-                  Registrar mi negocio <ArrowRight size={16} />
+                  Quiero unirme <ArrowRight size={16} />
                 </a>
                 <a href="#como-funciona-biz" className="flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-bold text-[14px] border border-white/20 hover:bg-white/10 transition-all">
                   Cómo funciona
@@ -111,7 +111,7 @@ import React, { useRef, useState } from "react";
             <Reveal className="text-center mb-12">
               <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Categorías</motion.p>
               <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>
-                ¿Qué tipo de negocio tienes?
+                Si vendes algo, tienes un lugar en Pappedir
               </motion.h2>
             </Reveal>
             <Reveal>
@@ -217,8 +217,8 @@ import React, { useRef, useState } from "react";
         <section id="registro-negocio" className="py-20 bg-white">
           <div className="max-w-2xl mx-auto px-5">
             <Reveal className="text-center mb-10">
-              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>Registra tu negocio</motion.h2>
-              <motion.p variants={up} className="text-slate-500 mt-3">Te incorporamos en menos de 48 horas.</motion.p>
+              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>Empieza hoy mismo</motion.h2>
+              <motion.p variants={up} className="text-slate-500 mt-3">Formulario en 3 minutos. En 48 horas tu negocio ya está en la app.</motion.p>
             </Reveal>
             <div className="bg-white rounded-3xl p-8 border border-slate-100" style={{ boxShadow: "0 4px 20px rgba(26,110,255,.08)" }}>
               <AnimatePresence mode="wait">

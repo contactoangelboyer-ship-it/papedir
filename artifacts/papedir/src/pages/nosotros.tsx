@@ -16,18 +16,18 @@ import React, { useRef } from "react";
   }
 
   const VALUES = [
-    { icon: Shield, title: "Seguridad primero",  color: "#1A6EFF", bg: "#EEF4FF", desc: "Cada conductor y repartidor es verificado manualmente. Sin atajos, sin improvisación. La seguridad de nuestros usuarios no es negociable." },
-    { icon: Heart,  title: "Hecho en Venezuela", color: "#EF4444", bg: "#FEF2F2", desc: "Somos venezolanos, conocemos la realidad del país. Pappedir nació de entender de primera mano lo que se necesita en ciudades como Guanare y Acarigua." },
-    { icon: Zap,    title: "Velocidad real",      color: "#F97316", bg: "#FFF7ED", desc: "Prometemos rapidez y la cumplimos. Nuestro tiempo de llegada promedio es ≈4 minutos. No son palabras, son datos." },
-    { icon: Users,  title: "Comunidad aliada",    color: "#10B981", bg: "#ECFDF5", desc: "Conductores, repartidores y negocios no son proveedores, son aliados. Su éxito es nuestro éxito." },
-    { icon: Target, title: "Foco en Portuguesa",  color: "#8B5CF6", bg: "#F5F3FF", desc: "No queremos ser una app global genérica. Queremos ser THE app de Portuguesa. Enfoque local, impacto real." },
+    { icon: Shield, title: "Seguridad primero",  color: "#1A6EFF", bg: "#EEF4FF", desc: "Verificación manual de cada aliado, cero atajos. La seguridad de quien usa Pappedir no está sujeta a debate — es innegociable." },
+    { icon: Heart,  title: "Hecho en Venezuela", color: "#EF4444", bg: "#FEF2F2", desc: "No llegamos desde afuera a imponer soluciones. Vivimos aquí, entendemos la realidad y construimos pensando en ella. Eso hace la diferencia." },
+    { icon: Zap,    title: "Velocidad real",      color: "#F97316", bg: "#FFF7ED", desc: "Prometemos rápido y entregamos rápido. El tiempo promedio de llegada es ≈4 minutos. No es marketing — son datos reales." },
+    { icon: Users,  title: "Comunidad aliada",    color: "#10B981", bg: "#ECFDF5", desc: "Conductores, repartidores y negocios no son proveedores — son el corazón de Pappedir. Cuando ellos crecen, nosotros crecemos." },
+    { icon: Target, title: "Foco en Portuguesa",  color: "#8B5CF6", bg: "#F5F3FF", desc: "No queremos ser una app genérica de todo para todos. Queremos ser la app que Portuguesa merece. Enfoque local, impacto real." },
   ];
 
   const MILESTONES = [
-    { year: "2024", title: "Nace la idea",          desc: "Un grupo de jóvenes de Guanare se frustra con la falta de opciones de transporte y delivery en la región." },
-    { year: "2025", title: "Lanzamiento en Guanare", desc: "Pappedir abre operaciones en Guanare con los primeros 20 conductores aliados y 5 negocios embajadores." },
-    { year: "2025", title: "Expansión a Acarigua",   desc: "Llevamos el servicio al municipio Páez. Hoy cubrimos Acarigua y Araure con cobertura completa." },
-    { year: "2026", title: "Creciendo juntos",        desc: "Más de 6 servicios disponibles, decenas de negocios aliados y la meta clara: toda Portuguesa." },
+    { year: "2024", title: "Nace la idea",          desc: "Un grupo de venezolanos de Guanare se frustró con la falta de opciones de transporte y delivery. Decidieron construir la solución ellos mismos." },
+    { year: "2025", title: "Lanzamiento en Guanare", desc: "Arrancamos en Guanare con los primeros 20 conductores y 5 negocios aliados. Pequeño en números, grande en propósito." },
+    { year: "2025", title: "Expansión a Acarigua",   desc: "Expandimos al municipio Páez. Hoy, Acarigua y Araure cuentan con cobertura completa y crecemos semana a semana." },
+    { year: "2026", title: "Creciendo juntos",        desc: "Seis servicios disponibles, decenas de aliados activos y una meta bien clara: llegar a cada ciudad de Portuguesa." },
   ];
 
   export default function Nosotros() {
@@ -46,10 +46,10 @@ import React, { useRef } from "react";
                 ❤️ Nuestra historia
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Hecho en Portuguesa,<br /><span style={{ color: "#60A5FA" }}>para Portuguesa</span>
+                Nació en Portuguesa.<br /><span style={{ color: "#60A5FA" }}>Creció para Portuguesa.</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed max-w-xl mx-auto">
-                Pappedir nació del deseo de mejorar la movilidad y el comercio local en nuestra región. Somos de aquí y conocemos lo que necesitas.
+                Pappedir no vino de afuera. Lo construimos acá, entendiendo de primera mano lo que necesita nuestra región.
               </p>
             </motion.div>
           </div>
@@ -69,7 +69,7 @@ import React, { useRef } from "react";
                     </div>
                     <h2 className="text-2xl font-extrabold text-white mb-4">Nuestra misión</h2>
                     <p className="text-white/65 leading-relaxed text-[15px]">
-                      Conectar a las personas de Portuguesa con servicios de transporte, delivery y comercio local de forma rápida, segura y accesible. Democratizando la movilidad urbana en ciudades medianas de Venezuela.
+                      Conectar a las personas de Portuguesa con transporte, delivery y comercio local de forma rápida, segura y sin complicaciones. Queremos que la tecnología trabaje para todos — no solo para las grandes ciudades.
                     </p>
                   </div>
                 </motion.div>

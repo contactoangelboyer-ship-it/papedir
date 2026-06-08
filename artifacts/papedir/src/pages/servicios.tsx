@@ -19,48 +19,48 @@ import React, { useRef } from "react";
   const SERVICES = [
     {
       id: "transporte", icon: Car, emoji: "🚗", label: "Transporte",
-      tagline: "Llega a donde necesitas, seguro y rápido",
-      desc: "Solicita un conductor verificado en minutos. Carro cómodo o moto, tú decides. Precio fijo antes de salir, sin sorpresas.",
+      tagline: "Tu conductor llega en minutos, a precio cerrado",
+      desc: "Pide tu viaje, confirma el precio antes de salir y un conductor verificado llega a tu puerta. Sin regateos, sin sorpresas.",
       steps: ["Abre la app y elige Transporte","Confirma tu destino y el precio","El conductor más cercano acepta","Sigue el viaje en tiempo real"],
       perks: ["Precio fijo confirmado antes","Conductor ID verificado","GPS activo en cada viaje","Disponible 24/7"],
       color: "#1A6EFF", bg: "#EEF4FF",
     },
     {
       id: "comida", icon: ShoppingBag, emoji: "🍔", label: "Comida & Restaurantes",
-      tagline: "Tus locales favoritos, en tu puerta",
-      desc: "Pide comida de los mejores restaurantes aliados de Portuguesa. Desde empanadas hasta pollo asado, todo llega caliente.",
+      tagline: "Lo que antoja, caliente y a tiempo",
+      desc: "Los mejores restaurantes de Portuguesa en tu teléfono. Desde una empanada hasta un menú completo — llega caliente.",
       steps: ["Elige el restaurante aliado","Selecciona tus platos","El repartidor recoge tu pedido","Entrega en puerta en promedio 30 min"],
       perks: ["Restaurantes verificados","Seguimiento en tiempo real","Pago anticipado o en efectivo","Pedidos mínimos bajos"],
       color: "#F97316", bg: "#FFF7ED",
     },
     {
       id: "compras", icon: Package, emoji: "📦", label: "Compras & Mandados",
-      tagline: "Envía a un aliado a hacer tus compras",
-      desc: "¿No puedes salir? Dile a un aliado qué necesitas y ellos van al abastos, supermercado o tienda y te lo traen.",
+      tagline: "Nosotros hacemos el mandado por ti",
+      desc: "Cuéntanos qué necesitas, dinos dónde comprarlo y un aliado hace la gestión completa. Recibes todo con el ticket de compra.",
       steps: ["Describe lo que necesitas","Comparte la ubicación de la tienda","El aliado realiza tu compra","Recibe en casa con el ticket"],
       perks: ["Compras en cualquier tienda","Ticket de compra transparente","Sin comisión oculta","Aliados de confianza"],
       color: "#8B5CF6", bg: "#F5F3FF",
     },
     {
       id: "farmacia", icon: Pill, emoji: "💊", label: "Farmacia",
-      tagline: "Medicamentos urgentes, sin salir de casa",
-      desc: "Recibe tus medicamentos directamente desde la farmacia aliada. Servicio prioritario para casos urgentes.",
+      tagline: "Tu salud no espera — nosotros tampoco",
+      desc: "Medicamentos a tu puerta desde farmacias aliadas verificadas. Servicio exprés para urgencias, sin perder tiempo.",
       steps: ["Ingresa el nombre del medicamento","Selecciona la farmacia aliada","El aliado verifica disponibilidad","Entrega rápida en tu domicilio"],
       perks: ["Farmacias aliadas verificadas","Servicio urgente disponible","Cadena de frío para productos sensibles","Discreto y seguro"],
       color: "#10B981", bg: "#ECFDF5",
     },
     {
       id: "envios", icon: Send, emoji: "📬", label: "Envíos & Encomiendas",
-      tagline: "Envía paquetes dentro de Portuguesa",
-      desc: "Manda documentos, paquetes o cualquier encomienda a cualquier punto de la ciudad. Rápido y con confirmación de entrega.",
+      tagline: "Lo que envías, llega con confirmación",
+      desc: "Documentos, paquetes o encomiendas de hasta 20 kg — recogemos donde estás y entregamos con foto de confirmación.",
       steps: ["Describe tu paquete y destino","Confirma el precio del envío","El aliado recoge en tu ubicación","El destinatario recibe y firma"],
       perks: ["Confirmación de entrega","Cobertura toda Portuguesa","Para paquetes hasta 20kg","Foto de entrega incluida"],
       color: "#F59E0B", bg: "#FFFBEB",
     },
     {
       id: "mototaxi", icon: Bike, emoji: "🏍️", label: "Mototaxi",
-      tagline: "Muévete rápido, sin trancas",
-      desc: "La opción más rápida y económica para moverte dentro de la ciudad. Ideal para evitar el tráfico y llegar al tiro.",
+      tagline: "El atajo más rápido de la ciudad",
+      desc: "La opción más ágil y económica. Perfecto para evitar trancas, llegar puntual y no pagar de más.",
       steps: ["Selecciona Mototaxi en la app","Indica tu punto de partida y destino","El motociclista más cerca acepta","Viaje directo sin desvíos"],
       perks: ["Precio menor al taxi","Llega antes que un carro","Conductores con casco y equipos","Rutas optimizadas"],
       color: "#EF4444", bg: "#FEF2F2",
@@ -84,10 +84,10 @@ import React, { useRef } from "react";
                 6 servicios disponibles
               </span>
               <h1 className="text-[clamp(36px,6vw,72px)] font-extrabold text-white leading-[1.06] tracking-tight mb-6">
-                Todo lo que necesitas,<br /><span style={{ color: "#60A5FA" }}>en una sola app</span>
+                Muévete, pide, recibe.<br /><span style={{ color: "#60A5FA" }}>Nosotros lo resolvemos.</span>
               </h1>
               <p className="text-white/60 text-[17px] max-w-xl mx-auto">
-                Transporte, comida, compras, farmacia, envíos y mototaxi. Pappedir lo resuelve todo.
+                Seis servicios diseñados para tu día a día en Portuguesa. Todo verificado, todo confiable, todo en una app.
               </p>
             </motion.div>
 
@@ -107,7 +107,7 @@ import React, { useRef } from "react";
         {/* Stats bar */}
         <div className="border-b border-slate-100 bg-white">
           <div className="max-w-7xl mx-auto px-5 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[["6+","Servicios disponibles"],["≈4 min","Tiempo de llegada"],["24/7","Siempre disponible"],["5 ★","Calificación promedio"]].map(([v,l]) => (
+            {[["6","Servicios en una app"],["≈4 min","Tiempo promedio de llegada"],["24/7","Siempre disponible"],["5 ★","Calificación promedio"]].map(([v,l]) => (
               <div key={l} className="text-center">
                 <p className="text-2xl font-extrabold" style={{ color: BLUE }}>{v}</p>
                 <p className="text-slate-400 text-xs font-semibold mt-0.5">{l}</p>
@@ -194,11 +194,11 @@ import React, { useRef } from "react";
         {/* CTA */}
         <section className="py-20" style={{ background: "linear-gradient(135deg, #0D1E3F 0%, #0D2B6B 100%)" }}>
           <div className="max-w-4xl mx-auto px-5 text-center">
-            <h2 className="text-[clamp(28px,5vw,52px)] font-extrabold text-white mb-4">¿Listo para empezar?</h2>
-            <p className="text-white/60 text-[16px] mb-8">Descarga la app o solicita tu primer servicio ahora.</p>
+            <h2 className="text-[clamp(28px,5vw,52px)] font-extrabold text-white mb-4">¿Qué necesitas hoy?</h2>
+            <p className="text-white/60 text-[16px] mb-8">Tu primer servicio es un tap. Rápido, seguro, sin vueltas.</p>
             <a href="/#registro" className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-extrabold text-[15px] hover:opacity-90 transition-all"
               style={{ background: BLUE, boxShadow: "0 8px 32px rgba(26,110,255,0.5)" }}>
-              Comenzar ahora <ArrowRight size={17} />
+              Solicitar ahora <ArrowRight size={17} />
             </a>
           </div>
         </section>

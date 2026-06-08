@@ -19,46 +19,46 @@ import React, { useRef, useState } from "react";
     {
       cat: "🧑‍💻 General",
       items: [
-        { q: "¿Qué es Pappedir?", a: "Pappedir es una app venezolana de transporte y delivery creada especialmente para Portuguesa. Desde Guanare hasta Acarigua, conectamos usuarios con conductores, repartidores y negocios aliados verificados." },
-        { q: "¿En qué ciudades está disponible?", a: "Actualmente operamos en Guanare, Acarigua y Araure con cobertura completa. Estamos expandiéndonos a Biscucuy, Ospino, Guanarito y otras ciudades. Consulta nuestra página de Ciudades para ver el estado actualizado." },
-        { q: "¿Cuánto tarda en llegar el servicio?", a: "El tiempo de llegada promedio es de aproximadamente 4 minutos. Puede variar según la zona y la hora del día, pero nuestros conductores y repartidores están distribuidos estratégicamente para minimizar la espera." },
-        { q: "¿Cómo descargo la app?", a: "Próximamente disponible en Google Play y App Store. Por ahora, solicita tu servicio directamente desde esta web o contáctanos por WhatsApp. Te tenemos al tanto en cuanto lancemos la app." },
+        { q: "¿Qué es Pappedir?", a: "Pappedir es la app venezolana de transporte y delivery construida para Portuguesa. Conectamos personas con conductores, repartidores y negocios aliados verificados — todo en un solo lugar." },
+        { q: "¿En qué ciudades está disponible?", a: "Hoy operamos en Guanare, Acarigua y Araure con cobertura completa. Estamos expandiendo a Biscucuy, Ospino, Guanarito y más. Visita la página de Ciudades para ver el estado en tiempo real." },
+        { q: "¿Cuánto tarda en llegar el servicio?", a: "El promedio es ≈4 minutos. Puede variar según la zona o el horario, pero nuestros aliados están distribuidos para que la espera sea la mínima posible." },
+        { q: "¿Cómo descargo la app?", a: "Muy pronto en Google Play y App Store. Por ahora, solicita tu servicio desde esta web o por WhatsApp. Te avisamos en cuanto la app esté disponible para descargar." },
       ]
     },
     {
       cat: "💳 Pagos y tarifas",
       items: [
-        { q: "¿Cómo se calcula el precio?", a: "El precio se confirma antes de iniciar el servicio. No hay sorpresas. El cálculo toma en cuenta la distancia, el tipo de servicio y la demanda en tiempo real." },
-        { q: "¿Qué métodos de pago aceptan?", a: "Aceptamos Pago Móvil, Zelle, transferencias, efectivo en bolívares y divisas. Cada servicio indica los métodos disponibles antes de confirmar." },
-        { q: "¿Hay costos ocultos?", a: "No. Lo que ves antes de confirmar es lo que pagas. Sin comisiones sorpresa, sin cobros adicionales." },
-        { q: "¿Puedo pagar en efectivo?", a: "Sí, el efectivo está disponible. Tanto en bolívares como en divisas según el conductor o repartidor que te toque. Se indica antes de confirmar el servicio." },
+        { q: "¿Cómo se calcula el precio?", a: "El precio se muestra y confirma antes de empezar. Lo que ves es lo que pagas — sin recargos, sin sorpresas de último minuto." },
+        { q: "¿Qué métodos de pago aceptan?", a: "Pago Móvil, Zelle, transferencia bancaria, efectivo en bolívares y divisas. El método disponible aparece antes de confirmar tu pedido." },
+        { q: "¿Hay costos ocultos?", a: "Ninguno. El precio que confirmas es el precio final. No existen comisiones ocultas ni cargos adicionales." },
+        { q: "¿Puedo pagar en efectivo?", a: "Sí. Efectivo en bolívares y divisas, según el conductor disponible. Siempre se indica antes de confirmar el servicio." },
       ]
     },
     {
       cat: "🚗 Para usuarios",
       items: [
-        { q: "¿Los conductores están verificados?", a: "Sí. Todos los conductores y repartidores pasan por un proceso de verificación manual: cédula, documentos del vehículo y revisión de antecedentes. Cero improvisación." },
-        { q: "¿Puedo rastrear mi viaje o pedido?", a: "Sí. Todos los servicios tienen seguimiento en tiempo real via GPS. Puedes compartir tu ubicación con familiares mientras dura el servicio." },
-        { q: "¿Qué hago si hay un problema con mi servicio?", a: "Contáctanos inmediatamente por WhatsApp. Nuestro equipo de soporte está disponible 24/7 y responde en menos de 10 minutos en horario pico." },
-        { q: "¿Puedo cancelar un servicio?", a: "Puedes cancelar antes de que el conductor acepte el viaje sin costo. Si cancelas después de la aceptación, puede aplicar un cargo mínimo según el caso." },
+        { q: "¿Los conductores están verificados?", a: "Absolutamente. Cédula, licencia, documentos del vehículo — todo revisado a mano. Ningún conductor opera sin pasar el filtro completo." },
+        { q: "¿Puedo rastrear mi viaje o pedido?", a: "Sí. Seguimiento GPS en tiempo real durante todo el servicio. Puedes compartir tu recorrido con familiares para mayor tranquilidad." },
+        { q: "¿Qué hago si hay un problema con mi servicio?", a: "Escríbenos por WhatsApp. Soporte real, disponible 24/7. En horario de alta demanda respondemos en menos de 10 minutos — sin bots." },
+        { q: "¿Puedo cancelar un servicio?", a: "Sin costo si cancelas antes de que el conductor acepte. Después de la aceptación puede aplicar un cargo mínimo, dependiendo del caso." },
       ]
     },
     {
       cat: "🏍️ Para conductores y repartidores",
       items: [
-        { q: "¿Cómo me registro como conductor?", a: "Ve a la sección 'Conductores' en la web o al formulario de registro. El proceso tarda menos de 5 minutos y te contactamos en menos de 24 horas para completar tu incorporación." },
-        { q: "¿Cuándo y cómo recibo mis pagos?", a: "Los pagos son semanales, siempre. Puedes recibirlos por Pago Móvil, Zelle, transferencia bancaria o en efectivo según tu preferencia." },
-        { q: "¿Tengo que trabajar horarios fijos?", a: "Para nada. Tú decides cuándo y cuánto trabajas. Activas la app cuando quieres y la desactivas cuando necesitas descansar. Sin compromisos de horas mínimas." },
-        { q: "¿Qué documentos necesito para registrarme?", a: "Cédula de identidad venezolana vigente, licencia de conducir (para conductores), documentos del vehículo y un número de WhatsApp activo. Sin trámites complicados." },
+        { q: "¿Cómo me registro como conductor?", a: "Entra a la sección Conductores, llena el formulario en 5 minutos y te contactamos en menos de 24 horas. Sin papeleo innecesario." },
+        { q: "¿Cuándo y cómo recibo mis pagos?", a: "Cada semana, sin falta. Pago Móvil, Zelle o transferencia bancaria — tú eliges el método. Sin retrasos, sin excusas." },
+        { q: "¿Tengo que trabajar horarios fijos?", a: "Cero horario obligatorio. Activa la app cuando quieras trabajar, desactívala cuando necesites parar. Sin horas mínimas, sin compromisos." },
+        { q: "¿Qué documentos necesito para registrarme?", a: "Cédula vigente, licencia de conducir (si eres conductor), documentos del vehículo y un WhatsApp activo. Eso es todo — sin burocracia." },
       ]
     },
     {
       cat: "🏪 Para negocios",
       items: [
-        { q: "¿Cuánto le cuesta a mi negocio unirse?", a: "El registro es completamente gratuito. Solo hay una pequeña comisión sobre los pedidos completados que se detalla durante el proceso de incorporación. Sin costos fijos mensuales." },
-        { q: "¿Cómo recibo los pedidos de clientes?", a: "A través de nuestra app de gestión para negocios. Recibes notificación inmediata, confirmas el pedido y el repartidor llega a recogerlo. Proceso simple y rápido." },
-        { q: "¿Pappedir pone los repartidores?", a: "Sí. Tú te enfocas en preparar el pedido y nosotros nos encargamos del reparto. No necesitas contratar repartidores propios." },
-        { q: "¿En cuánto tiempo aparece mi negocio en la app?", a: "Una vez completado tu registro y verificación, tu negocio aparece en la app en menos de 48 horas hábiles." },
+        { q: "¿Cuánto le cuesta a mi negocio unirse?", a: "Unirte es gratis. Solo pagas una pequeña comisión sobre los pedidos que recibes — ningún costo fijo, ninguna mensualidad." },
+        { q: "¿Cómo recibo los pedidos de clientes?", a: "Por la app de gestión para negocios. Notificación al instante, confirmas con un toque y el repartidor va por el pedido. Simple y directo." },
+        { q: "¿Pappedir pone los repartidores?", a: "Exactamente. Tú prepara el pedido. Nosotros lo entregamos. No contratas, no gestionas repartidores — ese es nuestro trabajo." },
+        { q: "¿En cuánto tiempo aparece mi negocio en la app?", a: "Registro aprobado y verificado — apareces en la app en menos de 48 horas. Listo para recibir tu primer pedido." },
       ]
     },
   ];
@@ -106,10 +106,10 @@ import React, { useRef, useState } from "react";
                 ❓ Preguntas frecuentes
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Resolvemos tus<br /><span style={{ color: "#60A5FA" }}>dudas al tiro</span>
+                Todo lo que quieres<br /><span style={{ color: "#60A5FA" }}>saber, acá está</span>
               </h1>
               <p className="text-white/60 text-[17px] max-w-lg mx-auto">
-                ¿Tienes preguntas sobre Pappedir? Aquí están las respuestas más comunes.
+                Preguntas reales con respuestas directas. Sin rodeos, sin letra pequeña.
               </p>
             </motion.div>
           </div>
@@ -156,8 +156,8 @@ import React, { useRef, useState } from "react";
                   <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5" style={{ background: "rgba(26,110,255,0.3)" }}>
                     <MessageCircle size={28} className="text-[#60A5FA]" />
                   </div>
-                  <h2 className="text-2xl font-extrabold text-white mb-3">¿No encontraste tu respuesta?</h2>
-                  <p className="text-white/60 mb-6">Escríbenos por WhatsApp y te respondemos en menos de 10 minutos.</p>
+                  <h2 className="text-2xl font-extrabold text-white mb-3">¿Queda alguna duda?</h2>
+                  <p className="text-white/60 mb-6">Escríbenos por WhatsApp. Persona real, respuesta en menos de 10 minutos.</p>
                   <a href="https://wa.me/584120000000?text=Hola,%20tengo%20una%20pregunta%20sobre%20Pappedir" target="_blank" rel="noopener noreferrer"
                     style={{ background: BLUE }}
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-extrabold text-[14px] shadow-[0_8px_32px_rgba(26,110,255,0.5)] hover:opacity-90 transition-all">

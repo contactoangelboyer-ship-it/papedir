@@ -48,10 +48,10 @@ import React, { useRef } from "react";
                 <MapPin size={13} /> Cobertura actual
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Pappedir en toda<br /><span style={{ color: "#60A5FA" }}>Portuguesa</span>
+                Portuguesa entera,<br /><span style={{ color: "#60A5FA" }}>ciudad por ciudad</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed mb-8 max-w-xl mx-auto">
-                Comenzamos en Guanare y Acarigua-Araure. Vamos creciendo ciudad por ciudad, siempre con calidad.
+                Empezamos en Guanare y Acarigua-Araure. Y no paramos hasta llegar a cada rincón del estado.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 {[["3","Ciudades activas"],["5+","Más en expansión"],["700k+","Personas con acceso"]].map(([v,l]) => (
@@ -70,7 +70,7 @@ import React, { useRef } from "react";
           <div className="max-w-7xl mx-auto px-5">
             <Reveal className="text-center mb-12">
               <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Cobertura</motion.p>
-              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>¿Está Pappedir en tu ciudad?</motion.h2>
+              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>¿Cubrimos tu ciudad?</motion.h2>
             </Reveal>
             <Reveal>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -120,10 +120,10 @@ import React, { useRef } from "react";
                 <div className="absolute top-0 right-0 w-60 h-60 rounded-full bg-[#1A6EFF]/20 blur-[80px]" />
                 <div className="relative z-10">
                   <h2 className="text-[clamp(24px,4vw,42px)] font-extrabold text-white mb-4">
-                    ¿Quieres Pappedir en tu ciudad?
+                    ¿Tu ciudad aún no está?
                   </h2>
                   <p className="text-white/60 text-[15px] mb-8 max-w-lg mx-auto">
-                    Si tu ciudad no está en la lista, escríbenos. Estamos evaluando constantemente nuevas zonas y tus votos cuentan.
+                    Escríbenos y súmate a la lista de espera. Tu voz cuenta — las ciudades con más solicitudes son las primeras en expandirse.
                   </p>
                   <a href="https://wa.me/584120000000?text=Quiero%20Pappedir%20en%20mi%20ciudad" target="_blank" rel="noopener noreferrer"
                     style={{ background: BLUE }}

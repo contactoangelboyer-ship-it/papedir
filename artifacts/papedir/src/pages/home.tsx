@@ -27,37 +27,37 @@ function Reveal({ children, className = "" }: { children: React.ReactNode; class
 
 /* ── Data ───────────────────────────────────────────────── */
 const SERVICES = [
-  { icon: Car,         label: "Transporte",  sub: "Carro o mototaxi",          emoji: "🚗" },
-  { icon: ShoppingBag, label: "Comida",      sub: "Tus locales favoritos",      emoji: "🍔" },
-  { icon: Package,     label: "Compras",     sub: "Sin salir de casa",          emoji: "📦" },
-  { icon: Pill,        label: "Farmacia",    sub: "Medicamentos al instante",   emoji: "💊" },
-  { icon: Send,        label: "Envíos",      sub: "Encomiendas rápidas",        emoji: "📬" },
-  { icon: Bike,        label: "Mototaxi",    sub: "Rápido y económico",         emoji: "🏍️" },
+  { icon: Car,         label: "Transporte",  sub: "Precio cerrado. Sin regateo.",   emoji: "🚗" },
+  { icon: ShoppingBag, label: "Comida",      sub: "Caliente y a tiempo.",            emoji: "🍔" },
+  { icon: Package,     label: "Compras",     sub: "Nosotros hacemos el mandado.",    emoji: "📦" },
+  { icon: Pill,        label: "Farmacia",    sub: "Urgente o programado.",           emoji: "💊" },
+  { icon: Send,        label: "Envíos",      sub: "Con confirmación de entrega.",    emoji: "📬" },
+  { icon: Bike,        label: "Mototaxi",    sub: "Sin trancas. Sin rodeos.",       emoji: "🏍️" },
 ];
 
 const FEATURES = [
-  { icon: UserCheck,   title: "Conductores verificados",     desc: "Cédula, documentos y antecedentes revisados manualmente. Cero improvisación." },
-  { icon: Navigation,  title: "GPS en tiempo real",          desc: "Tú y tu familia ven el viaje en vivo. Seguridad sin papel." },
-  { icon: DollarSign,  title: "Precio fijo antes de salir",  desc: "Confirmas la tarifa antes de arrancar. Sin sorpresas al llegar." },
-  { icon: Shield,      title: "Respaldo total",              desc: "Cada viaje queda registrado. Si algo pasa, estamos ahí." },
+  { icon: UserCheck,   title: "Identidad verificada al 100%",     desc: "Cédula, licencia y documentos del vehículo revisados a mano. Ningún conductor se activa sin pasar el filtro." },
+  { icon: Navigation,  title: "Seguimiento para ti y los tuyos",  desc: "Comparte tu ruta con quien quieras. Todos ven dónde estás, desde el inicio hasta la llegada." },
+  { icon: DollarSign,  title: "El precio que ves es el que pagas", desc: "La tarifa se confirma antes de arrancar. Sin cargos adicionales. Sin excusas." },
+  { icon: Shield,      title: "Soporte humano, no bots",     desc: "Equipo real disponible por WhatsApp. Cada servicio queda registrado — si algo falla, respondemos." },
 ];
 
 const STEPS = [
-  { n: "01", icon: Smartphone,   title: "Abre Pappedir",        desc: "Elige tu servicio — viaje, delivery, compras o farmacia." },
-  { n: "02", icon: Zap,          title: "Un aliado acepta",      desc: "El conductor más cerca arranca al tiro. Sin vueltas." },
-  { n: "03", icon: CheckCircle2, title: "¡Llegamos!",            desc: "Sigue todo en vivo. Rápido, seguro, sin rollos." },
+  { n: "01", icon: Smartphone,   title: "Elige lo que necesitas",  desc: "Transporte, comida, compras, farmacia o envíos — todo en un solo lugar." },
+  { n: "02", icon: Zap,          title: "Tu aliado está en camino", desc: "El conductor o repartidor más cercano acepta al instante y llega en minutos." },
+  { n: "03", icon: CheckCircle2, title: "Recibe y listo",         desc: "Precio confirmado, seguimiento en vivo y entrega asegurada. Así de simple." },
 ];
 
 const TESTIMONIALS = [
-    { name: "Roberto M.",   city: "Guanare",  stars: 5, tipo: "🚗 Transporte",      text: "En 4 minutos el conductor estaba en mi puerta. Burda de rápido, sin comparación." },
-    { name: "Valentina C.", city: "Acarigua", stars: 5, tipo: "📍 Rastreo GPS",     text: "Mi mamá pudo ver mi ubicación en todo momento. Eso vale oro, chamo." },
-    { name: "José D.",      city: "Araure",   stars: 5, tipo: "🏍️ Conductor aliado", text: "Llevo dos meses de conductor aliado. Los pagos siempre llegan, el soporte responde." },
-    { name: "Mariangel P.", city: "Guanare",  stars: 5, tipo: "📦 Delivery",        text: "Pedí comida y llegó en menos de 20 minutos. La app es súper fácil, lo recomiendo." },
-    { name: "Luis C.",      city: "Ospino",   stars: 5, tipo: "💊 Farmacia",        text: "Necesitaba un medicamento urgente y Pappedir me lo trajo al tiro. Excelente servicio." },
-    { name: "Carmen R.",    city: "Acarigua", stars: 5, tipo: "🏪 Embajadora",      text: "Mi restaurante recibe pedidos por Pappedir todos los días. Las ventas subieron un montón." },
+    { name: "Roberto M.",   city: "Guanare",  stars: 5, tipo: "🚗 Transporte",      text: "El conductor llegó en cuatro minutos y el precio que vi en la app fue exactamente lo que pagué. Sin sorpresas." },
+    { name: "Valentina C.", city: "Acarigua", stars: 5, tipo: "📍 Seguimiento GPS", text: "Mi mamá siguió mi recorrido en tiempo real desde su teléfono. Esa tranquilidad no tiene precio." },
+    { name: "José D.",      city: "Araure",   stars: 5, tipo: "🏍️ Conductor aliado", text: "Dos meses como conductor y los pagos siempre caen puntual. El soporte responde rápido — eso lo dice todo." },
+    { name: "Mariangel P.", city: "Guanare",  stars: 5, tipo: "📦 Delivery",        text: "La comida llegó caliente en menos de 25 minutos. App fácil de usar, repartidor muy amable. Volví a pedir al día siguiente." },
+    { name: "Luis C.",      city: "Ospino",   stars: 5, tipo: "💊 Farmacia",        text: "Medicamento urgente para mi papá. Pappedir lo entregó en 18 minutos. En ese momento, fue todo." },
+    { name: "Carmen R.",    city: "Acarigua", stars: 5, tipo: "🏪 Embajadora",      text: "Mi restaurante recibe pedidos por Pappedir a diario. El primer mes las ventas subieron más del 35%." },
   ];
 
-  const TIPO_LOOP = ["🚗 Transporte","🍔 Comida","📦 Compras","💊 Farmacia","📬 Envíos","🏍️ Mototaxi","🏪 Negocios","📍 GPS en vivo","✅ Verificados","⚡ Al tiro"];
+  const TIPO_LOOP = ["🚗 Transporte","🍔 Comida a domicilio","📦 Compras sin salir","💊 Farmacia exprés","📬 Envíos seguros","🏍️ Mototaxi","🏪 Negocios aliados","📍 GPS en tiempo real","✅ Conductores verificados","⚡ En minutos"];
 
 const PAYMENTS = ["Pago Móvil", "Zelle", "Efectivo", "Transferencia", "Divisas"];
 const CITIES   = ["Guanare", "Acarigua", "Araure", "Biscucuy", "Ospino", "Otra"];
@@ -179,7 +179,7 @@ export default function Home() {
 
             <motion.div variants={up} className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#EEF4FF] border border-[#1A6EFF]/15 mb-8">
               <span className="w-2 h-2 rounded-full bg-[#1A6EFF] animate-pulse" />
-              <span className="text-[#1A6EFF] text-[13px] font-bold">Disponible ahora en Portuguesa, Venezuela</span>
+              <span className="text-[#1A6EFF] text-[13px] font-bold">Operando en Portuguesa · Venezuela 🇻🇪</span>
             </motion.div>
 
             <motion.h1 variants={up} className="text-[clamp(40px,6.5vw,76px)] font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: NAVY }}>
@@ -189,12 +189,12 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={up} className="text-slate-500 text-[17px] leading-relaxed max-w-[480px] mb-10">
-              Pappedir es la app venezolana de transporte y delivery hecha pa' Portuguesa. Sin rollos, sin chivos, sin esperas. Al tiro.
+              Transporte, comida, compras, farmacia y más — todo en una sola app creada para Portuguesa. Conductor verificado, precio confirmado antes de salir. Sin sorpresas.
             </motion.p>
 
             <motion.div variants={up} className="flex flex-col sm:flex-row gap-3 mb-12">
               <button style={{ background: BLUE }} className="group flex items-center justify-center gap-2 px-8 py-4 rounded-2xl text-white text-[15px] font-extrabold shadow-[0_8px_28px_-4px_rgba(26,110,255,.45)] hover:opacity-90 transition-all active:scale-95">
-                Solicitar ahora <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
+                Empieza ahora <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
               </button>
               <a href="#como-funciona" className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl border-2 border-slate-200 text-[#0D1E3F] text-[15px] font-bold hover:border-[#1A6EFF]/30 hover:bg-[#F5F8FF] transition-all">
                 Cómo funciona <ChevronRight size={15} className="text-slate-400" />
@@ -203,7 +203,7 @@ export default function Home() {
 
             {/* Stats */}
             <motion.div variants={up} className="flex flex-wrap gap-x-8 gap-y-3 pt-8 border-t border-slate-100">
-              {[["6+","Servicios en una app"],["≈4 min","Llegada promedio"],["24/7","Disponible"],["5 ★","Rating"]].map(([v,l]) => (
+              {[["6+","Servicios disponibles"],["≈4 min","Tiempo de llegada"],["24/7","Siempre disponible"],["5 ★","Calificación promedio"]].map(([v,l]) => (
                 <div key={l}>
                   <p className="text-2xl font-extrabold" style={{ color: NAVY }}>{v}</p>
                   <p className="text-slate-400 text-xs font-semibold mt-0.5">{l}</p>
@@ -371,7 +371,7 @@ export default function Home() {
             <Reveal>
               <div className="flex flex-col gap-4">
                 <motion.div variants={up}>
-                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Seguridad primero</p>
+                  <p className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Confianza garantizada</p>
                   <h2 className="text-[clamp(28px,4vw,48px)] font-extrabold leading-tight mb-4" style={{ color: NAVY }}>
                     Viaja con<br />toda la confianza
                   </h2>
@@ -617,7 +617,7 @@ export default function Home() {
                         <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Genera ingresos a tu propio ritmo</h3>
                         <p className="text-slate-500 text-sm leading-relaxed mb-5">¿Tienes carro o moto? Regístrate como conductor aliado. Tú decides cuándo trabajas — los pagos llegan siempre, a tiempo.</p>
                         <div className="flex flex-col gap-2.5">
-                          {["Carro o moto aceptados","Pagos semanales garantizados","Tú decides tus horarios","Soporte 24/7 por WhatsApp"].map((item) => (
+                          {["Carro o moto aceptados","Pagos semanales puntuales","Horario completamente flexible","Soporte real por WhatsApp"].map((item) => (
                             <div key={item} className="flex items-center gap-3">
                               <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
                                 <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
@@ -633,7 +633,7 @@ export default function Home() {
                         <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Reparte y gana desde hoy</h3>
                         <p className="text-slate-500 text-sm leading-relaxed mb-5">Con tu moto o bicicleta, lleva pedidos de comida, farmacias y encomiendas por toda Portuguesa. Sin jefe, sin horario fijo.</p>
                         <div className="flex flex-col gap-2.5">
-                          {["Moto o bicicleta aceptadas","Pedidos desde el primer día","Ganancias por cada entrega","App fácil de usar"].map((item) => (
+                          {["Moto o bicicleta aceptadas","Ingresos desde el primer pedido","Ganancias por cada entrega","App sencilla, sin curva de aprendizaje"].map((item) => (
                             <div key={item} className="flex items-center gap-3">
                               <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
                                 <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
@@ -649,7 +649,7 @@ export default function Home() {
                         <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Pon tu negocio en el mapa</h3>
                         <p className="text-slate-500 text-sm leading-relaxed mb-5">Restaurante, farmacia, tienda o supermercado — únete a Pappedir y llega a más clientes sin invertir en repartidores propios.</p>
                         <div className="flex flex-col gap-2.5">
-                          {["Más visibilidad para tu negocio","Repartidores verificados nosotros","Pagos seguros y rápidos","Soporte y onboarding gratis"].map((item) => (
+                          {["Miles de nuevos clientes potenciales","Repartidores verificados, a tu servicio","Pagos semanales rápidos y seguros","Incorporación en menos de 48 horas"].map((item) => (
                             <div key={item} className="flex items-center gap-3">
                               <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
                                 <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
@@ -678,8 +678,8 @@ export default function Home() {
                           <h3 className="text-2xl font-extrabold mb-2" style={{ color: NAVY }}>¡Registro recibido!</h3>
                           <p className="text-slate-500 leading-relaxed">
                             {registroTipo === "embajador"
-                              ? "Te contactaremos por WhatsApp en las próximas horas para incorporar tu negocio. ¡Bienvenido a la familia!"
-                              : "Te contactaremos por WhatsApp en las próximas horas para completar tu registro. ¡Bienvenido a la familia!"}
+                              ? "En menos de 48 horas te contactamos para incorporar tu negocio. ¡Bienvenido a Pappedir!"
+                              : "En menos de 24 horas te contactamos por WhatsApp para activar tu cuenta. ¡Bienvenido al equipo!"}
                           </p>
                         </div>
                         <button onClick={() => { setFormState("idle"); setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" }); }}
@@ -696,7 +696,7 @@ export default function Home() {
                               : registroTipo === "repartidor" ? "🏍️ Registro de Repartidor"
                               : "🏪 Registro de Embajador"}
                           </p>
-                          <h3 className="text-[22px] font-extrabold" style={{ color: NAVY }}>Completa tu información</h3>
+                          <h3 className="text-[22px] font-extrabold" style={{ color: NAVY }}>Tu información, en segundos</h3>
                         </div>
 
                         {/* Embajador-only: Nombre del negocio */}

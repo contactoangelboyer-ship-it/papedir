@@ -18,12 +18,12 @@ import React, { useRef, useState } from "react";
   }
 
   const BENEFITS = [
-    { icon: DollarSign, title: "Pagos semanales garantizados", desc: "Cobra cada semana sin falta. Sin esperas, sin excusas. Pago Móvil, Zelle o lo que prefieras." },
-    { icon: Clock,      title: "Tú decides tus horarios",      desc: "Trabaja mañana, tarde o noche. Activa y desactiva cuando quieras desde la app." },
-    { icon: Shield,     title: "Soporte 24/7 real",            desc: "No estás solo. WhatsApp directo con el equipo para cualquier problema, siempre." },
-    { icon: Smartphone, title: "App fácil e intuitiva",        desc: "Sin complicaciones. Acepta viajes, ve tus ganancias y cobros en un solo lugar." },
-    { icon: Zap,        title: "Empieza en menos de 24h",      desc: "Registro rápido. Si cumples los requisitos, puedes estar activo al día siguiente." },
-    { icon: Star,       title: "Bonos por desempeño",          desc: "Los mejores conductores reciben bonos adicionales, prioridad de viajes y reconocimientos." },
+    { icon: DollarSign, title: "Pagos puntuales, siempre", desc: "Cada semana, sin falta. Pago Móvil, Zelle o transferencia — tú eliges cómo recibir lo que ganaste." },
+    { icon: Clock,      title: "Total libertad de horario",     desc: "Trabaja cuando quieras — mañana, tarde o noche. Activa la app cuando estés listo y desactívala cuando necesites descansar." },
+    { icon: Shield,     title: "Soporte humano, siempre",       desc: "No estás solo. WhatsApp directo con el equipo real de Pappedir — sin bots, sin tiempos de espera." },
+    { icon: Smartphone, title: "Todo en tu teléfono",           desc: "Acepta servicios, rastrea tus ganancias y gestiona tus pagos desde una app pensada para ser simple." },
+    { icon: Zap,        title: "Activo en menos de 24 horas",   desc: "Registro en 5 minutos. Verificación rápida. Si cumples los requisitos, mañana ya puedes ganar." },
+    { icon: Star,       title: "Bonos por buen desempeño",      desc: "Los aliados con mejor calificación reciben bonos adicionales y prioridad en los servicios. Calidad que paga." },
   ];
 
   const REQUIREMENTS = [
@@ -34,16 +34,16 @@ import React, { useRef, useState } from "react";
   ];
 
   const STEPS = [
-    { n: "01", title: "Regístrate en 5 min", desc: "Llena el formulario con tus datos básicos. Sin papeleo complicado." },
-    { n: "02", title: "Verificación rápida", desc: "Revisamos tu cédula y vehículo. Te confirmamos por WhatsApp." },
-    { n: "03", title: "Descarga la app",     desc: "Te enviamos acceso a la app de conductores de Pappedir." },
-    { n: "04", title: "¡Empieza a ganar!",   desc: "Actívate y acepta tus primeros viajes o pedidos. Las ganancias son tuyas." },
+    { n: "01", title: "Regístrate en 5 minutos", desc: "Formulario simple. Solo tus datos básicos. Sin papeleo, sin complicaciones." },
+    { n: "02", title: "Verificación express",   desc: "Revisamos tu documentación y te confirmamos por WhatsApp en menos de 24 horas." },
+    { n: "03", title: "Accede a la app",       desc: "Te enviamos acceso a la app de conductores. Intuitive, simple, lista para usar." },
+    { n: "04", title: "Empieza a ganar",       desc: "Actívate, acepta tu primer servicio y las ganancias son tuyas desde el día uno." },
   ];
 
   const TESTIMONIALS_DRIVER = [
-    { name: "José D.",    city: "Araure",   stars: 5, tipo: "Conductor", text: "Llevo dos meses y los pagos siempre llegan. El soporte responde al tiro. Es la mejor decisión que tomé." },
-    { name: "Marcos F.",  city: "Guanare",  stars: 5, tipo: "Repartidor", text: "Con mi moto hago entre 8 y 12 pedidos diarios. Gano más que antes y manejo mis horarios." },
-    { name: "Ana C.",     city: "Acarigua", stars: 5, tipo: "Conductora", text: "Me da miedo manejar de noche pero elijo mis horas. Solo trabajo de día y gano bien." },
+    { name: "José D.",    city: "Araure",   stars: 5, tipo: "Conductor", text: "Dos meses activo y los pagos llegan puntuales cada semana. Cuando tuve una duda, el soporte respondió al instante. Lo mejor que he hecho." },
+    { name: "Marcos F.",  city: "Guanare",  stars: 5, tipo: "Repartidor", text: "Con mi moto hago entre 8 y 12 entregas al día. Gano mejor que en mi trabajo anterior y sin horario fijo. No cambio esto." },
+    { name: "Ana C.",     city: "Acarigua", stars: 5, tipo: "Conductora", text: "Trabajo solo en la mañana, cuando los niños están en el colegio. Gano bien y estoy de vuelta en casa a tiempo." },
   ];
 
   export default function ConductoresPage() {
@@ -93,18 +93,18 @@ import React, { useRef, useState } from "react";
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> Postulaciones abiertas
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Genera ingresos<br /><span style={{ color: "#60A5FA" }}>a tu propio ritmo</span>
+                Gana haciendo<br /><span style={{ color: "#60A5FA" }}>lo que ya sabes</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed mb-8 max-w-lg">
-                ¿Tienes carro o moto? Únete al equipo Pappedir y empieza a ganar desde el primer día. Tú pones los horarios.
+                ¿Tienes carro o moto? Empieza a ganar desde el primer día con total libertad de horario. Tú decides cuándo y cuánto.
               </p>
               <div className="flex flex-wrap gap-3">
                 <a href="#registro-conductor" style={{ background: BLUE }}
                   className="flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-extrabold text-[14px] shadow-[0_8px_28px_rgba(26,110,255,0.5)] hover:opacity-90 transition-all">
-                  Quiero registrarme <ArrowRight size={16} />
+                  Registrarme ahora <ArrowRight size={16} />
                 </a>
                 <a href="#como-funciona" className="flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-bold text-[14px] border border-white/20 hover:bg-white/10 transition-all">
-                  Cómo funciona
+                  Ver cómo funciona
                 </a>
               </div>
             </motion.div>
@@ -117,7 +117,7 @@ import React, { useRef, useState } from "react";
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/60 to-transparent" />
               </div>
               <div className="absolute bottom-4 left-4 right-4 flex gap-3">
-                {[["2+","Meses activos"],["5 ★","Rating"],["100%","Pagos a tiempo"]].map(([v,l]) => (
+                {[["24h","Primera respuesta"],["5 ★","Calificación promedio"],["100%","Pagos puntuales"]].map(([v,l]) => (
                   <div key={l} className="flex-1 text-center bg-white/15 backdrop-blur-sm rounded-2xl p-3 border border-white/20">
                     <p className="text-white font-extrabold text-lg">{v}</p>
                     <p className="text-white/60 text-[10px] font-semibold">{l}</p>
@@ -134,7 +134,7 @@ import React, { useRef, useState } from "react";
             <Reveal className="text-center mb-14">
               <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Por qué Pappedir</motion.p>
               <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>
-                Más que un trabajo, una <span style={{ color: BLUE }}>oportunidad</span>
+                No es un trabajo más.<br />Es <span style={{ color: BLUE }}>tu negocio propio.</span>
               </motion.h2>
             </Reveal>
             <Reveal>
@@ -162,8 +162,8 @@ import React, { useRef, useState } from "react";
         <section className="py-20" style={{ background: "#F5F8FF" }}>
           <div className="max-w-7xl mx-auto px-5">
             <Reveal className="text-center mb-12">
-              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>¿Qué necesitas?</motion.h2>
-              <motion.p variants={up} className="text-slate-500 mt-3 max-w-md mx-auto">Requisitos mínimos para unirte al equipo.</motion.p>
+              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>¿Qué necesitas para unirte?</motion.h2>
+              <motion.p variants={up} className="text-slate-500 mt-3 max-w-md mx-auto">Requisitos claros, sin letra pequeña.</motion.p>
             </Reveal>
             <Reveal>
               <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -262,8 +262,8 @@ import React, { useRef, useState } from "react";
         <section id="registro-conductor" className="py-20 bg-white">
           <div className="max-w-2xl mx-auto px-5">
             <Reveal className="text-center mb-10">
-              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>Regístrate ahora</motion.h2>
-              <motion.p variants={up} className="text-slate-500 mt-3">Te contactamos en menos de 24 horas.</motion.p>
+              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>Únete al equipo</motion.h2>
+              <motion.p variants={up} className="text-slate-500 mt-3">Formulario en 2 minutos. Respuesta en menos de 24 horas.</motion.p>
             </Reveal>
 
             {/* Tab */}
@@ -285,7 +285,7 @@ import React, { useRef, useState } from "react";
                       <PartyPopper size={36} style={{ color: BLUE }} />
                     </div>
                     <h3 className="text-2xl font-extrabold" style={{ color: NAVY }}>¡Registro recibido!</h3>
-                    <p className="text-slate-500">Te contactaremos por WhatsApp pronto. ¡Bienvenido al equipo!</p>
+                    <p className="text-slate-500">En menos de 24 horas te escribimos por WhatsApp para activar tu cuenta. ¡El equipo te espera!</p>
                     <button onClick={() => setFormState("idle")} className="px-6 py-2.5 rounded-xl border-2 border-slate-200 text-sm font-bold text-slate-600 hover:border-[#1A6EFF]/30 hover:bg-[#F5F8FF] transition-all">
                       Registrar otro
                     </button>
