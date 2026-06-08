@@ -61,24 +61,32 @@ const CITIES   = ["Guanare", "Acarigua", "Araure", "Biscucuy", "Ospino", "Otra"]
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Form state
-  const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: "carro", whatsapp: "", ciudad: "Guanare" });
-  const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [formError, setFormError] = useState("");
+  // Registro state
+    type RegistroTipo = "conductor" | "repartidor" | "embajador";
+    const [registroTipo, setRegistroTipo] = useState<RegistroTipo>("conductor");
+    const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
+    const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+    const [formError, setFormError] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+      setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+    const handleTipoChange = (t: RegistroTipo) => {
+      setRegistroTipo(t);
+      setFormState("idle");
+      setFormError("");
+      setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState("loading");
     setFormError("");
     try {
-      const res = await fetch("/api/conductores", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch("/api/registro", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...form, tipo: registroTipo }),
+        });
       if (!res.ok) throw new Error("Error al enviar");
       setFormState("success");
     } catch {
@@ -443,165 +451,272 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ━━━━ FORMULARIO CONDUCTORES ━━━━━━━━━━━━━━━━━━━━━ */}
-      <section id="conductores" className="py-24" style={{ background: "#F5F8FF" }}>
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="grid lg:grid-cols-2 gap-14 items-start">
+      {/* ━━━━ REGISTRO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+        <section id="registro" className="py-24" style={{ background: "#F5F8FF" }}>
+          <div className="max-w-7xl mx-auto px-5">
 
-            {/* Left — pitch */}
-            <Reveal>
-              <div>
-                <motion.div variants={up} className="relative w-full rounded-3xl overflow-hidden mb-8 shadow-[0_8px_40px_rgba(26,110,255,0.15)]" style={{ aspectRatio: "16/9" }}>
-                    <img src={repartidorImg} alt="Conductor Pappedir" className="w-full h-full object-cover object-center" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/60 via-transparent to-transparent" />
-                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
-                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold text-white" style={{ background: "rgba(26,110,255,0.85)", backdropFilter: "blur(8px)" }}>
-                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                        Conductor aliado Pappedir
-                      </span>
-                    </div>
-                  </motion.div>
-                  <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Únete al equipo</motion.p>
-                <motion.h2 variants={up} className="text-[clamp(28px,4vw,50px)] font-extrabold leading-tight mb-5" style={{ color: NAVY }}>
-                  Genera ingresos<br />
-                  <span style={{ color: BLUE }}>a tu propio ritmo</span>
-                </motion.h2>
-                <motion.p variants={up} className="text-slate-500 leading-relaxed mb-8 text-[16px]">
-                  ¿Tienes carro o moto? Regístrate como conductor aliado de Pappedir. Tú decides cuándo trabajas — los pagos llegan siempre, a tiempo.
-                </motion.p>
-
-                <motion.div variants={up} className="flex flex-col gap-3 mb-8">
-                  {[
-                    "Registro rápido — menos de 5 minutos",
-                    "Pagos semanales garantizados",
-                    "Soporte por WhatsApp 24/7",
-                    "Tú decides tus horarios y zonas",
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
-                        <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
-                      </div>
-                      <span className="text-slate-600 text-sm font-medium">{item}</span>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* Stats grid */}
-                <motion.div variants={up} className="grid grid-cols-2 gap-3">
-                  {[["2+","Meses activos"],["5 ★","Rating promedio"],["24/7","Soporte disponible"],["100%","Pagos a tiempo"]].map(([v,l]) => (
-                    <div key={l} className="bg-white rounded-2xl p-5 border border-slate-100 text-center"
-                      style={{ boxShadow: "0 2px 8px rgba(0,0,0,.04)" }}>
-                      <p className="text-3xl font-extrabold mb-0.5" style={{ color: BLUE }}>{v}</p>
-                      <p className="text-slate-400 text-xs">{l}</p>
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
+            {/* Header */}
+            <Reveal className="text-center mb-12">
+              <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Únete al equipo</motion.p>
+              <motion.h2 variants={up} className="text-[clamp(28px,4.5vw,52px)] font-extrabold leading-tight mb-4" style={{ color: NAVY }}>
+                Elige tu rol en <span style={{ color: BLUE }}>Pappedir</span>
+              </motion.h2>
+              <motion.p variants={up} className="text-slate-500 max-w-md mx-auto text-[16px]">
+                Conductor, repartidor o negocio aliado — hay un lugar para ti en nuestra plataforma.
+              </motion.p>
             </Reveal>
 
-            {/* Right — Form */}
-            <Reveal>
-              <motion.div variants={up} className="bg-white rounded-3xl p-8 md:p-10 border border-slate-100"
-                style={{ boxShadow: "0 4px 16px rgba(0,0,0,.05), 0 24px 60px rgba(26,110,255,.08)" }}>
-
-                <AnimatePresence mode="wait">
-                  {formState === "success" ? (
-                    <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                      className="flex flex-col items-center text-center py-8 gap-5">
-                      <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "#EEF4FF" }}>
-                        <PartyPopper size={36} style={{ color: BLUE }} />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-extrabold mb-2" style={{ color: NAVY }}>¡Registro recibido!</h3>
-                        <p className="text-slate-500 leading-relaxed">
-                          Te contactaremos por WhatsApp en las próximas horas para completar tu registro como conductor aliado. ¡Bienvenido a la familia!
-                        </p>
-                      </div>
-                      <button onClick={() => { setFormState("idle"); setForm({ nombre:"", cedula:"", vehiculo:"carro", whatsapp:"", ciudad:"Guanare" }); }}
-                        className="px-6 py-2.5 rounded-xl text-sm font-bold border-2 border-slate-200 text-slate-600 hover:border-[#1A6EFF]/30 hover:bg-[#F5F8FF] transition-all">
-                        Registrar otro conductor
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <motion.form key="form" onSubmit={handleSubmit} className="flex flex-col gap-5">
-                      <div>
-                        <h3 className="text-2xl font-extrabold mb-1" style={{ color: NAVY }}>Regístrate como conductor</h3>
-                        <p className="text-slate-400 text-sm">Llena el formulario y te contactamos al tiro por WhatsApp.</p>
-                      </div>
-
-                      {/* Nombre */}
-                      <div>
-                        <label className="block text-sm font-bold mb-1.5" style={{ color: NAVY }}>Nombre completo</label>
-                        <input name="nombre" value={form.nombre} onChange={handleChange} required placeholder="Ej. Carlos Rodríguez"
-                          className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm font-medium outline-none focus:border-[#1A6EFF] focus:ring-4 focus:ring-[#1A6EFF]/10 transition-all placeholder:text-slate-300" />
-                      </div>
-
-                      {/* Cédula */}
-                      <div>
-                        <label className="block text-sm font-bold mb-1.5" style={{ color: NAVY }}>Número de cédula</label>
-                        <input name="cedula" value={form.cedula} onChange={handleChange} required placeholder="Ej. V-12345678"
-                          className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm font-medium outline-none focus:border-[#1A6EFF] focus:ring-4 focus:ring-[#1A6EFF]/10 transition-all placeholder:text-slate-300" />
-                      </div>
-
-                      {/* Vehículo + Ciudad */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-bold mb-1.5" style={{ color: NAVY }}>Tipo de vehículo</label>
-                          <select name="vehiculo" value={form.vehiculo} onChange={handleChange}
-                            className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm font-medium outline-none focus:border-[#1A6EFF] focus:ring-4 focus:ring-[#1A6EFF]/10 transition-all bg-white appearance-none cursor-pointer">
-                            <option value="carro">🚗 Carro</option>
-                            <option value="moto">🏍️ Moto</option>
-                            <option value="ambos">🚗🏍️ Ambos</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-bold mb-1.5" style={{ color: NAVY }}>Ciudad</label>
-                          <select name="ciudad" value={form.ciudad} onChange={handleChange}
-                            className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm font-medium outline-none focus:border-[#1A6EFF] focus:ring-4 focus:ring-[#1A6EFF]/10 transition-all bg-white appearance-none cursor-pointer">
-                            {CITIES.map(c => <option key={c} value={c}>{c}</option>)}
-                          </select>
-                        </div>
-                      </div>
-
-                      {/* WhatsApp */}
-                      <div>
-                        <label className="block text-sm font-bold mb-1.5" style={{ color: NAVY }}>Número de WhatsApp</label>
-                        <div className="relative">
-                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-bold">+58</span>
-                          <input name="whatsapp" value={form.whatsapp} onChange={handleChange} required placeholder="4XX-XXX-XXXX"
-                            className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-slate-200 text-sm font-medium outline-none focus:border-[#1A6EFF] focus:ring-4 focus:ring-[#1A6EFF]/10 transition-all placeholder:text-slate-300" />
-                        </div>
-                      </div>
-
-                      {/* Error */}
-                      {formState === "error" && (
-                        <p className="text-red-500 text-sm bg-red-50 border border-red-100 px-4 py-3 rounded-xl">{formError}</p>
-                      )}
-
-                      {/* Submit */}
-                      <button type="submit" disabled={formState === "loading"}
-                        className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-white font-extrabold text-[15px] transition-all active:scale-[.98] disabled:opacity-70"
-                        style={{ background: BLUE, boxShadow: "0 8px 28px -4px rgba(26,110,255,.45)" }}>
-                        {formState === "loading" ? (
-                          <><Loader2 size={18} className="animate-spin" /> Enviando...</>
-                        ) : (
-                          <><Phone size={17} /> Quiero ser conductor aliado</>
-                        )}
-                      </button>
-
-                      <p className="text-center text-xs text-slate-400">
-                        Te contactaremos por WhatsApp · Sin compromisos
-                      </p>
-                    </motion.form>
-                  )}
-                </AnimatePresence>
+            {/* Tab selector */}
+            <Reveal className="mb-10">
+              <motion.div variants={up} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
+                {([
+                  { id: "conductor" as RegistroTipo, label: "Conductor", sub: "Transporte de personas", emoji: "🚗" },
+                  { id: "repartidor" as RegistroTipo, label: "Repartidor", sub: "Delivery y encomiendas", emoji: "🏍️" },
+                  { id: "embajador" as RegistroTipo, label: "Embajador", sub: "Tu negocio en Pappedir", emoji: "🏪" },
+                ] as const).map((t) => (
+                  <button key={t.id} onClick={() => handleTipoChange(t.id)}
+                    className={`flex-1 flex flex-col items-center gap-1.5 px-4 py-4 rounded-2xl border-2 transition-all duration-200 ${
+                      registroTipo === t.id
+                        ? "border-[#1A6EFF] bg-[#1A6EFF] text-white shadow-[0_4px_20px_rgba(26,110,255,0.35)]"
+                        : "border-slate-200 bg-white text-[#0D1E3F] hover:border-[#1A6EFF]/40 hover:bg-[#F5F8FF]"
+                    }`}>
+                    <span className="text-2xl">{t.emoji}</span>
+                    <span className="text-[13px] font-extrabold">{t.label}</span>
+                    <span className={`text-[10px] font-semibold ${registroTipo === t.id ? "text-white/75" : "text-slate-400"}`}>{t.sub}</span>
+                  </button>
+                ))}
               </motion.div>
             </Reveal>
-          </div>
-        </div>
-      </section>
 
-      {/* ━━━━ CTA FINAL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+            {/* Content grid */}
+            <AnimatePresence mode="wait">
+              <motion.div key={registroTipo} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="grid lg:grid-cols-2 gap-10 items-start">
+
+                {/* Left — pitch */}
+                <div className="flex flex-col gap-6">
+
+                  {/* Photo */}
+                  <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_8px_40px_rgba(26,110,255,0.15)]" style={{ aspectRatio: "16/9" }}>
+                    <img src={repartidorImg} alt="Equipo Pappedir" className="w-full h-full object-cover object-center" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold text-white"
+                        style={{ background: "rgba(26,110,255,0.85)", backdropFilter: "blur(8px)" }}>
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                        {registroTipo === "conductor" ? "Conductor aliado Pappedir"
+                          : registroTipo === "repartidor" ? "Repartidor aliado Pappedir"
+                          : "Embajador Pappedir"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Pitch */}
+                  <div className="bg-white rounded-3xl p-7 border border-slate-100" style={{ boxShadow: "0 2px 8px rgba(0,0,0,.04)" }}>
+                    {registroTipo === "conductor" && (
+                      <div>
+                        <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Genera ingresos a tu propio ritmo</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-5">¿Tienes carro o moto? Regístrate como conductor aliado. Tú decides cuándo trabajas — los pagos llegan siempre, a tiempo.</p>
+                        <div className="flex flex-col gap-2.5">
+                          {["Carro o moto aceptados","Pagos semanales garantizados","Tú decides tus horarios","Soporte 24/7 por WhatsApp"].map((item) => (
+                            <div key={item} className="flex items-center gap-3">
+                              <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
+                                <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
+                              </div>
+                              <span className="text-slate-600 text-sm font-medium">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {registroTipo === "repartidor" && (
+                      <div>
+                        <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Reparte y gana desde hoy</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-5">Con tu moto o bicicleta, lleva pedidos de comida, farmacias y encomiendas por toda Portuguesa. Sin jefe, sin horario fijo.</p>
+                        <div className="flex flex-col gap-2.5">
+                          {["Moto o bicicleta aceptadas","Pedidos desde el primer día","Ganancias por cada entrega","App fácil de usar"].map((item) => (
+                            <div key={item} className="flex items-center gap-3">
+                              <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
+                                <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
+                              </div>
+                              <span className="text-slate-600 text-sm font-medium">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {registroTipo === "embajador" && (
+                      <div>
+                        <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Pon tu negocio en el mapa</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-5">Restaurante, farmacia, tienda o supermercado — únete a Pappedir y llega a más clientes sin invertir en repartidores propios.</p>
+                        <div className="flex flex-col gap-2.5">
+                          {["Más visibilidad para tu negocio","Repartidores verificados nosotros","Pagos seguros y rápidos","Soporte y onboarding gratis"].map((item) => (
+                            <div key={item} className="flex items-center gap-3">
+                              <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "#EEF4FF" }}>
+                                <CheckCircle2 size={12} style={{ color: BLUE }} strokeWidth={3} />
+                              </div>
+                              <span className="text-slate-600 text-sm font-medium">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right — Form */}
+                <div className="bg-white rounded-3xl p-8 md:p-10 border border-slate-100"
+                  style={{ boxShadow: "0 4px 16px rgba(0,0,0,.05), 0 24px 60px rgba(26,110,255,.08)" }}>
+
+                  <AnimatePresence mode="wait">
+                    {formState === "success" ? (
+                      <motion.div key="success" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                        className="flex flex-col items-center text-center py-8 gap-5">
+                        <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "#EEF4FF" }}>
+                          <PartyPopper size={36} style={{ color: BLUE }} />
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-extrabold mb-2" style={{ color: NAVY }}>¡Registro recibido!</h3>
+                          <p className="text-slate-500 leading-relaxed">
+                            {registroTipo === "embajador"
+                              ? "Te contactaremos por WhatsApp en las próximas horas para incorporar tu negocio. ¡Bienvenido a la familia!"
+                              : "Te contactaremos por WhatsApp en las próximas horas para completar tu registro. ¡Bienvenido a la familia!"}
+                          </p>
+                        </div>
+                        <button onClick={() => { setFormState("idle"); setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" }); }}
+                          className="px-6 py-2.5 rounded-xl border-2 border-slate-200 text-sm font-bold text-slate-600 hover:border-[#1A6EFF]/30 hover:bg-[#F5F8FF] transition-all">
+                          Registrar otro
+                        </button>
+                      </motion.div>
+                    ) : (
+                      <motion.form key={`form-${registroTipo}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={handleSubmit} className="flex flex-col gap-5">
+
+                        <div>
+                          <p className="text-[11px] font-extrabold uppercase tracking-widest mb-1.5" style={{ color: BLUE }}>
+                            {registroTipo === "conductor" ? "🚗 Registro de Conductor"
+                              : registroTipo === "repartidor" ? "🏍️ Registro de Repartidor"
+                              : "🏪 Registro de Embajador"}
+                          </p>
+                          <h3 className="text-[22px] font-extrabold" style={{ color: NAVY }}>Completa tu información</h3>
+                        </div>
+
+                        {/* Embajador-only: Nombre del negocio */}
+                        {registroTipo === "embajador" && (
+                          <div className="flex flex-col gap-1.5">
+                            <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Nombre del negocio *</label>
+                            <input name="nombre_negocio" value={form.nombre_negocio} onChange={handleChange} required placeholder="Ej. Panadería El Trigal"
+                              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-300 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all" />
+                          </div>
+                        )}
+
+                        {/* Embajador-only: Tipo de negocio */}
+                        {registroTipo === "embajador" && (
+                          <div className="flex flex-col gap-1.5">
+                            <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Tipo de negocio *</label>
+                            <select name="tipo_negocio" value={form.tipo_negocio} onChange={handleChange}
+                              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
+                              <option value="restaurante">Restaurante / Comida</option>
+                              <option value="farmacia">Farmacia / Medicamentos</option>
+                              <option value="supermercado">Supermercado / Abastos</option>
+                              <option value="tienda">Tienda / Ropa / Accesorios</option>
+                              <option value="panaderia">Panadería / Pastelería</option>
+                              <option value="otro">Otro tipo de negocio</option>
+                            </select>
+                          </div>
+                        )}
+
+                        {/* Nombre responsable */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">
+                            {registroTipo === "embajador" ? "Nombre del responsable *" : "Nombre completo *"}
+                          </label>
+                          <input name="nombre" value={form.nombre} onChange={handleChange} required
+                            placeholder={registroTipo === "embajador" ? "Ej. María González" : "Ej. Carlos Pérez"}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-300 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all" />
+                        </div>
+
+                        {/* Cedula — not for embajador or keep optional */}
+                        {registroTipo !== "embajador" && (
+                          <div className="flex flex-col gap-1.5">
+                            <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Cédula de identidad *</label>
+                            <input name="cedula" value={form.cedula} onChange={handleChange} required placeholder="Ej. V-12345678"
+                              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-300 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all" />
+                          </div>
+                        )}
+
+                        {/* Vehiculo */}
+                        {registroTipo === "conductor" && (
+                          <div className="flex flex-col gap-1.5">
+                            <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Tipo de vehículo *</label>
+                            <select name="vehiculo" value={form.vehiculo} onChange={handleChange}
+                              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
+                              <option value="carro">Carro</option>
+                              <option value="moto">Moto</option>
+                              <option value="ambos">Ambos</option>
+                            </select>
+                          </div>
+                        )}
+                        {registroTipo === "repartidor" && (
+                          <div className="flex flex-col gap-1.5">
+                            <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Tipo de vehículo *</label>
+                            <select name="vehiculo" value={form.vehiculo} onChange={handleChange}
+                              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
+                              <option value="moto">Moto</option>
+                              <option value="bicicleta">Bicicleta</option>
+                              <option value="a_pie">A pie (zona cercana)</option>
+                            </select>
+                          </div>
+                        )}
+
+                        {/* WhatsApp */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">WhatsApp *</label>
+                          <input name="whatsapp" value={form.whatsapp} onChange={handleChange} required placeholder="Ej. +58 412 1234567" type="tel"
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-300 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all" />
+                        </div>
+
+                        {/* Ciudad */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Ciudad *</label>
+                          <select name="ciudad" value={form.ciudad} onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
+                            {["Guanare","Acarigua","Araure","Biscucuy","Ospino","Otra"].map(c => <option key={c} value={c}>{c}</option>)}
+                          </select>
+                        </div>
+
+                        {/* Embajador-only: Dirección */}
+                        {registroTipo === "embajador" && (
+                          <div className="flex flex-col gap-1.5">
+                            <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Dirección del negocio</label>
+                            <input name="direccion" value={form.direccion} onChange={handleChange} placeholder="Ej. Av. Principal, Local 3, Guanare"
+                              className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-300 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all" />
+                          </div>
+                        )}
+
+                        {formError && (
+                          <p className="text-red-500 text-sm font-medium bg-red-50 px-4 py-3 rounded-xl">{formError}</p>
+                        )}
+
+                        <button type="submit" disabled={formState === "loading"} style={{ background: BLUE }}
+                          className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl text-white text-[15px] font-extrabold shadow-[0_8px_28px_-4px_rgba(26,110,255,.4)] hover:opacity-90 transition-all active:scale-95 disabled:opacity-60 mt-1">
+                          {formState === "loading" ? <><Loader2 size={18} className="animate-spin" /> Enviando...</> : <>
+                            {registroTipo === "embajador" ? "Registrar mi negocio" : "Solicitar registro"}
+                            <ArrowRight size={17} />
+                          </>}
+                        </button>
+
+                        <p className="text-slate-400 text-[11px] text-center">Te contactaremos por WhatsApp en menos de 24 horas.</p>
+                      </motion.form>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+
+        {/* ━━━━ CTA FINAL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5">
           <Reveal>
