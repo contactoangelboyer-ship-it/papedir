@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
   import conductorInteriorImg from "@/assets/images/conductor-interior.png";
+    import driverOpeningDoorImg from "@/assets/images/driver-opening-door.png";
     import repartidorMotoImg from "@/assets/images/repartidor-moto.png";
     import repartidoraMotoImg from "@/assets/images/repartidora-moto.png";
 
@@ -134,7 +135,129 @@ import React, { useRef, useState } from "react";
           </div>
         </section>
 
-        {/* Benefits */}
+
+          {/* ━━━━ PAPPE FLEET ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          <section className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-5">
+              <Reveal className="text-center mb-14">
+                <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Tres formas de ganar</motion.p>
+                <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold leading-tight mb-4" style={{ color: NAVY }}>
+                  Elige tu rol en el<br /><span style={{ color: BLUE }}>equipo Pappedir</span>
+                </motion.h2>
+                <motion.p variants={up} className="text-slate-500 max-w-lg mx-auto">
+                  Ya sea que tengas carro, moto o bicicleta — hay un lugar para ti. Cada rol tiene sus propias ventajas y la misma promesa: pagos puntuales y libertad total.
+                </motion.p>
+              </Reveal>
+
+              <Reveal>
+                <div className="grid md:grid-cols-3 gap-6">
+
+                  {/* Pappe Driver */}
+                  <motion.div variants={up}
+                    className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.07)" }}>
+                    <div className="relative h-80 overflow-hidden">
+                      <img src={driverOpeningDoorImg} alt="Pappe Driver"
+                        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/90 via-[#0D1E3F]/30 to-transparent" />
+                      <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold text-white"
+                        style={{ background: "#1A6EFF" }}>🚗 Transporte</span>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <p className="text-white font-extrabold text-xl mb-1">Pappe Driver</p>
+                        <p className="text-white/70 text-[13px]">Lleva personas, gana por viaje</p>
+                      </div>
+                      {/* Mini inset photo */}
+                      <div className="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden border-2 border-white/30">
+                        <img src={conductorInteriorImg} alt="Conductor" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    <div className="bg-white p-5">
+                      <div className="flex flex-col gap-2 mb-4">
+                        {["Viajes en carro o moto","Precio fijo por recorrido","Pagos semanales garantizados"].map((item, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <CheckCircle2 size={14} style={{ color: "#1A6EFF" }} strokeWidth={2.5} />
+                            <span className="text-slate-600 text-[13px]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <a href="#registro-conductor"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold text-white transition-all hover:opacity-90"
+                        style={{ background: "#1A6EFF" }}>
+                        Registrarme como Driver <ArrowRight size={14} />
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Pappe Runner */}
+                  <motion.div variants={up}
+                    className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.07)" }}>
+                    <div className="relative h-80 overflow-hidden">
+                      <img src={repartidoraMotoImg} alt="Pappe Runner"
+                        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/90 via-[#0D1E3F]/30 to-transparent" />
+                      <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold text-white"
+                        style={{ background: "#F97316" }}>📦 Delivery</span>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <p className="text-white font-extrabold text-xl mb-1">Pappe Runner</p>
+                        <p className="text-white/70 text-[13px]">Entrega pedidos, gana más</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-5">
+                      <div className="flex flex-col gap-2 mb-4">
+                        {["Comida, farmacia y compras","Múltiples entregas por día","Sin horario fijo, tú decides"].map((item, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <CheckCircle2 size={14} style={{ color: "#F97316" }} strokeWidth={2.5} />
+                            <span className="text-slate-600 text-[13px]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <a href="#registro-conductor"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold text-white transition-all hover:opacity-90"
+                        style={{ background: "#F97316" }}>
+                        Registrarme como Runner <ArrowRight size={14} />
+                      </a>
+                    </div>
+                  </motion.div>
+
+                  {/* Pappe Rider */}
+                  <motion.div variants={up}
+                    className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+                    style={{ boxShadow: "0 4px 20px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.07)" }}>
+                    <div className="relative h-80 overflow-hidden">
+                      <img src={repartidorMotoImg} alt="Pappe Rider"
+                        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/90 via-[#0D1E3F]/30 to-transparent" />
+                      <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-extrabold text-white"
+                        style={{ background: "#8B5CF6" }}>🏍️ Mototaxi</span>
+                      <div className="absolute bottom-4 left-4 right-4">
+                        <p className="text-white font-extrabold text-xl mb-1">Pappe Rider</p>
+                        <p className="text-white/70 text-[13px]">Lleva pasajeros en moto, rápido</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-5">
+                      <div className="flex flex-col gap-2 mb-4">
+                        {["Mototaxi ágil y rápido","Rutas cortas, muchos viajes","Gana más en horas pico"].map((item, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <CheckCircle2 size={14} style={{ color: "#8B5CF6" }} strokeWidth={2.5} />
+                            <span className="text-slate-600 text-[13px]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <a href="#registro-conductor"
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold text-white transition-all hover:opacity-90"
+                        style={{ background: "#8B5CF6" }}>
+                        Registrarme como Rider <ArrowRight size={14} />
+                      </a>
+                    </div>
+                  </motion.div>
+
+                </div>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* Benefits */}}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-5">
             <Reveal className="text-center mb-14">
