@@ -3,6 +3,9 @@ import React, { useRef } from "react";
   import { Target, Heart, Shield, Zap, Users, ArrowRight, Star } from "lucide-react";
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
+  import driverOpeningDoorImg from "@/assets/images/driver-opening-door.png";
+  import repartidoraMotoImg from "@/assets/images/repartidora-moto.png";
+  import repartidorMotoImg from "@/assets/images/repartidor-moto.png";
 
   const E = [0.22, 1, 0.36, 1] as const;
   const BLUE = "#1A6EFF";
@@ -145,6 +148,50 @@ import React, { useRef } from "react";
           </div>
         </section>
 
+
+          {/* ━━━━ EQUIPO EN ACCIÓN ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          <section className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-5">
+              <Reveal className="text-center mb-12">
+                <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>En las calles cada día</motion.p>
+                <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>
+                  Nuestro equipo <span style={{ color: BLUE }}>en acción</span>
+                </motion.h2>
+                <motion.p variants={up} className="text-slate-500 mt-3 max-w-md mx-auto">
+                  Conductores y repartidores que hacen posible Pappedir cada día en Portuguesa.
+                </motion.p>
+              </Reveal>
+              <Reveal>
+                <div className="grid md:grid-cols-3 gap-5">
+                  <motion.div variants={up} className="group relative rounded-3xl overflow-hidden" style={{ aspectRatio: "3/4", boxShadow: "0 4px 20px rgba(0,0,0,.1)" }}>
+                    <img src={driverOpeningDoorImg} alt="Pappe Driver" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-[11px] font-extrabold text-white mb-2" style={{ background: "#1A6EFF" }}>🚗 Pappe Driver</span>
+                      <p className="text-white/80 text-xs">Tu viaje, nuestra prioridad</p>
+                    </div>
+                  </motion.div>
+                  <motion.div variants={up} className="group relative rounded-3xl overflow-hidden md:mt-10" style={{ aspectRatio: "3/4", boxShadow: "0 4px 20px rgba(0,0,0,.1)" }}>
+                    <img src={repartidoraMotoImg} alt="Pappe Runner" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-[11px] font-extrabold text-white mb-2" style={{ background: "#F97316" }}>📦 Pappe Runner</span>
+                      <p className="text-white/80 text-xs">Entrega rápida, siempre</p>
+                    </div>
+                  </motion.div>
+                  <motion.div variants={up} className="group relative rounded-3xl overflow-hidden" style={{ aspectRatio: "3/4", boxShadow: "0 4px 20px rgba(0,0,0,.1)" }}>
+                    <img src={repartidorMotoImg} alt="Pappe Rider" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <span className="inline-block px-3 py-1 rounded-full text-[11px] font-extrabold text-white mb-2" style={{ background: "#8B5CF6" }}>🏍️ Pappe Rider</span>
+                      <p className="text-white/80 text-xs">Sin trancas, sin rodeos</p>
+                    </div>
+                  </motion.div>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+  
         {/* CTA */}
         <section className="py-20" style={{ background: "#F5F8FF" }}>
           <div className="max-w-4xl mx-auto px-5 text-center">
