@@ -8,6 +8,7 @@ import {
   ChevronRight, Loader2, PartyPopper,
 } from "lucide-react";
 import appMockupImg from "@/assets/images/app-mockup.png";
+import repartidorImg from "@/assets/images/repartidor.png";
 
 /* ── Motion ─────────────────────────────────────────────── */
 const E = [0.22, 1, 0.36, 1] as const;
@@ -450,7 +451,17 @@ export default function Home() {
             {/* Left — pitch */}
             <Reveal>
               <div>
-                <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Únete al equipo</motion.p>
+                <motion.div variants={up} className="relative w-full rounded-3xl overflow-hidden mb-8 shadow-[0_8px_40px_rgba(26,110,255,0.15)]" style={{ aspectRatio: "16/9" }}>
+                    <img src={repartidorImg} alt="Conductor Pappedir" className="w-full h-full object-cover object-center" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold text-white" style={{ background: "rgba(26,110,255,0.85)", backdropFilter: "blur(8px)" }}>
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                        Conductor aliado Pappedir
+                      </span>
+                    </div>
+                  </motion.div>
+                  <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Únete al equipo</motion.p>
                 <motion.h2 variants={up} className="text-[clamp(28px,4vw,50px)] font-extrabold leading-tight mb-5" style={{ color: NAVY }}>
                   Genera ingresos<br />
                   <span style={{ color: BLUE }}>a tu propio ritmo</span>
