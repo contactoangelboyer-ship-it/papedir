@@ -8,6 +8,7 @@ import { createRequire } from "node:module";
   globalThis.require = createRequire(import.meta.url);
 
   const artifactDir = path.dirname(fileURLToPath(import.meta.url));
+  // rootDir is artifacts/api-server — .vercel/output will be created here
   const outputDir = path.resolve(artifactDir, ".vercel/output");
   const funcDir = path.join(outputDir, "functions", "api", "[[path]].func");
 
@@ -23,56 +24,34 @@ import { createRequire } from "node:module";
       outfile: path.join(funcDir, "index.js"),
       logLevel: "info",
       external: [
-        "*.node",
-        "sharp",
-        "better-sqlite3",
-        "sqlite3",
-        "canvas",
-        "bcrypt",
-        "argon2",
-        "fsevents",
-        "pg-native",
-        "pino-pretty",
-        "re2",
-        "farmhash",
-        "bufferutil",
-        "utf-8-validate",
-        "lightningcss",
-        "oracledb",
-        "mongodb-client-encryption",
-        "nodemailer",
-        "handlebars",
+        "*.node", "sharp", "better-sqlite3", "sqlite3", "canvas",
+        "bcrypt", "argon2", "fsevents", "pg-native", "pino-pretty",
+        "re2", "farmhash", "bufferutil", "utf-8-validate",
+        "lightningcss", "oracledb", "nodemailer",
       ],
       sourcemap: "linked",
       plugins: [esbuildPluginPino({ transports: ["pino-pretty"] })],
     });
 
-    // Tell Vercel this is a Node.js serverless function
+    // Vercel Node.js serverless function config
     await writeFile(
       path.join(funcDir, ".vc-config.json"),
-      JSON.stringify(
-        {
-          runtime: "nodejs22.x",
-          handler: "index.js",
-          launcherType: "Nodejs",
-          shouldAddHelpers: true,
-        },
-        null,
-        2,
-      ),
+      JSON.stringify({
+        runtime: "nodejs22.x",
+        handler: "index.js",
+        launcherType: "Nodejs",
+        shouldAddHelpers: true,
+      }, null, 2),
     );
 
-    // Vercel Build Output API v3
+    // Build Output API v3 — Vercel auto-detects .vercel/output/config.json
     await writeFile(
       path.join(outputDir, "config.json"),
       JSON.stringify({ version: 3 }, null, 2),
     );
 
-    console.log("✅ Vercel serverless output built at .vercel/output");
+    console.log("✅ .vercel/output ready");
   }
 
-  build().catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+  build().catch((err) => { console.error(err); process.exit(1); });
   

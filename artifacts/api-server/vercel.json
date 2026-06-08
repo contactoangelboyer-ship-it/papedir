@@ -1,0 +1,4 @@
+{
+  "installCommand": "cd ../.. && npx pnpm@10 install --no-frozen-lockfile",
+  "buildCommand": "node ./build-vercel.mjs"
+}
