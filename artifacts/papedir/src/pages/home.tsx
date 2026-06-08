@@ -9,6 +9,11 @@ import {
 } from "lucide-react";
 import appMockupImg from "@/assets/images/app-mockup.png";
 import repartidorImg from "@/assets/images/repartidor.png";
+  import driverOpeningDoorImg from "@/assets/images/driver-opening-door.png";
+  import repartidoraMotoImg from "@/assets/images/repartidora-moto.png";
+  import conductorInteriorImg from "@/assets/images/conductor-interior.png";
+  import conductorVentanaImg from "@/assets/images/conductor-ventana.jpg";
+  import repartidorMotoImg from "@/assets/images/repartidor-moto.png";
 
 /* ── Motion ─────────────────────────────────────────────── */
 const E = [0.22, 1, 0.36, 1] as const;
@@ -258,7 +263,7 @@ export default function Home() {
                 transition={{ duration: 0.9, delay: 0.6, ease: [0.22,1,0.36,1] }}
                 className="relative w-full max-w-[340px] mx-auto rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(26,110,255,0.2)] mt-6 hidden lg:block"
                 style={{ aspectRatio: "4/3" }}>
-                <img src={repartidorImg} alt="Repartidor Pappedir" className="w-full h-full object-cover object-center" />
+                <img src={driverOpeningDoorImg} alt="Conductor Pappedir abriendo la puerta" className="w-full h-full object-cover object-center" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
@@ -597,7 +602,7 @@ export default function Home() {
 
                   {/* Photo */}
                   <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_8px_40px_rgba(26,110,255,0.15)]" style={{ aspectRatio: "16/9" }}>
-                    <img src={repartidorImg} alt="Equipo Pappedir" className="w-full h-full object-cover object-center" />
+                    <img src={conductorVentanaImg} alt="Conductor Pappedir" className="w-full h-full object-cover object-center" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
                     <div className="absolute bottom-4 left-4">
                       <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold text-white"
