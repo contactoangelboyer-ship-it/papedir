@@ -2,6 +2,9 @@ import React, { useRef } from "react";
   import { motion, useInView } from "framer-motion";
   import { Car, ShoppingBag, Package, Pill, Send, Bike, CheckCircle2, Clock, Shield, Star, ArrowRight, MapPin } from "lucide-react";
   import Navbar from "@/components/Navbar";
+  import driverOpeningDoorImg from "@/assets/images/driver-opening-door.png";
+  import repartidoraMotoImg from "@/assets/images/repartidora-moto.png";
+  import repartidorMotoImg from "@/assets/images/repartidor-moto.png";
   import Footer from "@/components/Footer";
 
   const E = [0.22, 1, 0.36, 1] as const;
@@ -104,6 +107,30 @@ import React, { useRef } from "react";
           </div>
         </section>
 
+
+          {/* ━━━━ FLEET PHOTO BANNER ━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          <section className="py-10 bg-white">
+            <div className="max-w-7xl mx-auto px-5">
+              <div className="grid md:grid-cols-3 gap-4">
+                {([
+                  { img: driverOpeningDoorImg, label: "🚗 Pappe Driver", color: "#1A6EFF", sub: "Transporte — precio cerrado" },
+                  { img: repartidoraMotoImg,   label: "📦 Pappe Runner", color: "#F97316", sub: "Delivery de comida y compras" },
+                  { img: repartidorMotoImg,    label: "🏍️ Pappe Rider",  color: "#8B5CF6", sub: "Mototaxi rápido y ágil" },
+                ] as const).map((item, i) => (
+                  <div key={i} className="group relative rounded-2xl overflow-hidden h-44" style={{ boxShadow: "0 4px 20px rgba(0,0,0,.1)" }}>
+                    <img src={item.img} alt={item.label} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/80 via-[#0D1E3F]/10 to-transparent" />
+                    <div className="absolute bottom-3 left-3 right-3">
+                      <span className="inline-block px-2.5 py-1 rounded-full text-[10px] font-extrabold text-white mb-1" style={{ background: item.color }}>{item.label}</span>
+                      <p className="text-white/80 text-[11px] font-medium">{item.sub}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+  
         {/* Stats bar */}
         <div className="border-b border-slate-100 bg-white">
           <div className="max-w-7xl mx-auto px-5 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
