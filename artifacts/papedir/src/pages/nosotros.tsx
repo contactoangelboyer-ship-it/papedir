@@ -160,7 +160,7 @@ import React, { useRef } from "react";
                   className="flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-extrabold text-[14px] hover:opacity-90 transition-all">
                   Únete al equipo <ArrowRight size={16} />
                 </a>
-                <a href="/contacto" className="flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-[14px] border-2 border-slate-200 hover:border-[#1A6EFF]/30 transition-all" style={{ color: NAVY }}>
+                <a href="/#registro" className="flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-[14px] border-2 border-slate-200 hover:border-[#1A6EFF]/30 transition-all" style={{ color: NAVY }}>
                   Contáctanos
                 </a>
               </motion.div>
