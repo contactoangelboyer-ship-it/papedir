@@ -16,12 +16,9 @@ import { createRequire } from "node:module";
     await rm(outputDir, { recursive: true, force: true });
     await mkdir(funcDir, { recursive: true });
 
-    // esbuildPluginPino adds extra entries → must use outdir, not outfile.
-    // Use a named entry { index: src } so the output file is index.js.
-    // alias: redirect "zod/v4" → "zod" (pnpm strict mode doesn't expose subpaths
-    //   from transitive deps; aliasing to the main package always works).
-    // nodePaths: also look in the workspace root node_modules so esbuild can
-    //   traverse pnpm's virtual store when resolving workspace deps.
+    // esbuildPluginPino adds extra entries → must use outdir.
+    // Named entry { index: src } → output file is index.js.
+    // nodePaths: also search workspace root node_modules (pnpm virtual store).
     await esbuild({
       entryPoints: { index: path.resolve(artifactDir, "src/app.ts") },
       platform: "node",
@@ -29,7 +26,6 @@ import { createRequire } from "node:module";
       format: "cjs",
       outdir: funcDir,
       logLevel: "info",
-      alias: { "zod/v4": "zod" },
       nodePaths: [path.join(rootDir, "node_modules")],
       external: [
         "*.node", "sharp", "better-sqlite3", "sqlite3", "canvas",
