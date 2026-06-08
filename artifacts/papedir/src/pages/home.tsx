@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   Bike, ShoppingBag, MapPin, Star, Menu, X,
@@ -49,10 +49,15 @@ const STEPS = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Roberto M.", city: "Guanare",  stars: 5, text: "En 4 minutos el conductor estaba en mi puerta. Burda de rápido, sin comparación." },
-  { name: "Valentina C.", city: "Acarigua", stars: 5, text: "Mi mamá pudo ver mi ubicación en todo momento. Eso vale oro, chamo." },
-  { name: "José D.",    city: "Araure",   stars: 5, text: "Llevo dos meses de conductor aliado. Los pagos siempre llegan, el soporte responde." },
-];
+    { name: "Roberto M.",   city: "Guanare",  stars: 5, tipo: "🚗 Transporte",      text: "En 4 minutos el conductor estaba en mi puerta. Burda de rápido, sin comparación." },
+    { name: "Valentina C.", city: "Acarigua", stars: 5, tipo: "📍 Rastreo GPS",     text: "Mi mamá pudo ver mi ubicación en todo momento. Eso vale oro, chamo." },
+    { name: "José D.",      city: "Araure",   stars: 5, tipo: "🏍️ Conductor aliado", text: "Llevo dos meses de conductor aliado. Los pagos siempre llegan, el soporte responde." },
+    { name: "Mariangel P.", city: "Guanare",  stars: 5, tipo: "📦 Delivery",        text: "Pedí comida y llegó en menos de 20 minutos. La app es súper fácil, lo recomiendo." },
+    { name: "Luis C.",      city: "Ospino",   stars: 5, tipo: "💊 Farmacia",        text: "Necesitaba un medicamento urgente y Pappedir me lo trajo al tiro. Excelente servicio." },
+    { name: "Carmen R.",    city: "Acarigua", stars: 5, tipo: "🏪 Embajadora",      text: "Mi restaurante recibe pedidos por Pappedir todos los días. Las ventas subieron un montón." },
+  ];
+
+  const TIPO_LOOP = ["🚗 Transporte","🍔 Comida","📦 Compras","💊 Farmacia","📬 Envíos","🏍️ Mototaxi","🏪 Negocios","📍 GPS en vivo","✅ Verificados","⚡ Al tiro"];
 
 const PAYMENTS = ["Pago Móvil", "Zelle", "Efectivo", "Transferencia", "Divisas"];
 const CITIES   = ["Guanare", "Acarigua", "Araure", "Biscucuy", "Ospino", "Otra"];
@@ -62,22 +67,27 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Registro state
-    type RegistroTipo = "conductor" | "repartidor" | "embajador";
-    const [registroTipo, setRegistroTipo] = useState<RegistroTipo>("conductor");
+    const [registroTipo, setRegistroTipo] = useState<"conductor" | "repartidor" | "embajador">("conductor");
     const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
     const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [formError, setFormError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
       setForm(f => ({ ...f, [e.target.name]: e.target.value }));
-    const handleTipoChange = (t: RegistroTipo) => {
+    const handleTipoChange = (t: "conductor" | "repartidor" | "embajador") => {
       setRegistroTipo(t);
       setFormState("idle");
       setFormError("");
       setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
     };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+    useEffect(() => {
+      const id = setInterval(() => setActiveTestimonial(i => (i + 1) % TESTIMONIALS.length), 4000);
+      return () => clearInterval(id);
+    }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState("loading");
     setFormError("");
@@ -231,10 +241,23 @@ export default function Home() {
               </div>
               <p className="text-[#0D1E3F] text-[12px] font-bold">Chévere, pana!</p>
             </motion.div>
-          </motion.div>
-        </div>
 
-        {/* Payments strip */}
+              {/* Repartidor image card — floating below mockup */}
+              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.6, ease: [0.22,1,0.36,1] }}
+                className="relative w-full max-w-[340px] mx-auto rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(26,110,255,0.2)] mt-6 hidden lg:block"
+                style={{ aspectRatio: "4/3" }}>
+                <img src={repartidorImg} alt="Repartidor Pappedir" className="w-full h-full object-cover object-center" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span className="text-white text-[12px] font-bold">Conducto en camino — Portuguesa</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Payments strip */}
         <div className="absolute bottom-0 inset-x-0 border-t border-slate-100 bg-white/80 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-5 py-3 flex flex-wrap items-center justify-center gap-3">
             <span className="text-slate-400 text-[11px] font-bold uppercase tracking-widest">Aceptamos</span>
@@ -415,43 +438,107 @@ export default function Home() {
       </section>
 
       {/* ━━━━ TESTIMONIOS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-5">
-          <Reveal className="text-center mb-14">
-            <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Lo que dicen</motion.p>
-            <motion.h2 variants={up} className="text-[clamp(28px,4.5vw,52px)] font-extrabold leading-tight" style={{ color: NAVY }}>
-              La gente habla por nosotros
-            </motion.h2>
-          </Reveal>
+        <section className="py-24 bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-5">
+            <Reveal className="text-center mb-10">
+              <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Lo que dicen</motion.p>
+              <motion.h2 variants={up} className="text-[clamp(28px,4.5vw,52px)] font-extrabold leading-tight" style={{ color: NAVY }}>
+                La gente habla por nosotros
+              </motion.h2>
+            </Reveal>
 
-          <Reveal>
-            <div className="grid md:grid-cols-3 gap-5">
-              {TESTIMONIALS.map((t, i) => (
-                <motion.div key={i} variants={up}
-                  className="bg-white rounded-3xl p-7 flex flex-col border border-slate-100 transition-all duration-200 hover:-translate-y-1"
-                  style={{ boxShadow: "0 2px 8px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05)" }}>
-                  <div className="flex text-amber-400 mb-4">
-                    {[...Array(t.stars)].map((_,j) => <Star key={j} size={14} fill="currentColor" />)}
-                  </div>
-                  <p className="text-slate-600 text-[15px] leading-relaxed flex-1 mb-6">"{t.text}"</p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-extrabold text-sm shrink-0"
-                      style={{ background: `linear-gradient(135deg, ${BLUE}, #0B4FCC)` }}>
-                      {t.name[0]}
-                    </div>
+            {/* ── Looping tipo marquee ── */}
+            <div className="relative mb-12 overflow-hidden py-3">
+              <div className="flex gap-3 animate-[marquee_22s_linear_infinite] w-max">
+                {[...TIPO_LOOP, ...TIPO_LOOP].map((label, i) => (
+                  <span key={i} className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[12px] font-bold whitespace-nowrap border border-[#1A6EFF]/15 bg-[#EEF4FF] text-[#1A6EFF] shrink-0">
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Featured testimonial (auto-rotating) ── */}
+            <div className="relative">
+              <AnimatePresence mode="wait">
+                <motion.div key={activeTestimonial}
+                  initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+                  style={{ background: `linear-gradient(135deg, ${NAVY} 0%, #0D2B6B 100%)` }}>
+
+                  <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#1A6EFF]/20 blur-[80px] -translate-y-1/3 translate-x-1/4" />
+
+                  <div className="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-center">
                     <div>
-                      <p className="font-bold text-[13px]" style={{ color: NAVY }}>{t.name}</p>
-                      <p className="text-slate-400 text-[11px]">{t.city}, Portuguesa</p>
+                      {/* Tipo badge */}
+                      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-bold mb-6"
+                        style={{ background: "rgba(26,110,255,0.35)", backdropFilter: "blur(8px)" }}>
+                        {TESTIMONIALS[activeTestimonial].tipo}
+                      </span>
+
+                      <div className="flex text-amber-400 mb-4">
+                        {[...Array(TESTIMONIALS[activeTestimonial].stars)].map((_,j) => <Star key={j} size={18} fill="currentColor" />)}
+                      </div>
+
+                      <p className="text-white text-[18px] md:text-[22px] font-semibold leading-relaxed mb-8 max-w-2xl">
+                        &ldquo;{TESTIMONIALS[activeTestimonial].text}&rdquo;
+                      </p>
+
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-extrabold text-lg shrink-0"
+                          style={{ background: "rgba(26,110,255,0.5)", border: "2px solid rgba(255,255,255,0.2)" }}>
+                          {TESTIMONIALS[activeTestimonial].name[0]}
+                        </div>
+                        <div>
+                          <p className="text-white font-bold text-[15px]">{TESTIMONIALS[activeTestimonial].name}</p>
+                          <p className="text-white/50 text-[13px]">{TESTIMONIALS[activeTestimonial].city}, Portuguesa</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Progress dots */}
+                    <div className="flex md:flex-col gap-2 justify-center">
+                      {TESTIMONIALS.map((_, i) => (
+                        <button key={i} onClick={() => setActiveTestimonial(i)}
+                          className={`rounded-full transition-all duration-300 ${i === activeTestimonial ? "bg-white md:w-2 md:h-8 w-8 h-2" : "bg-white/25 w-2 h-2"}`} />
+                      ))}
                     </div>
                   </div>
                 </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* ── All testimonial pills ── */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+              {TESTIMONIALS.map((t, i) => (
+                <button key={i} onClick={() => setActiveTestimonial(i)}
+                  className={`text-left rounded-2xl p-5 border-2 transition-all duration-200 ${i === activeTestimonial ? "border-[#1A6EFF] bg-[#EEF4FF]" : "border-slate-100 bg-white hover:border-[#1A6EFF]/30"}`}
+                  style={{ boxShadow: i === activeTestimonial ? "0 4px 20px rgba(26,110,255,0.12)" : "0 2px 8px rgba(0,0,0,.04)" }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wide px-2.5 py-1 rounded-full"
+                      style={{ background: i === activeTestimonial ? "#1A6EFF" : "#F1F5F9", color: i === activeTestimonial ? "white" : "#64748B" }}>
+                      {t.tipo}
+                    </span>
+                    <div className="flex text-amber-400">
+                      {[...Array(t.stars)].map((_,j) => <Star key={j} size={10} fill="currentColor" />)}
+                    </div>
+                  </div>
+                  <p className="text-slate-600 text-[12px] leading-relaxed line-clamp-2 mb-3">"{t.text}"</p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-white font-bold text-[10px] shrink-0"
+                      style={{ background: `linear-gradient(135deg, ${BLUE}, #0B4FCC)` }}>
+                      {t.name[0]}
+                    </div>
+                    <p className="text-[11px] font-semibold" style={{ color: NAVY }}>{t.name} · {t.city}</p>
+                  </div>
+                </button>
               ))}
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* ━━━━ REGISTRO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+        {/* ━━━━ REGISTRO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
         <section id="registro" className="py-24" style={{ background: "#F5F8FF" }}>
           <div className="max-w-7xl mx-auto px-5">
 
@@ -470,9 +557,9 @@ export default function Home() {
             <Reveal className="mb-10">
               <motion.div variants={up} className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
                 {([
-                  { id: "conductor" as RegistroTipo, label: "Conductor", sub: "Transporte de personas", emoji: "🚗" },
-                  { id: "repartidor" as RegistroTipo, label: "Repartidor", sub: "Delivery y encomiendas", emoji: "🏍️" },
-                  { id: "embajador" as RegistroTipo, label: "Embajador", sub: "Tu negocio en Pappedir", emoji: "🏪" },
+                  { id: "conductor" , label: "Conductor", sub: "Transporte de personas", emoji: "🚗" },
+                  { id: "repartidor" , label: "Repartidor", sub: "Delivery y encomiendas", emoji: "🏍️" },
+                  { id: "embajador" , label: "Embajador", sub: "Tu negocio en Pappedir", emoji: "🏪" },
                 ] as const).map((t) => (
                   <button key={t.id} onClick={() => handleTipoChange(t.id)}
                     className={`flex-1 flex flex-col items-center gap-1.5 px-4 py-4 rounded-2xl border-2 transition-all duration-200 ${
