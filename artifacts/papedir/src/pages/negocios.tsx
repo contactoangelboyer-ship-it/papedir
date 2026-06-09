@@ -105,6 +105,32 @@ import React, { useRef, useState } from "react";
           </div>
         </section>
 
+          {/* ━━━━ PHOTO STRIP ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          <section className="py-10 bg-white">
+            <div className="max-w-7xl mx-auto px-5">
+              <div className="grid md:grid-cols-2 gap-5 items-stretch">
+                <div className="group relative rounded-3xl overflow-hidden h-56">
+                  <img src={driverOpeningDoorImg} alt="Conductor Pappedir" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-extrabold text-white mb-1" style={{ background: "#1A6EFF" }}>🚗 Pappe Driver</span>
+                    <p className="text-white/80 text-xs">Entrega tu producto, nosotros conducimos</p>
+                  </div>
+                </div>
+                <div className="group relative rounded-3xl overflow-hidden h-56">
+                  <img src={repartidoraMotoImg} alt="Repartidora Pappedir" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-extrabold text-white mb-1" style={{ background: "#F97316" }}>📦 Pappe Runner</span>
+                    <p className="text-white/80 text-xs">Tu delivery, siempre puntual y confiable</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+  
+
         {/* Business types */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-5">
