@@ -384,6 +384,60 @@ export default function Home() {
           </div>
         </section>
 
+
+          {/* ━━━━ CIUDADES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          <section id="ciudades" className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-5">
+              <Reveal className="text-center mb-14">
+                <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Cobertura en Portuguesa</motion.p>
+                <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold leading-tight" style={{ color: NAVY }}>
+                  Ya estamos en tu ciudad
+                </motion.h2>
+                <motion.p variants={up} className="text-slate-500 mt-4 max-w-lg mx-auto text-[16px]">
+                  Empezamos en el corazón de Portuguesa y seguimos expandiéndonos. ¿Está tu ciudad en la lista?
+                </motion.p>
+              </Reveal>
+
+              {/* Active cities */}
+              <Reveal>
+                <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
+                  {[
+                    { name: "Guanare", emoji: "🏙️", pop: "~280 000 hab.", desc: "Capital de Portuguesa. Cobertura total — transporte, delivery y mototaxi.", badge: "✅ Activa" },
+                    { name: "Acarigua – Araure", emoji: "🏘️", pop: "~200 000 hab.", desc: "Segunda ciudad más grande del estado. Servicio completo disponible.", badge: "✅ Activa" },
+                  ].map((c, i) => (
+                    <motion.div key={i} variants={up}
+                      className="flex gap-5 items-start p-6 rounded-3xl border border-slate-100 bg-white hover:-translate-y-1 transition-all duration-200"
+                      style={{ boxShadow: "0 4px 20px rgba(0,0,0,.06)" }}>
+                      <div className="text-4xl shrink-0">{c.emoji}</div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <h3 className="font-extrabold text-[17px]" style={{ color: NAVY }}>{c.name}</h3>
+                          <span className="text-[11px] font-bold px-2.5 py-1 rounded-full" style={{ background: "#D1FAE5", color: "#065F46" }}>{c.badge}</span>
+                        </div>
+                        <p className="text-slate-400 text-[12px] mb-2 font-medium">{c.pop}</p>
+                        <p className="text-slate-500 text-[13px] leading-relaxed">{c.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </Reveal>
+
+              {/* Coming soon */}
+              <Reveal>
+                <motion.div variants={up} className="text-center">
+                  <p className="text-[13px] font-bold text-slate-400 mb-4 uppercase tracking-widest">Próximamente</p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {["Turén","Guanarito","Ospino","Biscucuy","Papelón","Boconoito","Piritu","Agua Blanca"].map(city => (
+                      <span key={city} className="px-4 py-2 rounded-full text-[13px] font-semibold border border-slate-200 text-slate-500 bg-slate-50">{city}</span>
+                    ))}
+                  </div>
+                  <p className="text-slate-400 text-[12px] mt-4">¿Tu ciudad no está? <a href="/ciudades" className="font-bold hover:underline" style={{ color: BLUE }}>Pide Pappedir aquí →</a></p>
+                </motion.div>
+              </Reveal>
+            </div>
+          </section>
+
+  
         {/* ━━━━ SEGURIDAD ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="seguridad" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5">
