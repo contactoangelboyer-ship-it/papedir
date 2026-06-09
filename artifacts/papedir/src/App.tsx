@@ -10,8 +10,8 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
   import Nosotros from "@/pages/nosotros";
   import FAQPage from "@/pages/faq";
   import NotFound from "@/pages/not-found";
-    import FloatingActions from "@/components/FloatingActions";
-    import SocialProofToast from "@/components/SocialProofToast";
+  import FloatingActions from "@/components/FloatingActions";
+  import SocialProofToast from "@/components/SocialProofToast";
 
   const queryClient = new QueryClient();
 
@@ -36,6 +36,8 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
         <TooltipProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <Router />
+            <FloatingActions />
+            <SocialProofToast />
           </WouterRouter>
           <Toaster />
         </TooltipProvider>
