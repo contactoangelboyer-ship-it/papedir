@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
   import { motion, useInView } from "framer-motion";
   import { Car, ShoppingBag, Package, Pill, Send, Bike, CheckCircle2, Clock, Shield, Star, ArrowRight, MapPin } from "lucide-react";
   import Navbar from "@/components/Navbar";
@@ -81,9 +81,46 @@ import React, { useRef, useEffect } from "react";
       }, 400);
       return () => clearTimeout(timer);
     }, []);
+  
+    // Track active section for nav pill highlight
+    const [activeSection, setActiveSection] = useState("transporte");
+    useEffect(() => {
+      const ids = ["transporte","comida","compras","farmacia","envios","mototaxi"];
+      const observers = ids.map(id => {
+        const el = document.getElementById(id);
+        if (!el) return null;
+        const obs = new IntersectionObserver(
+          ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+          { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+        );
+        obs.observe(el);
+        return obs;
+      });
+      return () => observers.forEach(o => o?.disconnect());
+    }, []);
       return (
       <div className="min-h-screen bg-white text-[#0D1E3F]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         <Navbar />
+
+  
+        {/* ━━━━ STICKY SECTION NAV ━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+        <div className="hidden md:block sticky top-[68px] z-30 bg-white/90 backdrop-blur-xl border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-5">
+            <div className="flex gap-1 py-2 overflow-x-auto scrollbar-hide">
+              {SERVICES.map(s => (
+                <a key={s.id} href={`#${s.id}`}
+                  className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-[13px] font-semibold transition-all whitespace-nowrap ${
+                    activeSection === s.id
+                      ? "bg-[#EEF4FF] text-[#1A6EFF] font-extrabold"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-[#0D1E3F]"
+                  }`}>
+                  <span>{s.emoji}</span> {s.label}
+                  {activeSection === s.id && <span className="w-1.5 h-1.5 rounded-full bg-[#1A6EFF] ml-0.5" />}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* Hero */}
         <section className="pt-28 pb-20 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #0D1E3F 0%, #0D2B6B 100%)" }}>
