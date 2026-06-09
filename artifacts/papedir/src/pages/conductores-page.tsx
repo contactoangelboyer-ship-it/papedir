@@ -52,7 +52,19 @@ import React, { useRef, useState } from "react";
   export default function ConductoresPage() {
     const [tab, setTab] = useState<"conductor" | "repartidor">("conductor");
     const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: tab === "conductor" ? "carro" : "moto", whatsapp: "", ciudad: "Guanare" });
-    const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    // Auto-switch to repartidor tab if URL hash = #repartidor
+    useEffect(() => {
+      if (window.location.hash === '#repartidor') {
+        setTab('repartidor');
+        setForm(f => ({ ...f, vehiculo: 'moto' }));
+        setTimeout(() => {
+          const el = document.getElementById('registro-conductor');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
+      }
+    }, []);
+      const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [formError, setFormError] = useState("");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
