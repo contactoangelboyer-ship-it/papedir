@@ -17,7 +17,7 @@ import React, { useState } from "react";
 
   const TEAM_LINKS = [
     { href: "/conductores", emoji: "🚗", label: "Conductores",  sub: "Gana llevando personas" },
-    { href: "/conductores", emoji: "🏍️", label: "Repartidores", sub: "Gana con delivery" },
+    { href: "/conductores#repartidor", emoji: "🏍️", label: "Repartidores", sub: "Gana con delivery" },
     { href: "/negocios",    emoji: "🏪", label: "Negocios",     sub: "Pon tu negocio en Pappedir" },
   ];
 
