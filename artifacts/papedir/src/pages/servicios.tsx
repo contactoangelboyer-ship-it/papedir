@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
   import { motion, useInView } from "framer-motion";
   import { Car, ShoppingBag, Package, Pill, Send, Bike, CheckCircle2, Clock, Shield, Star, ArrowRight, MapPin } from "lucide-react";
   import Navbar from "@/components/Navbar";
@@ -71,7 +71,17 @@ import React, { useRef } from "react";
   ];
 
   export default function Servicios() {
-    return (
+
+    useEffect(() => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+      const timer = setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
+      return () => clearTimeout(timer);
+    }, []);
+      return (
       <div className="min-h-screen bg-white text-[#0D1E3F]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         <Navbar />
 
