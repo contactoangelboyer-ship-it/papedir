@@ -65,7 +65,6 @@ const TESTIMONIALS = [
 
   const TIPO_LOOP = ["🚗 Transporte","🍔 Comida a domicilio","📦 Compras sin salir","💊 Farmacia exprés","📬 Envíos seguros","🏍️ Mototaxi","🏪 Negocios aliados","📍 GPS en tiempo real","✅ Conductores verificados","⚡ En minutos"];
 
-const PAYMENTS = ["Pago Móvil", "Zelle", "Efectivo", "Transferencia", "Divisas"];
 const CITIES   = ["Guanare", "Acarigua", "Araure", "Biscucuy", "Ospino", "Otra"];
 
 /* ── Component ──────────────────────────────────────────── */
