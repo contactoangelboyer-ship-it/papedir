@@ -247,15 +247,6 @@ export default function Home() {
           </div>
 
           {/* Payments strip */}
-        <div className="absolute bottom-0 inset-x-0 border-t border-slate-100 bg-white/80 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-5 py-3 flex flex-wrap items-center justify-center gap-3">
-            <span className="text-slate-400 text-[11px] font-bold uppercase tracking-widest">Aceptamos</span>
-            {PAYMENTS.map(m => (
-              <span key={m} className="px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 text-[12px] font-semibold shadow-sm">{m}</span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ━━━━ SERVICIOS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="servicios" className="py-24" style={{ background: "#F5F8FF" }}>
