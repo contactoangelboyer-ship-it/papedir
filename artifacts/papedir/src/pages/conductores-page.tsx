@@ -357,7 +357,7 @@ import React, { useRef, useState } from "react";
             </div>
           </section>
 
-          {/* Benefits */}}
+          {/* Benefits */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-5">
             <Reveal className="text-center mb-14">
