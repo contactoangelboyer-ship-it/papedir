@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
   import { motion, useInView } from "framer-motion";
   import { MapPin, Clock, CheckCircle2, ArrowRight, Send } from "lucide-react";
   import Navbar from "@/components/Navbar";
@@ -31,6 +31,42 @@ import React, { useRef } from "react";
     coming: { label: "En expansión", color: "#F97316", bg: "#FFF7ED" },
     soon:   { label: "Próximamente", color: "#8B5CF6", bg: "#F5F3FF" },
   };
+
+  
+  function CityRequestForm() {
+    const [city, setCity] = useState("");
+    const [name, setName] = useState("");
+    const [sent, setSent] = useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!city.trim()) return;
+      const msg = encodeURIComponent(`¡Hola! Quiero Pappedir en ${city.trim()}${name ? ` — Mi nombre es ${name.trim()}` : ""}. 🙌`);
+      window.open(`https://wa.me/584120000000?text=${msg}`, "_blank");
+      setSent(true);
+      setTimeout(() => setSent(false), 4000);
+    };
+
+    return (
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-sm mx-auto">
+        <input
+          type="text" placeholder="¿En qué ciudad quieres Pappedir? *" value={city}
+          onChange={e => setCity(e.target.value)} required
+          className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 text-sm font-medium focus:outline-none focus:border-white/50 transition-all"
+        />
+        <input
+          type="text" placeholder="Tu nombre (opcional)" value={name}
+          onChange={e => setName(e.target.value)}
+          className="px-4 py-3 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 text-sm font-medium focus:outline-none focus:border-white/50 transition-all"
+        />
+        <button type="submit"
+          className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-white font-extrabold text-[14px] transition-all hover:opacity-90 active:scale-95"
+          style={{ background: sent ? "#10B981" : "#1A6EFF" }}>
+          {sent ? "✅ ¡Mensaje enviado por WhatsApp!" : <><Send size={15} /> Solicitar Pappedir en mi ciudad</>}
+        </button>
+      </form>
+    );
+  }
 
   export default function Ciudades() {
     return (
