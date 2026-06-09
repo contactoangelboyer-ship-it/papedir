@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
   import { motion, useInView, AnimatePresence } from "framer-motion";
-  import { ChevronDown, ArrowRight, MessageCircle } from "lucide-react";
+  import { ChevronDown, ArrowRight, MessageCircle, Search, X } from "lucide-react";
   import Navbar from "@/components/Navbar";
   import Footer from "@/components/Footer";
 
@@ -91,6 +91,18 @@ import React, { useRef, useState } from "react";
 
   export default function FAQ() {
     const [activeCategory, setActiveCategory] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    // Filter across all categories when searching
+    const searchResults = React.useMemo(() => {
+      const q = searchQuery.trim().toLowerCase();
+      if (!q) return null;
+      return FAQ_CATEGORIES.flatMap(cat =>
+        cat.items.filter(item =>
+          item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q)
+        ).map(item => ({ ...item, cat: cat.cat }))
+      );
+    }, [searchQuery]);
     return (
       <div className="min-h-screen bg-white text-[#0D1E3F]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
         <Navbar />
@@ -119,6 +131,39 @@ import React, { useRef, useState } from "react";
         <section className="py-20">
           <div className="max-w-4xl mx-auto px-5">
 
+  
+            {/* Search bar */}
+            <motion.div variants={up} className="relative max-w-lg mx-auto mb-8">
+              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <input
+                type="text"
+                placeholder="Buscar pregunta..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="w-full pl-11 pr-11 py-3.5 rounded-2xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-400 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all"
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery("")} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                  <X size={15} />
+                </button>
+              )}
+            </motion.div>
+
+            {/* Search results */}
+            {searchResults !== null && (
+              <div className="mb-8">
+                {searchResults.length === 0 ? (
+                  <p className="text-center text-slate-400 py-8 text-sm">No se encontraron resultados para "{searchQuery}"</p>
+                ) : (
+                  <div className="space-y-3 max-w-2xl mx-auto">
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">{searchResults.length} resultado{searchResults.length !== 1 ? "s" : ""}</p>
+                    {searchResults.map((item, i) => (
+                      <FaqItem key={i} q={item.q} a={item.a} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
             {/* Category tabs */}
             <Reveal className="mb-10">
               <motion.div variants={up} className="flex flex-wrap gap-2">
