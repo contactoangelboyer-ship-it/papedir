@@ -246,7 +246,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Payments strip */}
+      </section>
 
       {/* ━━━━ SERVICIOS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section id="servicios" className="py-24" style={{ background: "#F5F8FF" }}>
