@@ -49,6 +49,94 @@ import React, { useRef, useState } from "react";
     { name: "Ana C.",     city: "Acarigua", stars: 5, tipo: "Conductora", text: "Trabajo solo en la mañana, cuando los niños están en el colegio. Gano bien y estoy de vuelta en casa a tiempo." },
   ];
 
+  
+  // ── Earnings Calculator ────────────────────────────────────────────────────
+  function EarningsCalculator() {
+    const [hours, setHours] = React.useState(6);
+    const [vehicle, setVehicle] = React.useState<"carro" | "moto">("carro");
+
+    const ratePerHour = vehicle === "carro" ? 8.5 : 6;
+    const dailyEst = Math.round(hours * ratePerHour);
+    const weeklyEst = Math.round(dailyEst * 5.5);
+    const monthlyEst = Math.round(dailyEst * 22);
+
+    const ref = React.useRef(null);
+    const vis = useInView(ref, { once: true, margin: "-60px" });
+
+    return (
+      <section className="py-20 bg-white" ref={ref}>
+        <div className="max-w-3xl mx-auto px-5">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={vis ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22,1,0.36,1] }}
+            className="rounded-3xl overflow-hidden border border-slate-100"
+            style={{ boxShadow: "0 8px 40px rgba(26,110,255,.1)" }}>
+
+            {/* Header */}
+            <div className="p-6 text-white" style={{ background: "linear-gradient(135deg, #0D1E3F 0%, #1A3A7A 100%)" }}>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-300 mb-2">Calcula tus ganancias</p>
+              <h3 className="text-2xl font-extrabold mb-1">¿Cuánto puedes ganar?</h3>
+              <p className="text-white/60 text-sm">Estimado basado en nuestros conductores activos en Portuguesa.</p>
+            </div>
+
+            {/* Controls */}
+            <div className="p-6 bg-white space-y-6">
+              {/* Vehicle toggle */}
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-widest text-slate-400 mb-3">Tipo de vehículo</p>
+                <div className="flex gap-3">
+                  {([["carro","🚗 Carro / Taxi"],["moto","🏍️ Moto"]] as const).map(([v,l]) => (
+                    <button key={v} onClick={() => setVehicle(v)}
+                      className={`flex-1 py-3 rounded-2xl text-[13px] font-extrabold border-2 transition-all ${
+                        vehicle === v ? "border-[#1A6EFF] bg-[#EEF4FF] text-[#1A6EFF]" : "border-slate-200 text-slate-500 hover:border-slate-300"
+                      }`}>{l}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Hours slider */}
+              <div>
+                <div className="flex justify-between items-center mb-3">
+                  <p className="text-xs font-extrabold uppercase tracking-widest text-slate-400">Horas por día</p>
+                  <span className="text-2xl font-extrabold" style={{ color: NAVY }}>{hours}h</span>
+                </div>
+                <input type="range" min={2} max={12} step={1} value={hours} onChange={e => setHours(+e.target.value)}
+                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
+                  style={{ accentColor: "#1A6EFF", background: `linear-gradient(to right, #1A6EFF ${(hours-2)/10*100}%, #E2E8F0 ${(hours-2)/10*100}%)` }} />
+                <div className="flex justify-between text-[11px] text-slate-400 font-medium mt-1.5">
+                  <span>2h</span><span>7h</span><span>12h</span>
+                </div>
+              </div>
+
+              {/* Results */}
+              <div className="grid grid-cols-3 gap-3 pt-2">
+                {[
+                  { label: "Al día",    value: `${dailyEst}`, color: "#1A6EFF", bg: "#EEF4FF" },
+                  { label: "A la semana", value: `${weeklyEst}`, color: "#10B981", bg: "#ECFDF5" },
+                  { label: "Al mes",    value: `${monthlyEst}`, color: "#F97316", bg: "#FFF7ED" },
+                ].map(({ label, value, color, bg }) => (
+                  <div key={label} className="rounded-2xl p-4 text-center transition-all" style={{ background: bg }}>
+                    <p className="text-[22px] font-extrabold" style={{ color }}>{value}</p>
+                    <p className="text-[11px] font-bold text-slate-500 mt-1">{label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-[11px] text-slate-400 text-center">
+                * Estimado en USD. Los ingresos reales varían según demanda, ciudad y jornada.
+              </p>
+
+              <a href="#registro-conductor" style={{ background: BLUE }}
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-white font-extrabold text-[14px] transition-all hover:opacity-90 active:scale-95">
+                Registrarme y empezar a ganar <ArrowRight size={15} />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
   export default function ConductoresPage() {
     const [tab, setTab] = useState<"conductor" | "repartidor">("conductor");
     const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: tab === "conductor" ? "carro" : "moto", whatsapp: "", ciudad: "Guanare" });
@@ -399,7 +487,11 @@ import React, { useRef, useState } from "react";
           </div>
         </section>
 
-        {/* Registration form */}
+
+          {/* ━━━━ EARNINGS CALCULATOR ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+          <EarningsCalculator />
+
+          {/* Registration form */}
         <section id="registro-conductor" className="py-20 bg-white">
           <div className="max-w-2xl mx-auto px-5">
             <Reveal className="text-center mb-10">
