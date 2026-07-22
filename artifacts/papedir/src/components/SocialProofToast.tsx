@@ -3,14 +3,16 @@ import React, { useEffect, useState, useRef } from "react";
   import { X } from "lucide-react";
 
   const EVENTS = [
-    { icon: "🚗", text: "Carlos pidió un viaje en", city: "Guanare" },
-    { icon: "📦", text: "María recibió su pedido en", city: "Acarigua" },
-    { icon: "🏍️", text: "Juan se registró como Pappe Rider en", city: "Guanare" },
-    { icon: "⭐", text: "Luisa calificó 5 ★ su viaje en", city: "Acarigua" },
+    { icon: "🚗", text: "Carlos pidió un viaje en", city: "Caracas" },
+    { icon: "📦", text: "María recibió su pedido en", city: "Valencia" },
+    { icon: "🏍️", text: "Juan se registró como Pappe Rider en", city: "Maracaibo" },
+    { icon: "⭐", text: "Luisa calificó 5 ★ su viaje en", city: "Barquisimeto" },
     { icon: "🍔", text: "Pedro recibió su comida en", city: "Guanare" },
-    { icon: "💊", text: "Ana recibió su pedido de farmacia en", city: "Acarigua" },
-    { icon: "🏍️", text: "Sofía solicitó un mototaxi en", city: "Guanare" },
-    { icon: "🚗", text: "Andrés completó su viaje en", city: "Acarigua" },
+    { icon: "💊", text: "Ana recibió su pedido de farmacia en", city: "Maracay" },
+    { icon: "🏍️", text: "Sofía solicitó un mototaxi en", city: "Valencia" },
+    { icon: "🚗", text: "Andrés completó su viaje en", city: "Caracas" },
+    { icon: "📬", text: "Luis envió una encomienda desde", city: "Mérida" },
+    { icon: "🏪", text: "Restaurante El Fogón se unió en", city: "Maracaibo" },
   ];
 
   export default function SocialProofToast() {

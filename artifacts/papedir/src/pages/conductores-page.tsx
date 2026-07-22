@@ -75,7 +75,7 @@ import React, { useRef, useState } from "react";
             <div className="p-6 text-white" style={{ background: "linear-gradient(135deg, #0D1E3F 0%, #1A3A7A 100%)" }}>
               <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-300 mb-2">Calcula tus ganancias</p>
               <h3 className="text-2xl font-extrabold mb-1">¿Cuánto puedes ganar?</h3>
-              <p className="text-white/60 text-sm">Estimado basado en nuestros conductores activos en Portuguesa.</p>
+              <p className="text-white/60 text-sm">Estimado basado en nuestros conductores activos en Venezuela.</p>
             </div>
 
             {/* Controls */}
@@ -139,7 +139,7 @@ import React, { useRef, useState } from "react";
 
   export default function ConductoresPage() {
     const [tab, setTab] = useState<"conductor" | "repartidor">("conductor");
-    const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: tab === "conductor" ? "carro" : "moto", whatsapp: "", ciudad: "Guanare" });
+    const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: tab === "conductor" ? "carro" : "moto", whatsapp: "", ciudad: "Caracas" });
 
     // Auto-switch to repartidor tab if URL hash = #repartidor
     useEffect(() => {
@@ -160,7 +160,7 @@ import React, { useRef, useState } from "react";
 
     const handleTabChange = (t: "conductor" | "repartidor") => {
       setTab(t);
-      setForm({ nombre: "", cedula: "", vehiculo: t === "conductor" ? "carro" : "moto", whatsapp: "", ciudad: "Guanare" });
+      setForm({ nombre: "", cedula: "", vehiculo: t === "conductor" ? "carro" : "moto", whatsapp: "", ciudad: "Caracas" });
       setFormState("idle");
     };
 
@@ -477,7 +477,7 @@ import React, { useRef, useState } from "react";
                         style={{ background: `linear-gradient(135deg, ${BLUE}, #0B4FCC)` }}>{t.name[0]}</div>
                       <div>
                         <p className="font-bold text-[13px]" style={{ color: NAVY }}>{t.name}</p>
-                        <p className="text-slate-400 text-[11px]">{t.city}, Portuguesa</p>
+                        <p className="text-slate-400 text-[11px]">{t.city}, Venezuela</p>
                       </div>
                     </div>
                   </motion.div>
@@ -551,7 +551,7 @@ import React, { useRef, useState } from "react";
                       <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Ciudad *</label>
                       <select name="ciudad" value={form.ciudad} onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
-                        {["Guanare","Acarigua","Araure","Biscucuy","Ospino","Otra"].map(c => <option key={c}>{c}</option>)}
+                        {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Guanare","Otra"].map(c => <option key={c}>{c}</option>)}
                       </select>
                     </div>
                     {formError && <p className="text-red-500 text-sm bg-red-50 px-4 py-3 rounded-xl">{formError}</p>}

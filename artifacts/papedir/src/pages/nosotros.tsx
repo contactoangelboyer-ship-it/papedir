@@ -23,14 +23,14 @@ import React, { useRef } from "react";
     { icon: Heart,  title: "Hecho en Venezuela", color: "#EF4444", bg: "#FEF2F2", desc: "No llegamos desde afuera a imponer soluciones. Vivimos aquí, entendemos la realidad y construimos pensando en ella. Eso hace la diferencia." },
     { icon: Zap,    title: "Velocidad real",      color: "#F97316", bg: "#FFF7ED", desc: "Prometemos rápido y entregamos rápido. El tiempo promedio de llegada es ≈4 minutos. No es marketing — son datos reales." },
     { icon: Users,  title: "Comunidad aliada",    color: "#10B981", bg: "#ECFDF5", desc: "Conductores, repartidores y negocios no son proveedores — son el corazón de Pappedir. Cuando ellos crecen, nosotros crecemos." },
-    { icon: Target, title: "Foco en Portuguesa",  color: "#8B5CF6", bg: "#F5F3FF", desc: "No queremos ser una app genérica de todo para todos. Queremos ser la app que Portuguesa merece. Enfoque local, impacto real." },
+    { icon: Target, title: "Hecho en Venezuela",  color: "#8B5CF6", bg: "#F5F3FF", desc: "No somos una app importada. Somos un equipo venezolano que entiende la realidad del país y construye soluciones para ella. Enfoque local, impacto nacional." },
   ];
 
   const MILESTONES = [
-    { year: "2024", title: "Nace la idea",          desc: "Un grupo de venezolanos de Guanare se frustró con la falta de opciones de transporte y delivery. Decidieron construir la solución ellos mismos." },
-    { year: "2025", title: "Lanzamiento en Guanare", desc: "Arrancamos en Guanare con los primeros 20 conductores y 5 negocios aliados. Pequeño en números, grande en propósito." },
-    { year: "2025", title: "Expansión a Acarigua",   desc: "Expandimos al municipio Páez. Hoy, Acarigua y Araure cuentan con cobertura completa y crecemos semana a semana." },
-    { year: "2026", title: "Creciendo juntos",        desc: "Seis servicios disponibles, decenas de aliados activos y una meta bien clara: llegar a cada ciudad de Portuguesa." },
+    { year: "2024", title: "Nace la idea",          desc: "Un equipo de venezolanos se frustró con la falta de opciones confiables de transporte y delivery. Decidieron construir la solución ellos mismos." },
+    { year: "2025", title: "Primeros pasos", desc: "Arrancamos en el estado Portuguesa con los primeros 20 conductores y 5 negocios aliados. Pequeño en números, grande en propósito." },
+    { year: "2025", title: "Expansión regional",   desc: "Expandimos a nuevas ciudades del interior del país. Crecemos semana a semana, ciudad por ciudad." },
+    { year: "2026", title: "Expansión nacional",        desc: "Seis servicios disponibles, cientos de aliados activos en varios estados y una meta bien clara: llegar a cada rincón de Venezuela." },
   ];
 
   export default function Nosotros() {
@@ -49,10 +49,10 @@ import React, { useRef } from "react";
                 ❤️ Nuestra historia
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Nació en Portuguesa.<br /><span style={{ color: "#60A5FA" }}>Creció para Portuguesa.</span>
+                Nació en Venezuela.<br /><span style={{ color: "#60A5FA" }}>Crece para Venezuela.</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed max-w-xl mx-auto">
-                Pappedir no vino de afuera. Lo construimos acá, entendiendo de primera mano lo que necesita nuestra región.
+                Pappedir lo construimos acá, en Venezuela, entendiendo de primera mano lo que necesita nuestra gente.
               </p>
             </motion.div>
           </div>
@@ -72,7 +72,7 @@ import React, { useRef } from "react";
                     </div>
                     <h2 className="text-2xl font-extrabold text-white mb-4">Nuestra misión</h2>
                     <p className="text-white/65 leading-relaxed text-[15px]">
-                      Conectar a las personas de Portuguesa con transporte, delivery y comercio local de forma rápida, segura y sin complicaciones. Queremos que la tecnología trabaje para todos — no solo para las grandes ciudades.
+                      Conectar a los venezolanos con transporte, delivery y comercio local de forma rápida, segura y sin complicaciones. Queremos que la tecnología trabaje para todos — en cada ciudad del país.
                     </p>
                   </div>
                 </motion.div>
@@ -82,7 +82,7 @@ import React, { useRef } from "react";
                   </div>
                   <h2 className="text-2xl font-extrabold mb-4" style={{ color: NAVY }}>Nuestra visión</h2>
                   <p className="text-slate-600 leading-relaxed text-[15px]">
-                    Ser la plataforma de referencia para el transporte y la economía local en todo el estado Portuguesa para 2026, y expandirnos a otros estados con realidades similares. Queremos demostrar que la tecnología puede transformar ciudades medianas.
+                    Ser la plataforma de referencia para el transporte y la economía local en toda Venezuela — de Caracas a Mérida, de Maracaibo a Maturín. Queremos demostrar que la tecnología puede transformar cada ciudad del país.
                   </p>
                 </motion.div>
               </div>
@@ -158,7 +158,7 @@ import React, { useRef } from "react";
                   Nuestro equipo <span style={{ color: BLUE }}>en acción</span>
                 </motion.h2>
                 <motion.p variants={up} className="text-slate-500 mt-3 max-w-md mx-auto">
-                  Conductores y repartidores que hacen posible Pappedir cada día en Portuguesa.
+                  Conductores y repartidores que hacen posible Pappedir cada día en toda Venezuela.
                 </motion.p>
               </Reveal>
               <Reveal>

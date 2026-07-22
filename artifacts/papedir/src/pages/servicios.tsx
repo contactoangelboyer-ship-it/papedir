@@ -31,7 +31,7 @@ import React, { useRef, useEffect, useState } from "react";
     {
       id: "comida", icon: ShoppingBag, emoji: "🍔", label: "Comida & Restaurantes",
       tagline: "Lo que antoja, caliente y a tiempo",
-      desc: "Los mejores restaurantes de Portuguesa en tu teléfono. Desde una empanada hasta un menú completo — llega caliente.",
+      desc: "Los mejores restaurantes de tu ciudad, en tu teléfono. Desde una empanada hasta un menú completo — llega caliente.",
       steps: ["Elige el restaurante aliado","Selecciona tus platos","El repartidor recoge tu pedido","Entrega en puerta en promedio 30 min"],
       perks: ["Restaurantes verificados","Seguimiento en tiempo real","Pago anticipado o en efectivo","Pedidos mínimos bajos"],
       color: "#F97316", bg: "#FFF7ED",
@@ -57,7 +57,7 @@ import React, { useRef, useEffect, useState } from "react";
       tagline: "Lo que envías, llega con confirmación",
       desc: "Documentos, paquetes o encomiendas de hasta 20 kg — recogemos donde estás y entregamos con foto de confirmación.",
       steps: ["Describe tu paquete y destino","Confirma el precio del envío","El aliado recoge en tu ubicación","El destinatario recibe y firma"],
-      perks: ["Confirmación de entrega","Cobertura toda Portuguesa","Para paquetes hasta 20kg","Foto de entrega incluida"],
+      perks: ["Confirmación de entrega","Cobertura nacional","Para paquetes hasta 20kg","Foto de entrega incluida"],
       color: "#F59E0B", bg: "#FFFBEB",
     },
     {
@@ -137,7 +137,7 @@ import React, { useRef, useEffect, useState } from "react";
                 Muévete, pide, recibe.<br /><span style={{ color: "#60A5FA" }}>Nosotros lo resolvemos.</span>
               </h1>
               <p className="text-white/60 text-[17px] max-w-xl mx-auto">
-                Seis servicios diseñados para tu día a día en Portuguesa. Todo verificado, todo confiable, todo en una app.
+                Seis servicios diseñados para tu día a día en Venezuela. Todo verificado, todo confiable, todo en una app.
               </p>
             </motion.div>
 

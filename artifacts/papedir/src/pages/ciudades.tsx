@@ -16,14 +16,18 @@ import React, { useRef, useState } from "react";
   }
 
   const ACTIVE_CITIES = [
-    { name: "Guanare",   status: "active",  emoji: "🏙️", pop: "~280k hab.", desc: "Capital de Portuguesa. Nuestra ciudad base con cobertura total." },
-    { name: "Acarigua",  status: "active",  emoji: "🏘️", pop: "~200k hab.", desc: "Segunda ciudad más grande. Servicio completo disponible." },
-    { name: "Araure",    status: "active",  emoji: "🏘️", pop: "~180k hab.", desc: "Municipio Páez. Integrado junto a Acarigua." },
-    { name: "Biscucuy",  status: "coming",  emoji: "📍", pop: "~45k hab.",  desc: "En expansión. Próximamente disponible." },
-    { name: "Ospino",    status: "coming",  emoji: "📍", pop: "~40k hab.",  desc: "En expansión. Inscríbete para ser el primero." },
-    { name: "Guanarito", status: "coming",  emoji: "📍", pop: "~38k hab.",  desc: "En lista de espera de expansión." },
-    { name: "Papelón",   status: "soon",    emoji: "📍", pop: "~22k hab.",  desc: "Planeado para el próximo trimestre." },
-    { name: "Turén",     status: "soon",    emoji: "📍", pop: "~55k hab.",  desc: "Municipio Santa Rosalía. En evaluación." },
+    { name: "Caracas",        status: "active",  emoji: "🏙️", pop: "~3.2 M hab.", desc: "Capital del país. Cobertura total en las principales zonas metropolitanas." },
+    { name: "Valencia",       status: "active",  emoji: "🏘️", pop: "~1.8 M hab.", desc: "Capital de Carabobo. Servicio completo disponible." },
+    { name: "Guanare",        status: "active",  emoji: "🌿", pop: "~280k hab.",  desc: "Donde todo comenzó. Cobertura completa desde el primer día." },
+    { name: "Maracaibo",      status: "coming",  emoji: "📍", pop: "~2.5 M hab.", desc: "En expansión. La segunda ciudad más grande del país." },
+    { name: "Barquisimeto",   status: "coming",  emoji: "📍", pop: "~1.2 M hab.", desc: "La ciudad musical. Inscríbete para ser el primero." },
+    { name: "Maracay",        status: "coming",  emoji: "📍", pop: "~900k hab.",  desc: "Capital de Aragua. En lista de espera de expansión." },
+    { name: "Barcelona",      status: "soon",    emoji: "📍", pop: "~550k hab.",  desc: "Capital de Anzoátegui. Planeado para el próximo trimestre." },
+    { name: "Mérida",         status: "soon",    emoji: "📍", pop: "~370k hab.",  desc: "La ciudad de los caballeros. En evaluación." },
+    { name: "Maturín",        status: "soon",    emoji: "📍", pop: "~600k hab.",  desc: "Capital de Monagas. En evaluación." },
+    { name: "San Cristóbal",  status: "soon",    emoji: "📍", pop: "~700k hab.",  desc: "Capital del Táchira. En evaluación." },
+    { name: "Acarigua",       status: "active",  emoji: "🏘️", pop: "~200k hab.", desc: "Junto a Araure, cobertura completa en el municipio Páez." },
+    { name: "Puerto La Cruz", status: "soon",    emoji: "📍", pop: "~320k hab.",  desc: "Capital turística del oriente. Próximamente." },
   ];
 
   const STATUS_LABELS = {
@@ -84,13 +88,13 @@ import React, { useRef, useState } from "react";
                 <MapPin size={13} /> Cobertura actual
               </span>
               <h1 className="text-[clamp(36px,5.5vw,68px)] font-extrabold text-white leading-[1.06] tracking-tight mb-5">
-                Portuguesa entera,<br /><span style={{ color: "#60A5FA" }}>ciudad por ciudad</span>
+                Venezuela entera,<br /><span style={{ color: "#60A5FA" }}>ciudad por ciudad</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed mb-8 max-w-xl mx-auto">
-                Empezamos en Guanare y Acarigua-Araure. Y no paramos hasta llegar a cada rincón del estado.
+                Empezamos en el interior y no paramos hasta llegar a cada rincón del país.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                {[["3","Ciudades activas"],["5+","Más en expansión"],["700k+","Personas con acceso"]].map(([v,l]) => (
+                {[["3+","Ciudades activas"],["10+","Más en camino"],["10M+","Personas con acceso"]].map(([v,l]) => (
                   <div key={l} className="text-center px-6 py-4 rounded-2xl border border-white/15 bg-white/5">
                     <p className="text-white font-extrabold text-2xl">{v}</p>
                     <p className="text-white/50 text-[12px] font-semibold mt-0.5">{l}</p>
@@ -106,7 +110,7 @@ import React, { useRef, useState } from "react";
           <div className="max-w-7xl mx-auto px-5">
             <Reveal className="text-center mb-12">
               <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Cobertura</motion.p>
-              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>¿Cubrimos tu ciudad?</motion.h2>
+              <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold" style={{ color: NAVY }}>¿Ya llegamos a tu ciudad?</motion.h2>
             </Reveal>
             <Reveal>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">

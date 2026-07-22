@@ -55,17 +55,17 @@ const STEPS = [
 ];
 
 const TESTIMONIALS = [
-    { name: "Roberto M.",   city: "Guanare",  stars: 5, tipo: "🚗 Transporte",      text: "El conductor llegó en cuatro minutos y el precio que vi en la app fue exactamente lo que pagué. Sin sorpresas." },
-    { name: "Valentina C.", city: "Acarigua", stars: 5, tipo: "📍 Seguimiento GPS", text: "Mi mamá siguió mi recorrido en tiempo real desde su teléfono. Esa tranquilidad no tiene precio." },
-    { name: "José D.",      city: "Araure",   stars: 5, tipo: "🏍️ Conductor aliado", text: "Dos meses como conductor y los pagos siempre caen puntual. El soporte responde rápido — eso lo dice todo." },
-    { name: "Mariangel P.", city: "Guanare",  stars: 5, tipo: "📦 Delivery",        text: "La comida llegó caliente en menos de 25 minutos. App fácil de usar, repartidor muy amable. Volví a pedir al día siguiente." },
-    { name: "Luis C.",      city: "Ospino",   stars: 5, tipo: "💊 Farmacia",        text: "Medicamento urgente para mi papá. Pappedir lo entregó en 18 minutos. En ese momento, fue todo." },
-    { name: "Carmen R.",    city: "Acarigua", stars: 5, tipo: "🏪 Embajadora",      text: "Mi restaurante recibe pedidos por Pappedir a diario. El primer mes las ventas subieron más del 35%." },
+    { name: "Roberto M.",   city: "Caracas",   stars: 5, tipo: "🚗 Transporte",      text: "El conductor llegó en cuatro minutos y el precio que vi en la app fue exactamente lo que pagué. Sin sorpresas." },
+    { name: "Valentina C.", city: "Valencia",  stars: 5, tipo: "📍 Seguimiento GPS", text: "Mi mamá siguió mi recorrido en tiempo real desde su teléfono. Esa tranquilidad no tiene precio." },
+    { name: "José D.",      city: "Maracaibo", stars: 5, tipo: "🏍️ Conductor aliado", text: "Dos meses como conductor y los pagos siempre caen puntual. El soporte responde rápido — eso lo dice todo." },
+    { name: "Mariangel P.", city: "Barquisimeto", stars: 5, tipo: "📦 Delivery",        text: "La comida llegó caliente en menos de 25 minutos. App fácil de usar, repartidor muy amable. Volví a pedir al día siguiente." },
+    { name: "Luis C.",      city: "Maturín",   stars: 5, tipo: "💊 Farmacia",        text: "Medicamento urgente para mi papá. Pappedir lo entregó en 18 minutos. En ese momento, fue todo." },
+    { name: "Carmen R.",    city: "Valencia",  stars: 5, tipo: "🏪 Embajadora",      text: "Mi restaurante recibe pedidos por Pappedir a diario. El primer mes las ventas subieron más del 35%." },
   ];
 
   const TIPO_LOOP = ["🚗 Transporte","🍔 Comida a domicilio","📦 Compras sin salir","💊 Farmacia exprés","📬 Envíos seguros","🏍️ Mototaxi","🏪 Negocios aliados","📍 GPS en tiempo real","✅ Conductores verificados","⚡ En minutos"];
 
-const CITIES   = ["Guanare", "Acarigua", "Araure", "Biscucuy", "Ospino", "Otra"];
+const CITIES   = ["Caracas", "Valencia", "Maracaibo", "Barquisimeto", "Maracay", "Otra"];
 
 /* ── Component ──────────────────────────────────────────── */
 export default function Home() {
@@ -157,7 +157,7 @@ export default function Home() {
 
             <motion.div variants={up} className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#EEF4FF] border border-[#1A6EFF]/15 mb-8">
               <span className="w-2 h-2 rounded-full bg-[#1A6EFF] animate-pulse" />
-              <span className="text-[#1A6EFF] text-[13px] font-bold">Operando en Portuguesa · Venezuela 🇻🇪</span>
+              <span className="text-[#1A6EFF] text-[13px] font-bold">Operando en toda Venezuela 🇻🇪</span>
             </motion.div>
 
             <motion.h1 variants={up} className="text-[clamp(40px,6.5vw,76px)] font-extrabold leading-[1.04] tracking-tight mb-6" style={{ color: NAVY }}>
@@ -167,7 +167,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p variants={up} className="text-slate-500 text-[17px] leading-relaxed max-w-[480px] mb-10">
-              Transporte, comida, compras, farmacia y más — todo en una sola app creada para Portuguesa. Conductor verificado, precio confirmado antes de salir. Sin sorpresas.
+              Transporte, comida, compras, farmacia y más — todo en una sola app hecha para Venezuela. Conductor verificado, precio confirmado antes de salir. Sin sorpresas.
             </motion.p>
 
             <motion.div variants={up} className="flex flex-col sm:flex-row gap-3 mb-12">
@@ -240,7 +240,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0D1E3F]/70 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  <span className="text-white text-[12px] font-bold">Conducto en camino — Portuguesa</span>
+                  <span className="text-white text-[12px] font-bold">Conductor en camino — Venezuela 🇻🇪</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -295,7 +295,7 @@ export default function Home() {
                 Aliados reales,<br /><span style={{ color: BLUE }}>servicio real</span>
               </motion.h2>
               <motion.p variants={up} className="text-slate-500 max-w-lg mx-auto">
-                Conductores y repartidores 100% verificados, listos para moverte y entregarte en Portuguesa.
+                Conductores y repartidores 100% verificados, listos para moverte y entregarte en toda Venezuela.
               </motion.p>
             </Reveal>
 
@@ -406,12 +406,12 @@ export default function Home() {
           <section id="ciudades" className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-5">
               <Reveal className="text-center mb-14">
-                <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Cobertura en Portuguesa</motion.p>
+                <motion.p variants={up} className="text-xs font-extrabold uppercase tracking-[0.18em] mb-3" style={{ color: BLUE }}>Cobertura nacional</motion.p>
                 <motion.h2 variants={up} className="text-[clamp(26px,4vw,48px)] font-extrabold leading-tight" style={{ color: NAVY }}>
                   Ya estamos en tu ciudad
                 </motion.h2>
                 <motion.p variants={up} className="text-slate-500 mt-4 max-w-lg mx-auto text-[16px]">
-                  Empezamos en el corazón de Portuguesa y seguimos expandiéndonos. ¿Está tu ciudad en la lista?
+                  Comenzamos en Venezuela y seguimos creciendo ciudad por ciudad. ¿Ya llegamos a la tuya?
                 </motion.p>
               </Reveal>
 
@@ -419,8 +419,8 @@ export default function Home() {
               <Reveal>
                 <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-10">
                   {[
-                    { name: "Guanare", emoji: "🏙️", pop: "~280 000 hab.", desc: "Capital de Portuguesa. Cobertura total — transporte, delivery y mototaxi.", badge: "✅ Activa" },
-                    { name: "Acarigua – Araure", emoji: "🏘️", pop: "~200 000 hab.", desc: "Segunda ciudad más grande del estado. Servicio completo disponible.", badge: "✅ Activa" },
+                    { name: "Caracas", emoji: "🏙️", pop: "~3 M hab.", desc: "Capital del país. Cobertura total en las principales zonas.", badge: "✅ Activa" },
+                    { name: "Valencia", emoji: "🏘️", pop: "~1.8 M hab.", desc: "Capital de Carabobo. Servicio completo disponible.", badge: "✅ Activa" },
                   ].map((c, i) => (
                     <motion.div key={i} variants={up}
                       className="flex gap-5 items-start p-6 rounded-3xl border border-slate-100 bg-white hover:-translate-y-1 transition-all duration-200"
@@ -444,7 +444,7 @@ export default function Home() {
                 <motion.div variants={up} className="text-center">
                   <p className="text-[13px] font-bold text-slate-400 mb-4 uppercase tracking-widest">Próximamente</p>
                   <div className="flex flex-wrap gap-2 justify-center">
-                    {["Turén","Guanarito","Ospino","Biscucuy","Papelón","Boconoito","Piritu","Agua Blanca"].map(city => (
+                    {["Maracaibo","Barquisimeto","Maturín","Barcelona","Maracay","Guanare","Mérida","San Cristóbal"].map(city => (
                       <span key={city} className="px-4 py-2 rounded-full text-[13px] font-semibold border border-slate-200 text-slate-500 bg-slate-50">{city}</span>
                     ))}
                   </div>
@@ -642,7 +642,7 @@ export default function Home() {
                         </div>
                         <div>
                           <p className="text-white font-bold text-[15px]">{TESTIMONIALS[activeTestimonial].name}</p>
-                          <p className="text-white/50 text-[13px]">{TESTIMONIALS[activeTestimonial].city}, Portuguesa</p>
+                          <p className="text-white/50 text-[13px]">{TESTIMONIALS[activeTestimonial].city}, Venezuela</p>
                         </div>
                       </div>
                     </div>
@@ -770,7 +770,7 @@ export default function Home() {
                     {registroTipo === "repartidor" && (
                       <div>
                         <h3 className="text-xl font-extrabold mb-2" style={{ color: NAVY }}>Reparte y gana desde hoy</h3>
-                        <p className="text-slate-500 text-sm leading-relaxed mb-5">Con tu moto o bicicleta, lleva pedidos de comida, farmacias y encomiendas por toda Portuguesa. Sin jefe, sin horario fijo.</p>
+                        <p className="text-slate-500 text-sm leading-relaxed mb-5">Con tu moto o bicicleta, lleva pedidos de comida, farmacias y encomiendas por tu ciudad. Sin jefe, sin horario fijo.</p>
                         <div className="flex flex-col gap-2.5">
                           {["Moto o bicicleta aceptadas","Ingresos desde el primer pedido","Ganancias por cada entrega","App sencilla, sin curva de aprendizaje"].map((item) => (
                             <div key={item} className="flex items-center gap-3">
@@ -967,7 +967,7 @@ export default function Home() {
               <div className="relative z-10">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 text-blue-200 text-xs font-bold uppercase tracking-wider mb-8">
                   <span className="w-1.5 h-1.5 bg-[#1A6EFF] rounded-full animate-pulse" />
-                  Disponible ahora · Portuguesa, Venezuela
+                  Disponible ahora · Venezuela 🇻🇪
                 </span>
                 <h2 className="text-[clamp(34px,6vw,70px)] font-extrabold text-white leading-tight mb-5">
                   ¿Listo, chamo?<br />
@@ -1023,7 +1023,7 @@ export default function Home() {
             <div className="md:col-span-2">
               <img src="/logo-transparent.png" alt="Pappedir" className="h-12 w-auto object-contain mb-4" />
               <p className="text-slate-400 text-sm leading-relaxed max-w-[260px]">
-                La app venezolana de transporte y delivery para el estado Portuguesa.
+                La app venezolana de transporte y delivery que conecta a todo el país.
               </p>
               <div className="flex gap-2 mt-5">
                 {[Instagram, Twitter, Facebook].map((Icon, i) => (
@@ -1050,7 +1050,7 @@ export default function Home() {
               <div className="flex flex-col gap-3">
                 <p className="text-slate-500 text-sm flex items-start gap-2">
                   <MapPin size={13} style={{ color: BLUE }} className="mt-0.5 shrink-0" />
-                  Guanare, Portuguesa<br />Venezuela
+                  Venezuela 🇻🇪
                 </p>
                 <a href="#" className="text-slate-500 hover:text-[#1A6EFF] text-sm flex items-center gap-2 transition-colors">
                   <Phone size={13} style={{ color: BLUE }} /> Soporte por WhatsApp

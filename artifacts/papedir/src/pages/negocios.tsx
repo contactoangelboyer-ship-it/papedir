@@ -90,7 +90,7 @@ import React, { useRef, useState } from "react";
                 Más ventas.<br /><span style={{ color: "#60A5FA" }}>Sin complicaciones.</span>
               </h1>
               <p className="text-white/60 text-[17px] leading-relaxed mb-8 max-w-xl mx-auto">
-                Pon tu negocio en Pappedir y llega a miles de clientes en Portuguesa — sin contratar repartidores ni pagar un centavo por adelantado.
+                Pon tu negocio en Pappedir y llega a miles de clientes en toda Venezuela — sin contratar repartidores ni pagar un centavo por adelantado.
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <a href="#registro-negocio" style={{ background: BLUE }}
@@ -229,7 +229,7 @@ import React, { useRef, useState } from "react";
                       <div className="w-9 h-9 rounded-full flex items-center justify-center text-white font-extrabold text-sm" style={{ background: `linear-gradient(135deg, ${BLUE}, #0B4FCC)` }}>{t.name[0]}</div>
                       <div>
                         <p className="font-bold text-[13px]" style={{ color: NAVY }}>{t.name}</p>
-                        <p className="text-slate-400 text-[11px]">{t.city}, Portuguesa</p>
+                        <p className="text-slate-400 text-[11px]">{t.city}, Venezuela</p>
                       </div>
                     </div>
                   </motion.div>
@@ -286,7 +286,7 @@ import React, { useRef, useState } from "react";
                         <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Ciudad *</label>
                         <select name="ciudad" value={form.ciudad} onChange={handleChange}
                           className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
-                          {["Guanare","Acarigua","Araure","Biscucuy","Ospino","Otra"].map(c => <option key={c}>{c}</option>)}
+                          {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Guanare","Otra"].map(c => <option key={c}>{c}</option>)}
                         </select>
                       </div>
                       <div className="flex flex-col gap-1.5">

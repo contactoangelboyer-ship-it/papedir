@@ -14,7 +14,7 @@ import React from "react";
             <div className="lg:col-span-1">
               <img src="/logo-transparent.png" alt="Pappedir" className="h-12 w-auto object-contain mb-4 brightness-0 invert" />
               <p className="text-white/50 text-[13px] leading-relaxed mb-6">
-                La app venezolana de transporte y delivery hecha pa' Portuguesa. Rápido, seguro, sin rollos.
+                La app venezolana de transporte y delivery que conecta a todo el país. Rápido, seguro, sin rollos.
               </p>
               <div className="flex gap-3">
                 {[
@@ -78,7 +78,7 @@ import React from "react";
                 </a>
                 <div className="flex items-start gap-2.5 text-white/55 text-[13px]">
                   <MapPin size={14} className="mt-0.5 shrink-0" />
-                  <span>Portuguesa, Venezuela<br/>Guanare · Acarigua · Araure</span>
+                  <span>Venezuela 🇻🇪<br/>Caracas · Valencia · Maracaibo · y más</span>
                 </div>
               </div>
               <div className="mt-6 p-4 rounded-2xl" style={{ background: "rgba(26,110,255,0.15)" }}>
