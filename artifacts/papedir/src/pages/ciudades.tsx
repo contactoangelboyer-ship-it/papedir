@@ -18,7 +18,7 @@ import React, { useRef, useState } from "react";
   const ACTIVE_CITIES = [
     { name: "Caracas",        status: "active",  emoji: "🏙️", pop: "~3.2 M hab.", desc: "Capital del país. Cobertura total en las principales zonas metropolitanas." },
     { name: "Valencia",       status: "active",  emoji: "🏘️", pop: "~1.8 M hab.", desc: "Capital de Carabobo. Servicio completo disponible." },
-    { name: "Guanare",        status: "active",  emoji: "🌿", pop: "~280k hab.",  desc: "Donde todo comenzó. Cobertura completa desde el primer día." },
+    { name: "Guanare",        status: "active",  emoji: "🌿", pop: "~280k hab.",  desc: "Ciudad con cobertura completa. Transporte, delivery y más al tiro." },
     { name: "Maracaibo",      status: "coming",  emoji: "📍", pop: "~2.5 M hab.", desc: "En expansión. La segunda ciudad más grande del país." },
     { name: "Barquisimeto",   status: "coming",  emoji: "📍", pop: "~1.2 M hab.", desc: "La ciudad musical. Inscríbete para ser el primero." },
     { name: "Maracay",        status: "coming",  emoji: "📍", pop: "~900k hab.",  desc: "Capital de Aragua. En lista de espera de expansión." },

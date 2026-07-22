@@ -23,13 +23,13 @@ import React, { useRef } from "react";
     { icon: Heart,  title: "Hecho en Venezuela", color: "#EF4444", bg: "#FEF2F2", desc: "No llegamos desde afuera a imponer soluciones. Vivimos aquí, entendemos la realidad y construimos pensando en ella. Eso hace la diferencia." },
     { icon: Zap,    title: "Velocidad real",      color: "#F97316", bg: "#FFF7ED", desc: "Prometemos rápido y entregamos rápido. El tiempo promedio de llegada es ≈4 minutos. No es marketing — son datos reales." },
     { icon: Users,  title: "Comunidad aliada",    color: "#10B981", bg: "#ECFDF5", desc: "Conductores, repartidores y negocios no son proveedores — son el corazón de Pappedir. Cuando ellos crecen, nosotros crecemos." },
-    { icon: Target, title: "Hecho en Venezuela",  color: "#8B5CF6", bg: "#F5F3FF", desc: "No somos una app importada. Somos un equipo venezolano que entiende la realidad del país y construye soluciones para ella. Enfoque local, impacto nacional." },
+    { icon: Target, title: "Alcance nacional",     color: "#8B5CF6", bg: "#F5F3FF", desc: "De Caracas a Mérida, de Maracaibo al oriente. Cada semana Pappedir llega a una ciudad nueva. Porque Venezuela entera merece una app que la cubra completo." },
   ];
 
   const MILESTONES = [
     { year: "2024", title: "Nace la idea",          desc: "Un equipo de venezolanos se frustró con la falta de opciones confiables de transporte y delivery. Decidieron construir la solución ellos mismos." },
-    { year: "2025", title: "Primeros pasos", desc: "Arrancamos en el estado Portuguesa con los primeros 20 conductores y 5 negocios aliados. Pequeño en números, grande en propósito." },
-    { year: "2025", title: "Expansión regional",   desc: "Expandimos a nuevas ciudades del interior del país. Crecemos semana a semana, ciudad por ciudad." },
+    { year: "2025", title: "Primeros pasos", desc: "Lanzamos Pappedir con los primeros conductores y negocios aliados verificados. Pequeño en números, grande en propósito." },
+    { year: "2025", title: "Crecimiento acelerado", desc: "Llegamos a Caracas, Valencia y más ciudades del país. Semana a semana, más venezolanos eligen Pappedir." },
     { year: "2026", title: "Expansión nacional",        desc: "Seis servicios disponibles, cientos de aliados activos en varios estados y una meta bien clara: llegar a cada rincón de Venezuela." },
   ];
 

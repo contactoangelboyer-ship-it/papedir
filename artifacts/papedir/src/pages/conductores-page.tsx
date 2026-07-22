@@ -44,9 +44,9 @@ import React, { useRef, useState } from "react";
   ];
 
   const TESTIMONIALS_DRIVER = [
-    { name: "José D.",    city: "Araure",   stars: 5, tipo: "Conductor", text: "Dos meses activo y los pagos llegan puntuales cada semana. Cuando tuve una duda, el soporte respondió al instante. Lo mejor que he hecho." },
-    { name: "Marcos F.",  city: "Guanare",  stars: 5, tipo: "Repartidor", text: "Con mi moto hago entre 8 y 12 entregas al día. Gano mejor que en mi trabajo anterior y sin horario fijo. No cambio esto." },
-    { name: "Ana C.",     city: "Acarigua", stars: 5, tipo: "Conductora", text: "Trabajo solo en la mañana, cuando los niños están en el colegio. Gano bien y estoy de vuelta en casa a tiempo." },
+    { name: "José D.",    city: "Caracas",  stars: 5, tipo: "Conductor", text: "Dos meses activo y los pagos llegan puntuales cada semana. Cuando tuve una duda, el soporte respondió al instante. Lo mejor que he hecho." },
+    { name: "Marcos F.",  city: "Barquisimeto", stars: 5, tipo: "Repartidor", text: "Con mi moto hago entre 8 y 12 entregas al día. Gano mejor que en mi trabajo anterior y sin horario fijo. No cambio esto." },
+    { name: "Ana C.",     city: "Maracaibo", stars: 5, tipo: "Conductora", text: "Trabajo solo en la mañana, cuando los niños están en el colegio. Gano bien y estoy de vuelta en casa a tiempo." },
   ];
 
   
@@ -551,7 +551,7 @@ import React, { useRef, useState } from "react";
                       <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Ciudad *</label>
                       <select name="ciudad" value={form.ciudad} onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
-                        {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Guanare","Otra"].map(c => <option key={c}>{c}</option>)}
+                        {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Maturín","Barcelona","Mérida","San Cristóbal","Guanare","Otra"].map(c => <option key={c}>{c}</option>)}
                       </select>
                     </div>
                     {formError && <p className="text-red-500 text-sm bg-red-50 px-4 py-3 rounded-xl">{formError}</p>}

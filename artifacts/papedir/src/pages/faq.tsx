@@ -20,7 +20,7 @@ import React, { useRef, useState } from "react";
       cat: "🧑‍💻 General",
       items: [
         { q: "¿Qué es Pappedir?", a: "Pappedir es la app venezolana de transporte y delivery que opera en todo el país. Conectamos personas con conductores, repartidores y negocios aliados verificados — todo en un solo lugar." },
-        { q: "¿En qué ciudades está disponible?", a: "Hoy operamos en Caracas, Valencia, Guanare y Acarigua-Araure. Estamos expandiéndonos a Maracaibo, Barquisimeto, Maracay y más. Visita la página de Ciudades para ver el estado en tiempo real." },
+        { q: "¿En qué ciudades está disponible?", a: "Hoy operamos en Caracas, Valencia, Maracaibo, Barquisimeto, Maracay, Guanare y más ciudades del país. Estamos expandiéndonos rápidamente — visita la página de Ciudades para ver la cobertura en tiempo real." },
         { q: "¿Cuánto tarda en llegar el servicio?", a: "El promedio es ≈4 minutos. Puede variar según la zona o el horario, pero nuestros aliados están distribuidos para que la espera sea la mínima posible." },
         { q: "¿Cómo descargo la app?", a: "Muy pronto en Google Play y App Store. Por ahora, solicita tu servicio desde esta web o por WhatsApp. Te avisamos en cuanto la app esté disponible para descargar." },
       ]

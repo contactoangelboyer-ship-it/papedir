@@ -42,13 +42,13 @@ import React, { useRef, useState } from "react";
   ];
 
   const TESTIMONIALS_BIZ = [
-    { name: "Carmen R.",  tipo: "Restaurante", city: "Acarigua", stars: 5, text: "En el primer mes, las ventas de mi restaurante subieron un 40%. Los repartidores son puntuales y profesionales. No me arrepiento." },
-    { name: "Eduardo M.", tipo: "Farmacia",    city: "Guanare",  stars: 5, text: "Mis clientes me piden los medicamentos sin moverse de casa. El proceso es simple y el dinero llega puntual cada semana." },
-    { name: "Luisa F.",   tipo: "Panadería",   city: "Araure",   stars: 5, text: "Tenía mis dudas, pero hoy el 30% de mis ventas diarias vienen por Pappedir. Fue la mejor decisión que tomé para el negocio." },
+    { name: "Carmen R.",  tipo: "Restaurante", city: "Barquisimeto", stars: 5, text: "En el primer mes, las ventas de mi restaurante subieron un 40%. Los repartidores son puntuales y profesionales. No me arrepiento." },
+    { name: "Eduardo M.", tipo: "Farmacia",    city: "Maracay",  stars: 5, text: "Mis clientes me piden los medicamentos sin moverse de casa. El proceso es simple y el dinero llega puntual cada semana." },
+    { name: "Luisa F.",   tipo: "Panadería",   city: "Valencia", stars: 5, text: "Tenía mis dudas, pero hoy el 30% de mis ventas diarias vienen por Pappedir. Fue la mejor decisión que tomé para el negocio." },
   ];
 
   export default function Negocios() {
-    const [form, setForm] = useState({ nombre: "", nombre_negocio: "", tipo_negocio: "restaurante", whatsapp: "", ciudad: "Guanare", direccion: "" });
+    const [form, setForm] = useState({ nombre: "", nombre_negocio: "", tipo_negocio: "restaurante", whatsapp: "", ciudad: "Caracas", direccion: "" });
     const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [formError, setFormError] = useState("");
 
@@ -286,7 +286,7 @@ import React, { useRef, useState } from "react";
                         <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Ciudad *</label>
                         <select name="ciudad" value={form.ciudad} onChange={handleChange}
                           className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
-                          {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Guanare","Otra"].map(c => <option key={c}>{c}</option>)}
+                          {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Maturín","Barcelona","Mérida","San Cristóbal","Guanare","Otra"].map(c => <option key={c}>{c}</option>)}
                         </select>
                       </div>
                       <div className="flex flex-col gap-1.5">

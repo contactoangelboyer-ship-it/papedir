@@ -72,7 +72,7 @@ export default function Home() {
 
   // Registro state
     const [registroTipo, setRegistroTipo] = useState<"conductor" | "repartidor" | "embajador">("conductor");
-    const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
+    const [form, setForm] = useState({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Caracas", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
     const [formState, setFormState] = useState<"idle" | "loading" | "success" | "error">("idle");
     const [formError, setFormError] = useState("");
 
@@ -109,7 +109,7 @@ export default function Home() {
       setRegistroTipo(t);
       setFormState("idle");
       setFormError("");
-      setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
+      setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Caracas", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" });
     };
 
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -821,7 +821,7 @@ export default function Home() {
                               : "En menos de 24 horas te contactamos por WhatsApp para activar tu cuenta. ¡Bienvenido al equipo!"}
                           </p>
                         </div>
-                        <button onClick={() => { setFormState("idle"); setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Guanare", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" }); }}
+                        <button onClick={() => { setFormState("idle"); setForm({ nombre: "", cedula: "", vehiculo: "moto", whatsapp: "", ciudad: "Caracas", nombre_negocio: "", tipo_negocio: "restaurante", direccion: "" }); }}
                           className="px-6 py-2.5 rounded-xl border-2 border-slate-200 text-sm font-bold text-slate-600 hover:border-[#1A6EFF]/30 hover:bg-[#F5F8FF] transition-all">
                           Registrar otro
                         </button>
@@ -918,7 +918,7 @@ export default function Home() {
                           <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Ciudad *</label>
                           <select name="ciudad" value={form.ciudad} onChange={handleChange}
                             className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] bg-white focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all">
-                            {["Guanare","Acarigua","Araure","Biscucuy","Ospino","Otra"].map(c => <option key={c} value={c}>{c}</option>)}
+                            {["Caracas","Valencia","Maracaibo","Barquisimeto","Maracay","Maturín","Barcelona","Mérida","San Cristóbal","Guanare","Otra"].map(c => <option key={c} value={c}>{c}</option>)}
                           </select>
                         </div>
 
@@ -926,7 +926,7 @@ export default function Home() {
                         {registroTipo === "embajador" && (
                           <div className="flex flex-col gap-1.5">
                             <label className="text-[12px] font-bold text-slate-500 uppercase tracking-wide">Dirección del negocio</label>
-                            <input name="direccion" value={form.direccion} onChange={handleChange} placeholder="Ej. Av. Principal, Local 3, Guanare"
+                            <input name="direccion" value={form.direccion} onChange={handleChange} placeholder="Ej. Av. Principal, Local 3"
                               className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-[#0D1E3F] placeholder-slate-300 focus:outline-none focus:border-[#1A6EFF] focus:ring-2 focus:ring-[#1A6EFF]/15 transition-all" />
                           </div>
                         )}
